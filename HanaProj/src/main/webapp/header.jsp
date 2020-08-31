@@ -66,7 +66,7 @@
                         data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false" href="about.html"> 계좌관리 </a>
                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="${ pageContext.request.contextPath }/account">일반계좌조회</a>
+                        <a class="dropdown-item" href="${ pageContext.request.contextPath }/account">통합계좌조회</a>
                         <div class="dropdown-divider"></div>
                         <c:choose>
              <c:when test="${ empty loginVO.account_num }">
@@ -103,7 +103,6 @@
 		           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 		             <a class="dropdown-item" href="${ pageContext.request.contextPath }/stock">전체 주식 조회</a>
                      <div class="dropdown-divider"></div>
-		             <a class="dropdown-item" href="${ pageContext.request.contextPath }/basket">나의 관심종목 등록</a>
 		             <a class="dropdown-item" href="#">나의 관심종목 조회</a>
                      <div class="dropdown-divider"></div>
 		             <a class="dropdown-item" href="#">주식 매수하기</a>

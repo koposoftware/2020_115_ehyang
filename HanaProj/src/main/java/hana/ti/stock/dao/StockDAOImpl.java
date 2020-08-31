@@ -24,10 +24,22 @@ public class StockDAOImpl implements StockDAO {
 	}
 
 	/**
+	 * 이미 관심종목에 등록한 것은 관심종목에 등록하지 못하게 하기
+	 * */
+	@Override
+	public List<StockVO> stockList(String id) {
+		List<StockVO> stockList = sqlSession.selectList("stock.dao.StockDAO.stockList2", id);
+		return stockList;
+	}
+
+
+	/**
 	 * 관심종목에 등록
 	 * */
 	@Override
-	public void basket(StockVO stock) {
-		sqlSession.insert("stock.dao.StockDAO.basket", stock);
+	public void basket(StockVO stockVO) {
+		sqlSession.insert("stock.dao.StockDAO.basket", stockVO);
 	}
+	
+	
 }

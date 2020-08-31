@@ -25,10 +25,21 @@ public class StockServiceImpl implements StockService {
 	}
 
 	/**
+	 * 이미 관심종목에 등록한 것은 관심종목에 등록하지 못하게 하기
+	 * */
+	@Override
+	public List<StockVO> stockList(String id) {
+		List<StockVO> stockList = stockDAO.stockList(id);
+		return stockList;
+	}
+
+	/**
 	 * 관심종목에 등록
 	 * */
 	@Override
-	public void basket(StockVO stock) {
-		stockDAO.basket(stock);
+	public void basket(StockVO stockVO) {
+		stockDAO.basket(stockVO);
 	}
+	
+	
 }

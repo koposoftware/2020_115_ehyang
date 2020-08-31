@@ -12,9 +12,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import hana.ti.account.vo.AccountVO;
+import hana.ti.member.vo.MemberVO;
 import hana.ti.stock.service.StockService;
 import hana.ti.stock.vo.StockVO;
 
@@ -28,9 +30,15 @@ public class StockController {
 	 * 내 전체 통합계좌목록 보여주기
 	 * */
 	@RequestMapping("/stock")
-	public ModelAndView list() {
+	public ModelAndView list(HttpSession session) {
 		
-		List<StockVO> stockList = stockService.stockList();
+		MemberVO loginVO = (MemberVO)session.getAttribute("loginVO");
+		
+		List<StockVO> stockList = stockService.stockList(loginVO.getId());
+		
+		for(StockVO vo : stockList) {
+			System.out.println(vo);
+		}
 		
 		ModelAndView mav = new ModelAndView("stock/stockList");
 		mav.addObject("stockList", stockList);
@@ -39,26 +47,35 @@ public class StockController {
 	}
 	
 	/**
-	 * 관심종목에 등록
+	 * 관심종목 등록
 	 * */
-	@GetMapping("/basket")
-	public String basketForm(Model model, HttpSession session) {
-		
-		StockVO stock = new StockVO();
-		
-		model.addAttribute("stockVO", stock);
-		
-		return "/stock/basket";
+	@ResponseBody
+	@PostMapping("/stock/addFavorite")
+	public void addFavorite(StockVO stockVO) {
+//		System.out.println(stockVO);
+		stockService.basket(stockVO);
 	}
 	
-	@PostMapping("/basket")
-	public String basket(@Valid StockVO stockVO, BindingResult result) {
-		
-		if(result.hasErrors()) {
-			return "stock/basket";
-		}
-		
-		stockService.basket(stockVO);
-		return "redirect:/";
-	}
+	/**
+	 * 관심종목에 등록
+	 * */
+//	@GetMapping("/basket")
+//	public String basketForm(Model model, HttpSession session) {
+//		
+//		StockVO stock = new StockVO();
+//
+//		model.addAttribute("stockVO", stock);
+//
+//		return "/stock/basket";
+//	}
+//
+//	@PostMapping("/basket")
+//	public String basket(@Valid StockVO stockVO, BindingResult result, @RequestParam("name")String name, @RequestParam("code")String code) {
+//
+//		if(result.hasErrors()) {
+//			return "stock/basket";
+//		}
+//		
+//		return "redirect:/";
+//	}
 }

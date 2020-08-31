@@ -12,7 +12,12 @@ public interface StockDAO {
 	public List<StockVO> stockList();
 	
 	/**
+	 * 이미 관심종목에 등록한 것은 관심종목에 등록하지 못하게 하기
+	 * */
+	public List<StockVO> stockList(String id);
+	
+	/**
 	 * 관심종목에 등록
 	 * */
-	public void basket(StockVO stock);
+	public void basket(StockVO stockVO);
 }

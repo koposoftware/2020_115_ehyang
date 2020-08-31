@@ -105,7 +105,7 @@ public class AccountController {
 	}
 	
 	/**
-	 * 주금통 서비스에 등록한 통합계좌
+	 * 주금통 서비스에 등록한 계좌 및 증권계좌
 	 * */
 	@RequestMapping("/spList")
 	public ModelAndView regA(HttpSession session) {

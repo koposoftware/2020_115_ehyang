@@ -8,7 +8,13 @@ public class StockVO {
 	private String sector;
 	private String reg_date;
 	private int price;
+	private int flag;
 	
+	
+	
+	public StockVO() {
+		super();
+	}
 	public String getId() {
 		return id;
 	}
@@ -45,4 +51,20 @@ public class StockVO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	
+	public int getFlag() {
+		return flag;
+	}
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
+	@Override
+	public String toString() {
+		return "StockVO [id=" + id + ", code=" + code + ", name=" + name + ", sector=" + sector + ", reg_date="
+				+ reg_date + ", price=" + price + ", flag=" + flag + "]";
+	}
+	
+	
+	
+	
 }
