@@ -7,6 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.color {
+		color: rgb(0,140,140);
+	}
+</style>
 <body>
 
    <!-- header -->
@@ -26,6 +31,12 @@
            
            <section class="ftco-section ftco-portfolio">
        <div class="container">
+       
+             <div class="page-header">
+		   <h3> <img src="resources/images/piggybank.png" width="70px"> ${ loginVO.name } 회원님이 현재 주금통 서비스에 등록한 계좌 정보입니다.</h3>      
+		  </div>
+		  <hr>
+
           <div class="row no-gutters">
     <c:forEach items="${ regAList }" var="account" varStatus="loop">
               <div class="col-md-6 portfolio-wrap">
@@ -36,7 +47,7 @@
                              <div class="desc">
                                 <div class="top">
                                    <span class="subheading">${ loginVO.name } 님의 통합계좌</span>
-                                   <h3 class="mb-4">${ account.bank }<br> ${ account.alias } <br>  ${ account.account_num }</h3>
+                                   <h3 class="mb-4 color">${ account.bank } <br> ${ account.alias } <br> ${ account.account_num }</h3>
                                 </div>
 <!--                                 <div class="absolute">
                                    <p>계좌상세를 열람하시려면 계좌를 클릭하세요</p>
@@ -56,7 +67,7 @@
                              <div class="desc text-md-right">
                                 <div class="top">
                                    <span class="subheading">${ loginVO.name }</span>
-                                   <h3 class="mb-4">하나금융투자 <br> ${ loginVO.account_num }</h3>
+                                   <h3 class="mb-4 color">하나금융투자 <br> ${ loginVO.account_num }</h3>
                                 </div>
 
                              </div>
@@ -66,6 +77,10 @@
               </div>
            </div>
            </div>
+           <div align="center">
+           	<button class="btn btn-success"> 주금통 내역 조회 </button>
+           </div>
+           
            </section>
            
            

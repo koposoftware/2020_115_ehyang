@@ -10,7 +10,28 @@ public class AccountVO {
     private int balance;
     private String register;
     private String bank;
+    private int money;
+    private String fAccount_num;
+    private String tAccount_num;
     
+	public String getfAccount_num() {
+		return fAccount_num;
+	}
+	public void setfAccount_num(String fAccount_num) {
+		this.fAccount_num = fAccount_num;
+	}
+	public String gettAccount_num() {
+		return tAccount_num;
+	}
+	public void settAccount_num(String tAccount_num) {
+		this.tAccount_num = tAccount_num;
+	}
+	public int getMoney() {
+		return money;
+	}
+	public void setMoney(int money) {
+		this.money = money;
+	}
 	public String getAccount_num() {
 		return account_num;
 	}

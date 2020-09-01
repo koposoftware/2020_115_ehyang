@@ -7,9 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	.chartByStockCode {
-		display: none
-	}
+   .chartByStockCode {
+      display: none
+   }
 </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -26,38 +26,37 @@
      });
    });
    
-//	관심종목에 추가
+//   관심종목에 추가
    $(document).ready(function() {
-	 
-	   $('.addFavoriteBtn').click(function() {
-		   let btn = this;
-		   let elements = $(this).attr('id').split('-');
-		   alert(elements[0] + ' : ' + elements[1] + ' : ' + elements[2])
-		   
-		   $.ajax({
-			   url : '${pageContext.request.contextPath}/stock/addFavorite',
-			   type: 'post',
-			   data : {
-				   id : elements[1],
-				   code : elements[2],
-				   name : elements[0]
-			   }, success : function() {
-				   alert('성공')
-				   $(btn).attr('disabled', true)
-			   }, error : function() {
-				   alert('실패')
-			   }
-		   });
-	   })
+    
+      $('.addFavoriteBtn').click(function() {
+         let btn = this;
+         let elements = $(this).attr('id').split('-');
+         alert(elements[0] + ' : ' + elements[1] + ' : ' + elements[2])
+         
+         $.ajax({
+            url : '${pageContext.request.contextPath}/stock/addFavorite',
+            type: 'post',
+            data : {
+               id : elements[1],
+               code : elements[2],
+               name : elements[0]
+            }, success : function() {
+               alert('성공')
+               $(btn).attr('disabled', true)
+            }, error : function() {
+               alert('실패')
+            }
+         });
+      })
    })
    
 // 그래프  
    $(document).ready(function(){
-	   $(".chart").click(function(){
-		   let code = $(this).attr('name');
-		   $('#'+code).toggle();
-
-	   })  
+      $(".chart").click(function(){
+         let code = $(this).attr('id');
+         $('#'+code).toggle();
+      })  
    })
 </script>
 </head>
@@ -77,9 +76,10 @@
       </div>
     </section>
      <section class="ftco-section">
-		
+      
       <div class="container">
         <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <br>
         <table class="table table-bordered table-hover">
        <thead>
          <tr align="center">
@@ -87,7 +87,7 @@
            <th align="center" style="width: 10%">분류</th>
            <th align="center" style="width: 10%">기준</th>
            <th align="center" style="width: 10%">주가</th>
-           <th align="center" style="width: 10%">보러가기</th>
+           <th align="center" style="width: 10%">차트</th>
            <th align="center" style="width: 10%">선택</th>
          </tr>
        </thead>
@@ -98,9 +98,26 @@
            <td align="center">${ stock.sector }</td>
            <td align="center">${ stock.reg_date }</td>
            <td align="center">${ stock.price }원</td>
-           <td><button type="button" class="chart" name="${ stock.code }"> 그래프</button>	<div class="chartByStockCode" id ="${ stock.code }"><img id="img_chart_area" src="https://ssl.pstatic.net/imgfinance/chart/item/area/day/${ stock.code }.png"></div>		</td>
-           <td><input type="button" class="addFavoriteBtn" id="${stock.name }-${loginVO.id}-${stock.code}" <c:if test="${stock.flag == 1 }">disabled </c:if> value="관심종목으로 등록"></td>
+           <td align="center"><input type="button" class="chart btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="그래프"></td>
+           <td align="center"><input type="button" class="addFavoriteBtn btn btn-success" id="${stock.name }-${loginVO.id}-${stock.code}" <c:if test="${stock.flag == 1 }">disabled </c:if> value="관심종목으로 등록"></td>
          </tr>
+             <!-- Modal -->
+  <div class="modal fade" id="myModal${ stock.code }" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">${ stock.name }의 주가변동 그래프</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+         <div class="chartByStockCode" id ="${ stock.code }"><br><img id="img_chart_area" src="https://ssl.pstatic.net/imgfinance/chart/item/area/day/${ stock.code }.png"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+    </div>
        </c:forEach>
        </tbody>
      </table>

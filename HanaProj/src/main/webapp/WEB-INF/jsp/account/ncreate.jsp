@@ -52,7 +52,7 @@ function getRandomNum(iLength) {
   <p class="lead">당신의 증권계좌번호는 ${ loginVO.account_num } 입니다.</p>
   <hr class="my-4">
   <p>증권계좌 조회로 돌아가시려면 아래 버튼을 클릭하세요.</p>
-  <a class="btn btn-primary btn-lg" href="${ pageContext.request.contextPath}/sAccount" role="GO">Learn more</a>
+  <a class="btn btn-primary btn-lg" href="${ pageContext.request.contextPath}/sAccount" role="GO">나의 증권계좌 조회</a>
 </div>
 </div>
 </section>

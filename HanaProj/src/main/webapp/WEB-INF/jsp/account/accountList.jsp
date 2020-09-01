@@ -18,7 +18,7 @@
         <div class="row no-gutters slider-text js-fullheight align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
           	<p class="breadcrumbs"><span class="mr-2"><a href="${ pageContext.request.contextPath }">Home <i class="fa fa-chevron-right"></i></a></span> <span>계좌관리 <i class="fa fa-chevron-right"></i></span></p>
-            <h1 class="mb-3 bread">일반계좌조회</h1>
+            <h1 class="mb-3 bread">통합계좌조회</h1>
           </div>
         </div>
       </div>
@@ -26,6 +26,12 @@
     
 	  <section class="ftco-section">
       <div class="container">
+      
+		   <div class="page-header">
+		   <h3> <img src="resources/images/money.png" width="70px"> ${ loginVO.name } 회원님이 보유하신 하나은행 통합계좌 목록입니다.</h3>      
+		  </div>
+		  <hr>
+      
         <table class="table table-bordered table-hover">
        <thead>
          <tr>
@@ -37,6 +43,29 @@
        </thead>
        <tbody id="myTable">
        <c:forEach items="${ accountList }" var="account" varStatus="loop">
+       <input type="hidden" name="account_num" value="${ account.account_num }">
+         <tr>
+           <td align="center">${ account.bank }</td>
+           <td align="center">${ account.account_num }</td>
+           <td align="center">${ account.alias }</td>
+           <td align="center">${ account.balance }</td>
+         </tr>
+       </c:forEach>
+       </tbody>
+     </table>
+     
+     
+        <table class="table table-bordered table-hover">
+       <thead>
+         <tr>
+           <th align="center">은행</th>
+           <th align="center">계좌번호</th>
+           <th align="center">계좌별칭</th>
+           <th align="center">잔액</th>
+         </tr>
+       </thead>
+       <tbody id="myTable">
+       <c:forEach items="${ accountList2 }" var="account" varStatus="loop">
        <input type="hidden" name="account_num" value="${ account.account_num }">
          <tr>
            <td align="center">${ account.bank }</td>
