@@ -89,7 +89,7 @@
          </a>
            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
              <a class="dropdown-item" href="${ pageContext.request.contextPath }/spList">주금통서비스 조회</a>
-             <a class="dropdown-item" href="${ pageContext.request.contextPath }/autoTransfer">주금통서비스 신청</a>
+             <a class="dropdown-item" href="${ pageContext.request.contextPath }/register">주금통서비스 신청</a>
              <a class="dropdown-item" href="#">주금통서비스 변경</a>
              <a class="dropdown-item" href="#">주금통서비스 해지</a>
            </div>

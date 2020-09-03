@@ -7,10 +7,14 @@ import hana.ti.account.vo.AccountVO;
 public interface AccountService {
 
 	/**
-	 * 주금통 서비스 이용 X 통합계좌조회
+	 * 내 전체 통합계좌목록 보여주기
 	 * */
 	List<AccountVO> selectAllAccount(String id);
-
+	
+	/**
+	 * 자동이체
+	 * */
+	public void transfer(AccountVO account);
 	
 	/**
 	 * 증권계좌개설

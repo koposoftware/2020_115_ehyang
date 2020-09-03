@@ -16,14 +16,30 @@ public class AccountDAOImpl implements AccountDAO {
 	private SqlSessionTemplate sqlSession;
 
 	/**
-	 * 주금통 서비스 이용 X 통합계좌조회
+	 * 통합계좌조회
 	 * */
 	@Override
 	public List<AccountVO> selectAll(String id) {
 		List<AccountVO> accountList = sqlSession.selectList("account.dao.AccountDAO.selectAll", id);
 		return accountList;
 	}
+
+	/**
+	 * 자동이체 보내기
+	 * */
+	@Override
+	public void send(AccountVO account) {
+		sqlSession.update("account.dao.AccountDAO.send", account);
+	}
 	
+	/**
+	 * 자동이체받기
+	 * */
+	@Override
+	public void receive(AccountVO account) {
+		sqlSession.update("account.dao.AccountDAO.receive", account);
+	}
+
 	/**
 	 * 증권계좌개설
 	 * */
@@ -42,7 +58,7 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 	
 	/**
-	 * 주금통 서비스 이용 O 통합계좌조회
+	 * 주긍통서비스 등록한 통합계좌조회
 	 * */
 	@Override
 	public List<AccountVO> regA(String id) {

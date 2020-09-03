@@ -25,7 +25,7 @@ public class AccountController {
 	private AccountService accountService;
 	
 	/**
-	 * 주금통 서비스 이용 X 통합계좌조회
+	 * 통합계좌조회
 	 * */
 	@RequestMapping("/account")
 	public ModelAndView list(HttpSession session) {
@@ -37,8 +37,23 @@ public class AccountController {
 		
 		ModelAndView mav = new ModelAndView("account/accountList");
 		mav.addObject("accountList", accountList);
+		
 		return mav;
 	}
+	
+	/**
+	 * 자동이체신청
+	 * */
+	  @GetMapping("/register")
+	  public String register(Model model) {
+	 
+		  AccountVO accountVO = new AccountVO();
+		  model.addAttribute("accountVO", accountVO);
+	  
+	  return "/account/register";
+	  }
+	 
+	 
 	
 	/**
 	 * 증권계좌생성

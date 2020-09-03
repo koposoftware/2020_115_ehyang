@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="stock.dao.StockDAO">
+
+	<!-- 전체 주식 정보 -->
+	<select id="stockList" resultType="StockVO">
+		select code, name, sector, reg_date, price 
+		from h_stock
+	</select>
+	
+	<!-- 이미 관심종목에 등록한 것은 관심종목에 등록하지 못하게 하기 -->
+	<select id="stockList2" parameterType="string" resultType="StockVO">
+		select s.*, (select count(*) from h_basket where s.code = code and id = #{id}) flag
+  		  from h_stock s
+	</select>
+
+	<!-- 관심종목에 등록 -->
+	<insert id="basket" parameterType="StockVO">
+		insert into h_basket(no, id, code, name)
+		 	values(h_basket_no.nextval, #{id}, #{code}, #{name})
+	</insert>
+	
+		<!-- 나의 관심 종목 -->
+	<select id="basketList" resultType="StockVO">
+		select code, name, sector, reg_date, price 
+		from h_stock
+	</select>
+</mapper>

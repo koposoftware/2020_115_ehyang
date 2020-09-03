@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="account.dao.AccountDAO">
+
+	<!-- 주금통 서비스 이용 X 통합계좌조회 -->
+	<select id="selectAll" resultType="AccountVO" parameterType="String">
+		select bank, account_num, alias, balance
+			from h_account where id = #{id} and register='N'
+	</select>
+	
+	<!-- 증권계좌개설 -->
+	<insert id="create" parameterType="AccountVO">
+		insert into h_stockaccount(account_num, id, password, name, alias)
+		 	values(#{account_num}, #{id}, #{password}, #{name}, #{alias})
+    </insert>
+    
+    <!-- 고객 보유 증권계좌 조회 -->
+	<select id="selectSAll" resultType="AccountVO" parameterType="String">
+		select account_num, name, alias, balance
+			from h_stockaccount where id = #{id} and register='N'
+	</select>
+	
+	<!-- 주금통서비스 조회 -->
+	<select id="regA" resultType="AccountVO" parameterType="String">
+		select bank, account_num, alias, balance
+			from h_account where id = #{id} and register='Y'
+	</select>
+	
+	<!-- 주금통 서비스 해지 -->
+
+	
+	
+</mapper>

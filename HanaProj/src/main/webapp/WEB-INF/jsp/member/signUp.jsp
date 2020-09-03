@@ -43,6 +43,7 @@
         }).open();
     }
     
+    
     function fn_idChk(){
 		$.ajax({
 			url : "/member/idChk",

@@ -85,7 +85,7 @@ function getRandomNum(iLength) {
             <label for="inputEmail4">계좌번호</label>
          <input type="button" value="계좌번호 랜덤생성" onclick="getRandomNum(document.getElementById('length').value)" readonly="readonly">
             계좌번호는<input type="text" id="length" value=14 readonly="readonly" style="width: 30px">자리 입니다.
-            <input type="text" class="form-control" name="account_num" id="divRandom" readonly="readonly">
+            <input type="text" class="form-control" name="account_num" id="divRandom">
           </div>
         <div class="form-group">
           <label for="inputAddress">계좌주명</label>

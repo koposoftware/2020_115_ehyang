@@ -15,13 +15,22 @@ public class AccountServiceImpl implements AccountService {
 	   private AccountDAO accountDAO;
 	
 	/**
-	 * 주금통 서비스 이용 X 통합계좌조회
+	 * 통합계좌조회
 	 * */
 	@Override
 	public List<AccountVO> selectAllAccount(String id) {
 		
 		List<AccountVO> accountList = accountDAO.selectAll(id);
 		return accountList;
+	}
+
+	/**
+	 * 자동이체
+	 * */
+	@Override
+	public void transfer(AccountVO account) {
+		accountDAO.send(account);
+		accountDAO.receive(account);
 	}
 
 	/**
@@ -44,7 +53,7 @@ public class AccountServiceImpl implements AccountService {
 
 	
 	/**
-	 * 주금통 서비스 이용 O 통합계좌조회
+	 * 주금통 계좌 조회
 	 * */
 	@Override
 	public List<AccountVO> regA(String id) {

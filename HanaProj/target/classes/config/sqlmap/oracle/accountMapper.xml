@@ -4,11 +4,25 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="account.dao.AccountDAO">
 
-	<!-- 주금통 서비스 이용 X 통합계좌조회 -->
+	<!-- 고객 보유 주금통 등록 하지않은 통합계좌 조회 -->
 	<select id="selectAll" resultType="AccountVO" parameterType="String">
 		select bank, account_num, alias, balance
 			from h_account where id = #{id} and register='N'
 	</select>
+	
+	<!-- 자동이체 보내기  -->
+	<update id="send" parameterType="AccountVO">
+		update h_account
+			set balance = balance - #{balance}
+			where account_num = #{account_num}
+	</update>
+	
+	<!-- 자동이체 빋기 -->
+	<update id="receive" parameterType="AccountVO">
+		update h_stockaccount
+			set balance = balance + #{balance}
+			where account_num = #{account_num}
+	</update>
 	
 	<!-- 증권계좌개설 -->
 	<insert id="create" parameterType="AccountVO">
@@ -27,9 +41,5 @@
 		select bank, account_num, alias, balance
 			from h_account where id = #{id} and register='Y'
 	</select>
-	
-	<!-- 주금통 서비스 해지 -->
-
-	
 	
 </mapper>

@@ -26,12 +26,6 @@
     
 	  <section class="ftco-section">
       <div class="container">
-      
-      <div class="page-header">
-		   <h3> <img src="resources/images/money.png" width="70px"> ${ loginVO.name } 회원님이 보유하신 하나금융투자 증권계좌입니다.</h3>      
-		  </div>
-		  <hr>
-      
         <table class="table table-bordered table-hover">
        <thead>
          <tr>
@@ -54,7 +48,7 @@
        </tbody>
      </table>
      	<div align="center">
-     	<a href="${ pageContext.request.contextPath }/autoTransfer"><button class="btn btn-success"> 주금통 서비스 신청하기 </button></a>
+     	<a href="${ pageContext.request.contextPath }/register"><button class="btn btn-success"> 주금통 서비스 신청하기 </button></a>
      	</div>
     </div>
     </section>
