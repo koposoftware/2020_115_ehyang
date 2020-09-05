@@ -18,13 +18,13 @@
 
 	<!-- 관심종목에 등록 -->
 	<insert id="basket" parameterType="StockVO">
-		insert into h_basket(no, id, code, name)
-		 	values(h_basket_no.nextval, #{id}, #{code}, #{name})
+		insert into h_basket(no, id, code, name, price)
+		 	values(h_basket_no.nextval, #{id}, #{code}, #{name}, #{price})
 	</insert>
 	
 		<!-- 나의 관심 종목 -->
-	<select id="basketList" resultType="StockVO">
-		select code, name, sector, reg_date, price 
-		from h_stock
+	<select id="basketList" resultType="StockVO" parameterType="String">
+		select name, price, reg_date
+		from h_basket where id = #{id}
 	</select>
 </mapper>

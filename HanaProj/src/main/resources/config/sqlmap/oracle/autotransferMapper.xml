@@ -3,20 +3,57 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="autotransfer.dao.autotransferDAO">
-
+	<resultMap type="autotransferVO" id="autotransferMap">
+		<result column="from_account" property="fromAccount" />
+		<result column="to_account" property="toAccount" />
+		<result column="reg_date" property="regDate" />
+	</resultMap>
 	
-	<!-- 자동이체 보내기  -->
+	<!-- 주금통 첫 번째 이체 신청 일반계좌 -> 증권계좌  -->
 	<update id="send" parameterType="autotransferVO">
 		update h_account
 			set balance = balance - #{money}
-			where account_num = #{from_account}
+			where account_num = #{fromAccount}
 	</update>
 	
-	<!-- 자동이체 빋기 -->
+	<!-- 주금통 첫 번째 이체 신청 받기  -->
 	<update id="receive" parameterType="autotransferVO">
 		update h_stockaccount
 			set balance = balance + #{money}
-			where account_num = #{to_account}
+			where account_num = #{toAccount}
 	</update>
 	
+	<!-- 주금통 내역 조회 -->
+	<select id="autoList" resultMap="autotransferMap" parameterType="String">
+		select rownum, from_account, content, money, case
+        when to_char(sysdate, 'yyyy-mm-dd') = to_char(reg_date, 'yyyy-mm-dd') then to_char(reg_date, 'hh24:mi:ss')
+        else to_char(reg_date, 'yyyy-mm-dd')
+    end as reg_date
+		 	from h_autotransfer
+		  	where from_account = #{from_account}
+	</select>
+	
+	<!-- 주금통 신청하면 예약테이블에 추가 -->
+	<insert id="resSP" parameterType="autotransferVO">
+  		insert into h_ressp(no, from_account, to_account, money)
+  	 		values(ressp_no.nextval, #{fromAccount}, #{toAccount}, 777)
+  	</insert>
+  	
+  	<!-- 예약테이블 리스트 -->
+	<select id="resSPList" resultMap="autotransferMap">
+		select from_account, to_account, money
+			 from h_ressp
+	</select>
+	
+	<!-- 송금 내역 -->
+	<insert id="transferList" parameterType="autotransferVO">
+		insert into h_autotransfer (no, from_account, to_account, money, content)
+		 values(autotransfer_no.nextval, #{fromAccount}, #{toAccount}, #{money}, '주금통 실천중 ~_~')
+	</insert>
+	
+	<!-- 주금통 해지 예약테이블에서 삭제 -->
+	<delete id="resSPDel" parameterType="String">
+		delete from h_ressp
+			 where from_account = #{fromAccount}
+	</delete>
 </mapper>

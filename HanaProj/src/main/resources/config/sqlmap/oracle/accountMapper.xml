@@ -4,25 +4,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="account.dao.AccountDAO">
 
-	<!-- 고객 보유 주금통 등록 하지않은 통합계좌 조회 -->
+	<!-- 통합계좌조회 -->
 	<select id="selectAll" resultType="AccountVO" parameterType="String">
+		select bank, account_num, alias, balance, register
+			from h_account where id = #{id}
+	</select>
+	
+	<!-- 주금통 서비스 이용 X 통합계좌조회 -->
+	<select id="selectAllNotReg" resultType="AccountVO" parameterType="String">
 		select bank, account_num, alias, balance
 			from h_account where id = #{id} and register='N'
 	</select>
 	
-	<!-- 자동이체 보내기  -->
-	<update id="send" parameterType="AccountVO">
-		update h_account
-			set balance = balance - #{balance}
-			where account_num = #{account_num}
-	</update>
-	
-	<!-- 자동이체 빋기 -->
-	<update id="receive" parameterType="AccountVO">
-		update h_stockaccount
-			set balance = balance + #{balance}
-			where account_num = #{account_num}
-	</update>
+	<!-- 주금통 서비스 이용 O 통합계좌조회 -->
+	<select id="regA" resultType="AccountVO" parameterType="String">
+		select bank, account_num, alias, balance
+			from h_account where id = #{id} and register='Y'
+	</select>
 	
 	<!-- 증권계좌개설 -->
 	<insert id="create" parameterType="AccountVO">
@@ -33,13 +31,18 @@
     <!-- 고객 보유 증권계좌 조회 -->
 	<select id="selectSAll" resultType="AccountVO" parameterType="String">
 		select account_num, name, alias, balance
-			from h_stockaccount where id = #{id} and register='N'
+			from h_stockaccount where id = #{id}
 	</select>
 	
-	<!-- 주금통서비스 조회 -->
-	<select id="regA" resultType="AccountVO" parameterType="String">
-		select bank, account_num, alias, balance
-			from h_account where id = #{id} and register='Y'
-	</select>
+	<!-- 주금통 등록 타입 'N' -> 'Y' -->
+	<update id="regSP" parameterType="String">
+		update h_account set register = 'Y'
+	 		where account_num = #{fromAccount}
+	</update>
 	
+	<!-- 주금통 해지 타입 'Y' -> 'N' -->
+	<update id="unRegSP" parameterType="String">
+		update h_account set register = 'N'
+	 		where account_num = #{account_num} 
+	</update>
 </mapper>
