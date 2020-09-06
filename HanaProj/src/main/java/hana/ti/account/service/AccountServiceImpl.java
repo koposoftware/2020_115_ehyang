@@ -23,8 +23,20 @@ public class AccountServiceImpl implements AccountService {
 	public List<AccountVO> selectAllAccount(String id) {
 		
 		List<AccountVO> accountList = accountDAO.selectAll(id);
+		accountDAO.sum(id);
 		return accountList;
 	}
+	
+	/**
+	 * 총자산
+	 * */
+	@Override
+	public int sum(String id) {
+		int sumTotal = accountDAO.sum(id);
+		return sumTotal;
+	}
+
+
 
 	/**
 	 * 주금통 서비스 이용 X 통합계좌조회

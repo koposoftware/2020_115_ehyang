@@ -49,4 +49,12 @@ public class StockServiceImpl implements StockService {
 		List<StockVO> basketList = stockDAO.basketList(id);
 		return basketList;
 	}
+
+	/**
+	 * 관심종목 삭제
+	 * */
+	@Override
+	public void delBasket(StockVO stockVO) {
+		stockDAO.delBasket(stockVO);
+	}
 }

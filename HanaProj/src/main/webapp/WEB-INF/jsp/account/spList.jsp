@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script>
+
+// 거래내역 조회
 $(document).ready(function() {
 		$('.spListBtn').click(function(){
 			  /* alert('클릭') */
@@ -29,6 +31,7 @@ $(document).ready(function() {
 			})
 		})
 		
+// 주금통 서비스 해지
 		$(document).ready(function(){
 			$('.unRegBtn').click(function(){
 				$.ajax({

@@ -61,7 +61,7 @@
   <!-- <h1 class="display-4"></h1> -->
   <p class="lead">${ loginVO.name } 님. 주식 캔들차트(봉차트)가 궁금하신가요?</p>
   <hr class="my-4">
-  <p align="center">주식을 처음 시작하는 당신을 위하여 주금통에서 주식 캔들(봉)차트 읽는 법을 알려드릴게요.<br> 간단히 참고하여 관심종목을 등록해보세요!</p>
+  <p align="center">주식을 처음 시작하는 당신을 위하여 주금통에서 주식 캔들(봉)차트 읽는 법을 알려드릴게요.<br> 간단히 참고하여 매수를 원하는 관심종목을 등록해보세요!</p>
   
   <div align="center">
    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">캔들(봉)차트란?</button>
@@ -69,16 +69,20 @@
    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-lg">
        <div class="modal-content">
-         <img src="resources/images/s1.jpg">
-         <img src="resources/images/s2.jpg">
-         <img src="resources/images/s3.jpg">
-         <img src="resources/images/s4.jpg">
-         <img src="resources/images/s5.jpg">
-         <img src="resources/images/s6.jpg">
+         <img src="resources/images/stock1.jpg">
+         <img src="resources/images/stock2.jpg">
+         <img src="resources/images/stock3.jpg">
+         <img src="resources/images/stock4.jpg">
+         <img src="resources/images/stock5.jpg">
+         <img src="resources/images/stock6.jpg">
+         <img src="resources/images/stock7.jpg">
+         <img src="resources/images/stock8.jpg">
+         <img src="resources/images/stock9.jpg">
+         <img src="resources/images/stock10.jpg">
        </div>
              <div class="modal-footer">
              <div align="center">
-           <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 100px; height: 50px">동의</button>
+           <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 100px; height: 50px">확인</button>
              </div>
          </div>
      </div>
@@ -86,7 +90,7 @@
 </div>
       
       	<div class="page-header">
-		   <h3> <img src="resources/images/stock.png" width="70px"> 주식 일봉, 주봉, 월봉 차트를 확인해보세요.</h3>      
+		   <h3> <img src="resources/images/schart.png" width="70px"> 주식 일봉, 주봉, 월봉 차트를 확인해보세요.</h3>      
 		  </div>
 		 <hr>      
       

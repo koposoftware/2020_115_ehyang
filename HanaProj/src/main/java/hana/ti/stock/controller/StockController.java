@@ -80,4 +80,10 @@ public class StockController {
 		mav.addObject("basketList", basketList);
 		return mav;
 	}
+	
+	@ResponseBody
+	@PostMapping("/stock/delBasket")
+	public void delBasket(StockVO stockVO) {
+		stockService.delBasket(stockVO);
+	}
 }

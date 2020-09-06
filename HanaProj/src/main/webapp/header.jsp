@@ -51,10 +51,9 @@
                   </div>
                </li>
 
-               <li class="nav-item"><div class="dropdown">
-                     <a class="dropdown-toggle nav-link" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" href="about.html"> Service </a>
+               <li class="nav-item">
+               <div class="dropdown">
+                    <a class="nav-link" aria-expanded="false" href="${ pageContext.request.contextPath }"> Service </a>
                   </div>
                </li>
 
@@ -88,7 +87,6 @@
            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
              <a class="dropdown-item" href="${ pageContext.request.contextPath }/spList">주금통서비스 조회 및 해지</a>
              <a class="dropdown-item" href="${ pageContext.request.contextPath }/autoTransfer">주금통서비스 신청</a>
-             <a class="dropdown-item" href="#">주금통서비스 변경</a>
            </div>
          </div>
             </li>

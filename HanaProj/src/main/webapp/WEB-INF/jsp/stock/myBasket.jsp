@@ -6,6 +6,30 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+			$('.delBasket').click(function(){
+				
+				let element = $(this).attr('id').split('-');
+				alert(element[0]+":"+element[1])
+				
+				alert('클릭')
+				$.ajax({
+					url : '${pageContext.request.contextPath}/stock/delBasket',
+					type : 'post',
+					data : {
+						code : element[0],
+						id : element[1]
+					}, success : function(data) {
+						alert('성공')
+					}, error : function(){
+						alert('재시도')
+					}
+				})
+			})
+		})
+</script>
 </head>
 <body>
 
@@ -36,16 +60,20 @@
        <thead>
          <tr align="center">
            <th align="center" style="width: 15%">종목명</th>
-           <th align="center" style="width: 10%">당시 주가</th>
-           <th align="center" style="width: 10%">당시 날짜</th>
+           <th align="center" style="width: 10%">주가</th>
+           <th align="center" style="width: 10%">찜한 날짜</th>
+           <th align="center" style="width: 10%">관심종목 삭제</th>
          </tr>
        </thead>
        <tbody id="myTable">
        <c:forEach items="${ basketList }" var="stock" varStatus="loop">
-         <tr>
+         <tr id = "${ stock.code }">
            <td align="center">${ stock.name }</td>
            <td align="center">${ stock.price }원</td>
            <td align="center">${ stock.reg_date }</td>
+           <td align="center">
+           <input type ="button" class="delBasket btn btn-success" id="${ stock.code }-${ stock.id }" value="관심종목에서 삭제">
+           </td>
          </tr>
        </c:forEach>
        </tbody>

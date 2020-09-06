@@ -13,6 +13,11 @@ public interface AccountDAO {
 	public List<AccountVO> selectAll(String id);
 	
 	/**
+	 * 총자산 조회
+	 * */
+	public int sum(String id);
+	
+	/**
 	 * 주금통 서비스 이용 X 통합계좌조회
 	 * */
 	public List<AccountVO> selectAllNotReg(String id);

@@ -24,7 +24,13 @@
 	
 		<!-- 나의 관심 종목 -->
 	<select id="basketList" resultType="StockVO" parameterType="String">
-		select name, price, reg_date
+		select name, price, reg_date, code, id
 		from h_basket where id = #{id}
 	</select>
+	
+	<!-- 관심종목 삭제 -->
+	<delete id="delBasket" parameterType="StockVO">
+		delete h_basket
+			 where code = #{code} and id = #{id}
+	</delete>
 </mapper>

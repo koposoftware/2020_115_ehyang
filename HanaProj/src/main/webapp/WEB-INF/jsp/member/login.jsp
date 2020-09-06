@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 <body>
 
-	<!-- header -->
-	<jsp:include page="/header.jsp" />
+   <!-- header -->
+   <jsp:include page="/header.jsp" />
     
     <section class="hero-wrap hero-wrap-2" style="background-image: url('resources/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
@@ -22,31 +22,31 @@
       </div>
     </section>
     
-	  <section class="ftco-section contact-section">
+     <section class="ftco-section contact-section">
       <div class="container">
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-8 mb-md-5">
             <form action="${ pageContext.request.contextPath }/login" method="post" class="bg-light p-5 contact-form">
               <div class="form-group">
-              	<div align="center">
-              		<img src="resources/images/hana.png">
-              	</div>
+                 <div align="center">
+                    <img src="resources/images/hana.png">
+                 </div>
                 <input type="text" class="form-control" placeholder="ID" name="id" required="required">
               </div>
               <div class="form-group">
                 <input type="password" class="form-control" placeholder="PASSWORD" name="password" required="required">
               </div>
               <div class="form-group" align="center">
-				<button type="submit" class="btn btn-success py-2 px-1 px-md-3">로그인</button>
+            <button type="submit" class="btn btn-success py-2 px-1 px-md-3">로그인</button>
                 <!-- <input type="submit" value="Login" class="btn btn-primary py-3 px-5"> -->
               </div>
             </form>
-          	</div>
-          	</div>
-          	</div>
-          	
+             </div>
+             </div>
+             </div>
+             
    <!-- footer -->
-	<jsp:include page="/footer.jsp"></jsp:include>
+   <jsp:include page="/footer.jsp"></jsp:include>
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>

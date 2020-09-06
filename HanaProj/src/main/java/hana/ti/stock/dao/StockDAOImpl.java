@@ -49,4 +49,11 @@ public class StockDAOImpl implements StockDAO {
 		return basketList;
 	}
 	
+	/**
+	 * 관심종목 삭제
+	 * */
+	@Override
+	public void delBasket(StockVO stockVO) {
+		sqlSession.delete("stock.dao.StockDAO.delBasket", stockVO);
+	}
 }

@@ -35,9 +35,12 @@ public class AccountController {
 		String id = loginVO.getId();
 		
 		List<AccountVO> accountList = accountService.selectAllAccount(id);
+		int sumTotal = accountService.sum(id);
 		
 		ModelAndView mav = new ModelAndView("account/accountList");
 		mav.addObject("accountList", accountList);
+		mav.addObject("sumTotal", sumTotal);
+		
 		return mav;
 	}
 	

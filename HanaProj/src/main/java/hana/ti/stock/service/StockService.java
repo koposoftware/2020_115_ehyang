@@ -25,4 +25,9 @@ public interface StockService {
 	 * 나의 관심종목
 	 * */
 	List<StockVO> basketList(String id);
+	
+	/**
+	 * 관심종목 삭제
+	 * */
+	public void delBasket(StockVO stockVO);
 }

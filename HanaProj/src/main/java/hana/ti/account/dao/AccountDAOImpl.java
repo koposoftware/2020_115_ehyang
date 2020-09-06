@@ -26,6 +26,15 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 	
 	/**
+	 * 총자산 조회
+	 * */
+	@Override
+	public int sum(String id) {
+		int sumTotal = sqlSession.selectOne("account.dao.AccountDAO.sum", id);
+		return sumTotal;
+	}
+
+	/**
 	 * 주금통 서비스 이용 X 통합계좌조회
 	 * */
 	@Override
