@@ -36,7 +36,18 @@
 		   <h3> <img src="resources/images/money.png" width="70px"> ${ loginVO.name } 회원님이 보유하신 하나은행 통합계좌 목록입니다.</h3>      
 		  </div>
 		  <hr>
-      <h4 class="color">총 자산 : ${ sumTotal }원</h4>
+		  
+		  <div class="col-md-8 col-lg-3 justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 py-md-5 mb-md-4">
+              <div class="text text-border d-flex align-items-center">
+                <h4>총 자산액 : </h4>
+                  <br>
+                <h4 class="number color" data-number="${ sumTotal }">0</h4>
+              </div>
+            </div>
+          </div>
+          
+      <%-- <h4 class="color">총 자산 : ${ sumTotal }원</h4> --%>
         <table class="table table-bordered table-hover">
        <thead>
          <tr>

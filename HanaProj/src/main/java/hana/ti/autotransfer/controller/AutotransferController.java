@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +19,7 @@ import hana.ti.account.vo.AccountVO;
 import hana.ti.autotransfer.service.AutotransferService;
 import hana.ti.autotransfer.vo.AutotransferVO;
 import hana.ti.member.vo.MemberVO;
+import hana.ti.message.MessageSend;
 
 @Controller
 public class AutotransferController {
@@ -27,6 +29,8 @@ public class AutotransferController {
 	private AutotransferService autotransferService;
 	@Autowired
 	private AccountService accountService;
+	@Autowired
+	private MessageSend messageSend;
 	
 	/**
 	 * 주금통 첫번째 이체 신청
@@ -70,9 +74,12 @@ public class AutotransferController {
 	 * 주금통서비스 매일 777원씩 차감
 	 * */
 //	초 분 시 일 월 요일
-	@Scheduled(cron = "0 0 18 * * *")
+	@Transactional
+	@Scheduled(cron = "0 24 21 * * *")
 	public void spLogic() {
 		System.out.println("매일 저녁 6시");
 		autotransferService.resSPsend();
+		
+		messageSend.send("01051400204", "오늘도 주금통 완료~!");
 	}
 }

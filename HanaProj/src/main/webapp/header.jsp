@@ -87,6 +87,7 @@
            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
              <a class="dropdown-item" href="${ pageContext.request.contextPath }/spList">주금통서비스 조회 및 해지</a>
              <a class="dropdown-item" href="${ pageContext.request.contextPath }/autoTransfer">주금통서비스 신청</a>
+             <a class="dropdown-item" href="${ pageContext.request.contextPath }/mail">메일</a>
            </div>
          </div>
             </li>
