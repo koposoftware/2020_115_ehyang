@@ -70,8 +70,12 @@
     <hr>
     </div>
     <div class="form-group">
-      <label for="pwd">처음 이체할 금액을 입력해주세요.</label>
+      <label for="pwd">처음 이체할 금액을 입력하세요.</label>
       <input type="text" class="form-control" placeholder="금액입력" name="money">
+    </div>
+    <div class="form-group">
+      <label for="pwd">매일 1000원 미만의 동전이 남지 않을 경우, 자동으로 이체할 금액을 입력해주세요.</label>
+      <input type="text" class="form-control" placeholder="금액입력" name="spMoney">
     </div>
     <hr>
         <div class="form-group">

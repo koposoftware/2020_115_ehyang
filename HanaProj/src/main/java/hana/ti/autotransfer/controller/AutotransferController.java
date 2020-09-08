@@ -71,15 +71,15 @@ public class AutotransferController {
 	}
 	
 	/**
-	 * 주금통서비스 매일 777원씩 차감
+	 * 주금통서비스 매일 차감
 	 * */
 //	초 분 시 일 월 요일
 	@Transactional
-	@Scheduled(cron = "0 24 21 * * *")
+	@Scheduled(cron = "0 07 22 * * *")
 	public void spLogic() {
 		System.out.println("매일 저녁 6시");
 		autotransferService.resSPsend();
 		
-		messageSend.send("01051400204", "오늘도 주금통 완료~!");
+//		messageSend.send("01051400204", "오늘도 주금통 완료~!");
 	}
 }

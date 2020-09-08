@@ -9,9 +9,15 @@ public class AutotransferVO {
 	private String content;
 	private String regDate;
 	private int rownum;
+	private int spMoney;
 	
 	
-	
+	public int getSpMoney() {
+		return spMoney;
+	}
+	public void setSpMoney(int spMoney) {
+		this.spMoney = spMoney;
+	}
 	public int getRownum() {
 		return rownum;
 	}

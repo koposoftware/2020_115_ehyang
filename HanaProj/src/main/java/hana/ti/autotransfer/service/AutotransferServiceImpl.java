@@ -30,7 +30,7 @@ public class AutotransferServiceImpl implements AutotransferService {
 		autotransferDAO.receive(autotransferVO);
 		// Y로 업데이트
 		accountDAO.resSP(autotransferVO.getFromAccount());
-		// insert
+		// 예약테이블에 추가
 		autotransferDAO.insertRes(autotransferVO);
 		// 거래내역에 추가
 		autotransferDAO.transferList(autotransferVO);
@@ -65,6 +65,8 @@ public class AutotransferServiceImpl implements AutotransferService {
 		List<AutotransferVO> resList = autotransferDAO.resTblList();
 		for(AutotransferVO autotransferVO:resList) {
 			
+			// 그날 남은 금액 업데이트
+			autotransferDAO.resUpdate(autotransferVO);
 			//보내기
 			autotransferDAO.send(autotransferVO);
 			// 받기
