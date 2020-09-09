@@ -75,11 +75,12 @@ public class AutotransferController {
 	 * */
 //	초 분 시 일 월 요일
 	@Transactional
-	@Scheduled(cron = "0 07 22 * * *")
+	@Scheduled(cron = "0 0 18 * * *")
 	public void spLogic() {
 		System.out.println("매일 저녁 6시");
+		autotransferService.resUpdate();
 		autotransferService.resSPsend();
 		
-//		messageSend.send("01051400204", "오늘도 주금통 완료~!");
+		messageSend.send("01051400204", "오늘도 주금통 완료~!");
 	}
 }

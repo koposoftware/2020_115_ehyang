@@ -22,6 +22,16 @@ public class StockDAOImpl implements StockDAO {
 		List<StockVO> stockList = sqlSession.selectList("stock.dao.StockDAO.stockList");
 		return stockList;
 	}
+	
+	
+	/**
+	 * 주식 최근 업데이트 날짜
+	 * */
+	@Override
+	public String stockRegdate() {
+		String date = sqlSession.selectOne("stock.dao.StockDAO.stockregdate");
+		return date;
+	}
 
 	/**
 	 * 이미 관심종목에 등록한 것은 관심종목에 등록하지 못하게 하기

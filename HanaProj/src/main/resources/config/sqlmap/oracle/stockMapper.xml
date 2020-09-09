@@ -6,8 +6,13 @@
 
 	<!-- 전체 주식 정보 -->
 	<select id="stockList" resultType="StockVO">
-		select code, name, sector, reg_date, price 
-		from h_stock
+		select code, name, category, reg_date, TO_CHAR(price, '9,999,999') as price
+			from h_stock where category like '%건설%' or category like '%중공업%' or category like '%에너지%' or category like '%철강%'
+	</select>
+	
+	<!-- 주식 최신 업데이트 날짜 -->
+	<select id="stockregdate" resultType="String">
+		select reg_date from h_stock where code = '105560'
 	</select>
 	
 	<!-- 이미 관심종목에 등록한 것은 관심종목에 등록하지 못하게 하기 -->

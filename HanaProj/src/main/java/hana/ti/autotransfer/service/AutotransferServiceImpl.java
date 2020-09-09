@@ -65,14 +65,22 @@ public class AutotransferServiceImpl implements AutotransferService {
 		List<AutotransferVO> resList = autotransferDAO.resTblList();
 		for(AutotransferVO autotransferVO:resList) {
 			
-			// 그날 남은 금액 업데이트
-			autotransferDAO.resUpdate(autotransferVO);
 			//보내기
 			autotransferDAO.send(autotransferVO);
 			// 받기
 			autotransferDAO.receive(autotransferVO);
 			// 거래내역에 추가
 			autotransferDAO.transferList(autotransferVO);
+		}
+	}
+
+	@Transactional
+	@Override
+	public void resUpdate() {
+		List<AutotransferVO> resList = autotransferDAO.resTblList();
+		for(AutotransferVO autotransferVO:resList) {
+			// 그날 남은 금액 업데이트
+						autotransferDAO.resUpdate(autotransferVO);
 		}
 	}
 }

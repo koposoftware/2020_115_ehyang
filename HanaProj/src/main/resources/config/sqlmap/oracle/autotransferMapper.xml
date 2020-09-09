@@ -49,7 +49,7 @@
   	<update id="resUpdate" parameterType="autotransferVO">
   	update h_ressp set money =
         (select case
-            when (mod(balance,1000) = 0) then #{spMoney}
+            when (mod(balance,1000) = 0) then 777
                 else mod(balance,1000) end as money from h_account where account_num = #{fromAccount})
   	</update>
   	

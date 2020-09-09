@@ -27,4 +27,9 @@ public interface AutotransferService {
 	 * */
 	public void resSPsend();
 
+	/**
+	 * 업데이트(2번 이체 되어서 따로 빼줌)
+	 * */
+	public void resUpdate();
+	
 }

@@ -35,27 +35,28 @@ public class StockController {
 		MemberVO loginVO = (MemberVO)session.getAttribute("loginVO");
 		
 		List<StockVO> stockList = stockService.stockList(loginVO.getId());
-		
+		String stockRegdate = stockService.stockDate();
 //		for(StockVO vo : stockList) {
 //			System.out.println(vo);
 //		}
 		
 		ModelAndView mav = new ModelAndView("stock/stockList");
 		mav.addObject("stockList", stockList);
-		
+		mav.addObject("stockRegdate", stockRegdate);
 		return mav;
 	}
 	
-	@RequestMapping("/stockChart")
-	public ModelAndView chartList(HttpSession session) {
-		
-		List<StockVO> chartList = stockService.stockList();
-		
-		ModelAndView mav = new ModelAndView("stock/chartList");
-		mav.addObject("chartList", chartList);
-		
-		return mav;
-	}
+	/*
+	 * @RequestMapping("/stockChart") public ModelAndView chartList(HttpSession
+	 * session) {
+	 * 
+	 * List<StockVO> chartList = stockService.stockList();
+	 * 
+	 * ModelAndView mav = new ModelAndView("stock/chartList");
+	 * mav.addObject("chartList", chartList);
+	 * 
+	 * return mav; }
+	 */
 	
 	
 	/**

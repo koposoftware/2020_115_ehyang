@@ -24,6 +24,18 @@ public class StockServiceImpl implements StockService {
 		return stockList;
 	}
 
+
+	/**
+	 * 주가 최근 업데이트
+	 * */
+	@Override
+	public String stockDate() {
+		String date = stockDAO.stockRegdate();
+		return date;
+	}
+
+
+
 	/**
 	 * 이미 관심종목에 등록한 것은 관심종목에 등록하지 못하게 하기
 	 * */

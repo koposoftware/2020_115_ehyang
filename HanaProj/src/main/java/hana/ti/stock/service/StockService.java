@@ -12,6 +12,11 @@ public interface StockService {
 	List<StockVO> stockList();
 	
 	/**
+	 * 주가 최근 업데이트 날짜
+	 * */
+	public String stockDate();
+	
+	/**
 	 * 이미 관심종목에 등록한 것은 관심종목에 등록하지 못하게 하기
 	 * */
 	List<StockVO> stockList(String id);

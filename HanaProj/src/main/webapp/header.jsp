@@ -97,8 +97,8 @@
 		            주식관리
 		         </a>
 		           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		             <a class="dropdown-item" href="${ pageContext.request.contextPath }/stock">전체 주식 조회</a>
-		             <a class="dropdown-item" href="${ pageContext.request.contextPath }/stockChart">주가 변동 현황</a>
+		             <a class="dropdown-item" href="${ pageContext.request.contextPath }/stock">코스피 50 조회</a>
+		             <%-- <a class="dropdown-item" href="${ pageContext.request.contextPath }/stockChart">주가 변동 현황</a> --%>
                      <div class="dropdown-divider"></div>
 		             <a class="dropdown-item" href="${ pageContext.request.contextPath }/myBasket">나의 관심종목 조회</a>
                      <div class="dropdown-divider"></div>

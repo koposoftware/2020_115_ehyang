@@ -5,7 +5,7 @@ public class StockVO {
 	private String id;
 	private String code;
 	private String name;
-	private String sector;
+	private String category;
 	private String reg_date;
 	private int price;
 	private int flag;
@@ -33,11 +33,12 @@ public class StockVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getSector() {
-		return sector;
+	
+	public String getCategory() {
+		return category;
 	}
-	public void setSector(String sector) {
-		this.sector = sector;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	public String getReg_date() {
 		return reg_date;
@@ -60,7 +61,7 @@ public class StockVO {
 	}
 	@Override
 	public String toString() {
-		return "StockVO [id=" + id + ", code=" + code + ", name=" + name + ", sector=" + sector + ", reg_date="
+		return "StockVO [id=" + id + ", code=" + code + ", name=" + name + ", category=" + category + ", reg_date="
 				+ reg_date + ", price=" + price + ", flag=" + flag + "]";
 	}
 	
