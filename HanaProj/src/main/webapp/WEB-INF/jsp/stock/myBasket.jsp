@@ -29,6 +29,15 @@
 				})
 			})
 		})
+		
+		// id속성 지정 
+   $(document).ready(function(){
+      $(".buy").click(function(){
+         let code = $(this).attr('id');
+        /*  $('#'+code).toggle(); */
+      })  
+   })
+		
 </script>
 </head>
 <body>
@@ -63,6 +72,7 @@
            <th align="center" style="width: 10%">주가</th>
            <th align="center" style="width: 10%">찜한 날짜</th>
            <th align="center" style="width: 10%">관심종목 삭제</th>
+           <th align="center" style="width: 10%">매수하기</th>
          </tr>
        </thead>
        <tbody id="myTable">
@@ -74,7 +84,60 @@
            <td align="center">
            <input type ="button" class="delBasket btn btn-success" id="${ stock.code }-${ stock.id }" value="관심종목에서 삭제">
            </td>
+           <%-- <input type ="button" class="buyBtn btn btn-success" id="${ stock.code }-${ stock.id }-${stock.name}" value="매수"> --%>
+           <td align="center"><input type="button" class="buy btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="매수"></td>
          </tr>
+         
+         
+                     <!-- Modal -->
+  <div class="modal fade" id="myModal${ stock.code }" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">${ stock.name } 매수</h3><h4 align="right"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+        <form action="${ pageContext.request.contextPath }/buy" method="post">
+        <div align="center">
+        <img src="https://ssl.pstatic.net/imgfinance/chart/item/area/day/${ stock.code }.png">
+        </div>
+        <input type="hidden" name="code" value="${ stock.code }">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">고객 증권계좌번호</label>
+            <input type="text" class="form-control" id="recipient-name" value="${ loginVO.account_num }" name="account_num" readonly="readonly">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">고객 id</label>
+            <input type="text" class="form-control" id="recipient-name" value="${ loginVO.id }" name="id" readonly="readonly">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">종목명</label>
+            <input type="text" class="form-control" id="recipient-name" value="${ stock.name }" name="name" readonly="readonly">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">지정가 구매</label>
+            <input type="text" class="form-control" id="recipient-name" placeholder="구매할 수량을 입력하세요." name="count">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">가격</label>
+            <input type="text" class="form-control" id="recipient-name" name="price">
+          </div>
+          <input type="submit" value="매수">
+        </form>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+    </div>
+         
+         
+         
+         
        </c:forEach>
        </tbody>
      </table>

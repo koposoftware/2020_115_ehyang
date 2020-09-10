@@ -16,14 +16,49 @@ public class StockServiceImpl implements StockService {
 	   private StockDAO stockDAO;
 
 	/**
-	 * 주식목록
+	 * 건설 및 중공업, 에너지/화학, 철강/소재
 	 * */
 	@Override
-	public List<StockVO> stockList() {
-		List<StockVO> stockList = stockDAO.stockList();
-		return stockList;
+	public List<StockVO> stockListc1(String id) {
+		List<StockVO> stockListc1 = stockDAO.stockListc1(id);
+		return stockListc1;
+	}
+	
+	/**
+	 * 경기소비재 및 금융
+	 * */
+	@Override
+	public List<StockVO> stockListc2(String id) {
+		List<StockVO> stockListc2 = stockDAO.stockListc2(id);
+		return stockListc2;
 	}
 
+	/**
+	 * 생활소비재 및 산업재
+	 * */
+	@Override
+	public List<StockVO> stockListc3(String id) {
+		List<StockVO> stockListc3 = stockDAO.stockListc3(id);
+		return stockListc3;
+	}
+
+	/**
+	 * 정보기술 및 커뮤니케이션서비스
+	 * */
+	@Override
+	public List<StockVO> stockListc4(String id) {
+		List<StockVO> stockListc4 = stockDAO.stockListc4(id);
+		return stockListc4;
+	}
+
+	/**
+	 * 헬스케어
+	 * */
+	@Override
+	public List<StockVO> stockListc5(String id) {
+		List<StockVO> stockListc5 = stockDAO.stockListc5(id);
+		return stockListc5;
+	}
 
 	/**
 	 * 주가 최근 업데이트
@@ -32,17 +67,6 @@ public class StockServiceImpl implements StockService {
 	public String stockDate() {
 		String date = stockDAO.stockRegdate();
 		return date;
-	}
-
-
-
-	/**
-	 * 이미 관심종목에 등록한 것은 관심종목에 등록하지 못하게 하기
-	 * */
-	@Override
-	public List<StockVO> stockList(String id) {
-		List<StockVO> stockList = stockDAO.stockList(id);
-		return stockList;
 	}
 
 	/**

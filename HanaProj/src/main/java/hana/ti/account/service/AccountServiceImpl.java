@@ -36,8 +36,6 @@ public class AccountServiceImpl implements AccountService {
 		return sumTotal;
 	}
 
-
-
 	/**
 	 * 주금통 서비스 이용 X 통합계좌조회
 	 * */

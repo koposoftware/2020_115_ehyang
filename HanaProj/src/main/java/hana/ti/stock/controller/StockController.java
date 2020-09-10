@@ -34,30 +34,27 @@ public class StockController {
 		
 		MemberVO loginVO = (MemberVO)session.getAttribute("loginVO");
 		
-		List<StockVO> stockList = stockService.stockList(loginVO.getId());
+		List<StockVO> stockListc1 = stockService.stockListc1(loginVO.getId());
+		List<StockVO> stockListc2 = stockService.stockListc2(loginVO.getId());
+		List<StockVO> stockListc3 = stockService.stockListc3(loginVO.getId());
+		List<StockVO> stockListc4 = stockService.stockListc4(loginVO.getId());
+		List<StockVO> stockListc5 = stockService.stockListc5(loginVO.getId());
 		String stockRegdate = stockService.stockDate();
+		
 //		for(StockVO vo : stockList) {
 //			System.out.println(vo);
 //		}
 		
 		ModelAndView mav = new ModelAndView("stock/stockList");
-		mav.addObject("stockList", stockList);
+		
+		mav.addObject("stockListc1", stockListc1);
+		mav.addObject("stockListc2", stockListc2);
+		mav.addObject("stockListc3", stockListc3);
+		mav.addObject("stockListc4", stockListc4);
+		mav.addObject("stockListc5", stockListc5);
 		mav.addObject("stockRegdate", stockRegdate);
 		return mav;
 	}
-	
-	/*
-	 * @RequestMapping("/stockChart") public ModelAndView chartList(HttpSession
-	 * session) {
-	 * 
-	 * List<StockVO> chartList = stockService.stockList();
-	 * 
-	 * ModelAndView mav = new ModelAndView("stock/chartList");
-	 * mav.addObject("chartList", chartList);
-	 * 
-	 * return mav; }
-	 */
-	
 	
 	/**
 	 * 관심종목 등록
@@ -82,6 +79,9 @@ public class StockController {
 		return mav;
 	}
 	
+	/**
+	 * 관심종목에서 삭제
+	 * */
 	@ResponseBody
 	@PostMapping("/stock/delBasket")
 	public void delBasket(StockVO stockVO) {

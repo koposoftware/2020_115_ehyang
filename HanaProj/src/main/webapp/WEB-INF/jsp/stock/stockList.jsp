@@ -6,10 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
   /* Make the image fully responsive */
   .carousel-inner img {
@@ -21,14 +20,14 @@
 <script>
 
 // 검색
-   $(document).ready(function(){
+  /*  $(document).ready(function(){
      $("#myInput").on("keyup", function() {
        var value = $(this).val().toLowerCase();
        $("#myTable tr").filter(function() {
          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
        });
      });
-   });
+   }); */
    
 //   관심종목에 추가
    $(document).ready(function() {
@@ -58,7 +57,7 @@
       })
    })
    
-// 그래프  
+// id속성 지정 
    $(document).ready(function(){
       $(".chart").click(function(){
          let code = $(this).attr('id');
@@ -122,15 +121,29 @@
       
       	<div class="page-header">
 		   <h3> <img src="resources/images/stock.png" width="70px"> 주식 정보를 살펴보고 원하는 종목을 관심종목에 추가해보세요!</h3>      
-		  </div>
-		 <hr>      
+		  </div>     
       
-        <input class="form-control" id="myInput" type="text" placeholder="원하는 종목을 검색하세요">
+        <!-- <input class="form-control" id="myInput" type="text" placeholder="원하는 종목을 검색하세요"> -->
         <br>
        <div align="right">
        <span class="badge badge-info">최근 업데이트 </span>&nbsp ${ stockRegdate } 기준
        </div>
-        <table class="table table-bordered table-hover">
+       
+       
+    <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">건설 및 중공업, 에너지/화학, 철강/소재</a></li>
+    <li><a data-toggle="tab" href="#menu1">경기소비재 및 금융</a></li>
+    <li><a data-toggle="tab" href="#menu2">생활소비재 및 산업재</a></li>
+    <li><a data-toggle="tab" href="#menu3">정보기술 및 커뮤니케이션서비스</a></li>
+    <li><a data-toggle="tab" href="#menu4">헬스케어</a></li>
+  </ul>
+  
+  
+<!-- 건설 및 중공업, 에너지/화학, 철강/소재 -->
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+           
+      <table class="table table-bordered table-hover">
        <thead>
          <tr align="center">
            <th align="center" style="width: 15%">종목명</th>
@@ -142,7 +155,7 @@
          </tr>
        </thead>
        <tbody id="myTable">
-       <c:forEach items="${ stockList }" var="stock" varStatus="loop">
+       <c:forEach items="${ stockListc1 }" var="stock" varStatus="loop">
          <tr>
            <td align="center">${ stock.name }</td>
            <td align="center">${ stock.category }</td>
@@ -156,7 +169,98 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">${ stock.name }의 주가변동 그래프</h4><pre>&nbsp&nbsp${ stock.reg_date }기준 </pre>
+          <h3 class="modal-title">${ stock.name }의 주가변동 그래프&nbsp</h3><h4 align="right">${ stock.reg_date }기준</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+         <%-- <div class="chartByStockCode" id ="${ stock.code }"><br><img id="img_chart_area" src="https://ssl.pstatic.net/imgfinance/chart/item/area/day/${ stock.code }.png"></div> --%>
+        
+        <div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+    <li data-target="#demo" data-slide-to="3"></li>
+  </ul>
+  
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+    <h4>선차트</h4>
+      <img src="https://ssl.pstatic.net/imgfinance/chart/item/area/day/${ stock.code }.png">
+    </div>
+    <div class="carousel-item">
+    <h4>일봉차트</h4>
+      <img src="https://ssl.pstatic.net/imgfinance/chart/item/candle/day/${ stock.code }.png">
+    </div>
+    <div class="carousel-item">
+    <h4>주봉차트</h4>
+      <img src="https://ssl.pstatic.net/imgfinance/chart/item/candle/week/${ stock.code }.png">
+    </div>
+    <div class="carousel-item">
+    <h4>월봉차트</h4>
+      <img src="https://ssl.pstatic.net/imgfinance/chart/item/candle/month/${ stock.code }.png">
+    </div>
+  </div>
+  
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+  <img src="resources/images/left-arrow.png" width="50px">
+    <!-- <span class="carousel-control-prev-icon"></span> -->
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <img src="resources/images/right-arrow.png" width="40px">
+  </a>
+</div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+    </div>
+       </c:forEach>
+       </tbody>
+     </table>
+      
+    </div>
+    
+    
+    
+    <!-- 경기소비재 및 금융 -->
+    <div id="menu1" class="tab-pane fade">
+      
+<table class="table table-bordered table-hover">
+       <thead>
+         <tr align="center">
+           <th align="center" style="width: 15%">종목명</th>
+           <th align="center" style="width: 10%">분류</th>
+           <!-- <th align="center" style="width: 10%">기준</th> -->
+           <th align="center" style="width: 10%">주가</th>
+           <th align="center" style="width: 10%">차트</th>
+           <th align="center" style="width: 10%">선택</th>
+         </tr>
+       </thead>
+       <tbody id="myTable">
+       <c:forEach items="${ stockListc2 }" var="stock" varStatus="loop">
+         <tr>
+           <td align="center">${ stock.name }</td>
+           <td align="center">${ stock.category }</td>
+           <%-- <td align="center">${ stock.reg_date }</td> --%>
+           <td align="center">${ stock.price }</td>
+           <td align="center"><input type="button" class="chart btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="차트"></td>
+           <td align="center"><input type="button" class="addFavoriteBtn btn btn-success" id="${ stock.name }-${ loginVO.id }-${ stock.code }-${ stock.price}" <c:if test="${stock.flag == 1 }">disabled </c:if> value="관심종목으로 등록"></td>
+         </tr>
+             <!-- Modal -->
+  <div class="modal fade" id="myModal${ stock.code }" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">${ stock.name }의 주가변동 그래프&nbsp</h3><h4 align="right">${ stock.reg_date }기준</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
@@ -216,6 +320,268 @@
        </tbody>
      </table>
     </div>
+    
+    
+    
+<!-- 생활소비재 및 산업재 -->    
+    <div id="menu2" class="tab-pane fade">
+<table class="table table-bordered table-hover">
+       <thead>
+         <tr align="center">
+           <th align="center" style="width: 15%">종목명</th>
+           <th align="center" style="width: 10%">분류</th>
+           <!-- <th align="center" style="width: 10%">기준</th> -->
+           <th align="center" style="width: 10%">주가</th>
+           <th align="center" style="width: 10%">차트</th>
+           <th align="center" style="width: 10%">선택</th>
+         </tr>
+       </thead>
+       <tbody id="myTable">
+       <c:forEach items="${ stockListc3 }" var="stock" varStatus="loop">
+         <tr>
+           <td align="center">${ stock.name }</td>
+           <td align="center">${ stock.category }</td>
+           <%-- <td align="center">${ stock.reg_date }</td> --%>
+           <td align="center">${ stock.price }</td>
+           <td align="center"><input type="button" class="chart btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="차트"></td>
+           <td align="center"><input type="button" class="addFavoriteBtn btn btn-success" id="${ stock.name }-${ loginVO.id }-${ stock.code }-${ stock.price}" <c:if test="${stock.flag == 1 }">disabled </c:if> value="관심종목으로 등록"></td>
+         </tr>
+             <!-- Modal -->
+  <div class="modal fade" id="myModal${ stock.code }" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">${ stock.name }의 주가변동 그래프&nbsp</h3><h4 align="right">${ stock.reg_date }기준</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        
+        <div class="modal-body">
+         <%-- <div class="chartByStockCode" id ="${ stock.code }"><br><img id="img_chart_area" src="https://ssl.pstatic.net/imgfinance/chart/item/area/day/${ stock.code }.png"></div> --%>
+        
+        <div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+    <li data-target="#demo" data-slide-to="3"></li>
+  </ul>
+  
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+    <h4>선차트</h4>
+      <img src="https://ssl.pstatic.net/imgfinance/chart/item/area/day/${ stock.code }.png">
+    </div>
+    <div class="carousel-item">
+    <h4>일봉차트</h4>
+      <img src="https://ssl.pstatic.net/imgfinance/chart/item/candle/day/${ stock.code }.png">
+    </div>
+    <div class="carousel-item">
+    <h4>주봉차트</h4>
+      <img src="https://ssl.pstatic.net/imgfinance/chart/item/candle/week/${ stock.code }.png">
+    </div>
+    <div class="carousel-item">
+    <h4>월봉차트</h4>
+      <img src="https://ssl.pstatic.net/imgfinance/chart/item/candle/month/${ stock.code }.png">
+    </div>
+  </div>
+  
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+  <img src="resources/images/left-arrow.png" width="50px">
+    <!-- <span class="carousel-control-prev-icon"></span> -->
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <img src="resources/images/right-arrow.png" width="40px">
+  </a>
+</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+    </div>
+       </c:forEach>
+       </tbody>
+     </table>
+    </div>
+    
+    
+    <!-- 정보기술 및 커뮤니케이션서비스 -->
+    <div id="menu3" class="tab-pane fade">
+<table class="table table-bordered table-hover">
+       <thead>
+         <tr align="center">
+           <th align="center" style="width: 15%">종목명</th>
+           <th align="center" style="width: 10%">분류</th>
+           <!-- <th align="center" style="width: 10%">기준</th> -->
+           <th align="center" style="width: 10%">주가</th>
+           <th align="center" style="width: 10%">차트</th>
+           <th align="center" style="width: 10%">선택</th>
+         </tr>
+       </thead>
+       <tbody id="myTable">
+       <c:forEach items="${ stockListc4 }" var="stock" varStatus="loop">
+         <tr>
+           <td align="center">${ stock.name }</td>
+           <td align="center">${ stock.category }</td>
+           <%-- <td align="center">${ stock.reg_date }</td> --%>
+           <td align="center">${ stock.price }</td>
+           <td align="center"><input type="button" class="chart btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="차트"></td>
+           <td align="center"><input type="button" class="addFavoriteBtn btn btn-success" id="${ stock.name }-${ loginVO.id }-${ stock.code }-${ stock.price}" <c:if test="${stock.flag == 1 }">disabled </c:if> value="관심종목으로 등록"></td>
+         </tr>
+             <!-- Modal -->
+  <div class="modal fade" id="myModal${ stock.code }" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">${ stock.name }의 주가변동 그래프&nbsp</h3><h4 align="right">${ stock.reg_date }기준</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+         <%-- <div class="chartByStockCode" id ="${ stock.code }"><br><img id="img_chart_area" src="https://ssl.pstatic.net/imgfinance/chart/item/area/day/${ stock.code }.png"></div> --%>
+        
+        <div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+    <li data-target="#demo" data-slide-to="3"></li>
+  </ul>
+  
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+    <h4>선차트</h4>
+      <img src="https://ssl.pstatic.net/imgfinance/chart/item/area/day/${ stock.code }.png">
+    </div>
+    <div class="carousel-item">
+    <h4>일봉차트</h4>
+      <img src="https://ssl.pstatic.net/imgfinance/chart/item/candle/day/${ stock.code }.png">
+    </div>
+    <div class="carousel-item">
+    <h4>주봉차트</h4>
+      <img src="https://ssl.pstatic.net/imgfinance/chart/item/candle/week/${ stock.code }.png">
+    </div>
+    <div class="carousel-item">
+    <h4>월봉차트</h4>
+      <img src="https://ssl.pstatic.net/imgfinance/chart/item/candle/month/${ stock.code }.png">
+    </div>
+  </div>
+  
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+  <img src="resources/images/left-arrow.png" width="50px">
+    <!-- <span class="carousel-control-prev-icon"></span> -->
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <img src="resources/images/right-arrow.png" width="40px">
+  </a>
+</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+    </div>
+       </c:forEach>
+       </tbody>
+     </table>
+    </div>
+    
+    <!-- 헬스케어 -->
+    <div id="menu4" class="tab-pane fade">
+      <table class="table table-bordered table-hover">
+       <thead>
+         <tr align="center">
+           <th align="center" style="width: 15%">종목명</th>
+           <th align="center" style="width: 10%">분류</th>
+           <!-- <th align="center" style="width: 10%">기준</th> -->
+           <th align="center" style="width: 10%">주가</th>
+           <th align="center" style="width: 10%">차트</th>
+           <th align="center" style="width: 10%">선택</th>
+         </tr>
+       </thead>
+       <tbody id="myTable">
+       <c:forEach items="${ stockListc5 }" var="stock" varStatus="loop">
+         <tr>
+           <td align="center">${ stock.name }</td>
+           <td align="center">${ stock.category }</td>
+           <%-- <td align="center">${ stock.reg_date }</td> --%>
+           <td align="center">${ stock.price }</td>
+           <td align="center"><input type="button" class="chart btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="차트"></td>
+           <td align="center"><input type="button" class="addFavoriteBtn btn btn-success" id="${ stock.name }-${ loginVO.id }-${ stock.code }-${ stock.price}" <c:if test="${stock.flag == 1 }">disabled </c:if> value="관심종목으로 등록"></td>
+         </tr>
+             <!-- Modal -->
+  <div class="modal fade" id="myModal${ stock.code }" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">${ stock.name }의 주가변동 그래프&nbsp</h3><h4 align="right">${ stock.reg_date }기준</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+         <%-- <div class="chartByStockCode" id ="${ stock.code }"><br><img id="img_chart_area" src="https://ssl.pstatic.net/imgfinance/chart/item/area/day/${ stock.code }.png"></div> --%>
+        
+        <div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+    <li data-target="#demo" data-slide-to="3"></li>
+  </ul>
+  
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+    <h4>선차트</h4>
+      <img src="https://ssl.pstatic.net/imgfinance/chart/item/area/day/${ stock.code }.png">
+    </div>
+    <div class="carousel-item">
+    <h4>일봉차트</h4>
+      <img src="https://ssl.pstatic.net/imgfinance/chart/item/candle/day/${ stock.code }.png">
+    </div>
+    <div class="carousel-item">
+    <h4>주봉차트</h4>
+      <img src="https://ssl.pstatic.net/imgfinance/chart/item/candle/week/${ stock.code }.png">
+    </div>
+    <div class="carousel-item">
+    <h4>월봉차트</h4>
+      <img src="https://ssl.pstatic.net/imgfinance/chart/item/candle/month/${ stock.code }.png">
+    </div>
+  </div>
+  
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+  <img src="resources/images/left-arrow.png" width="50px">
+    <!-- <span class="carousel-control-prev-icon"></span> -->
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <img src="resources/images/right-arrow.png" width="40px">
+  </a>
+</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+    </div>
+       </c:forEach>
+       </tbody>
+     </table>
+    </div>
+  </div>
+</div>
     </section>
   <!-- footer -->
    <jsp:include page="/footer.jsp"></jsp:include>

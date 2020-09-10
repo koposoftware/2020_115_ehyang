@@ -10,8 +10,6 @@ public class StockVO {
 	private int price;
 	private int flag;
 	
-	
-	
 	public StockVO() {
 		super();
 	}

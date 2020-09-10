@@ -15,15 +15,50 @@ public class StockDAOImpl implements StockDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	/**
-	 * 주식목록
+	 * 건설 및 중공업, 에너지/화학, 철강/소재
 	 * */
 	@Override
-	public List<StockVO> stockList() {
-		List<StockVO> stockList = sqlSession.selectList("stock.dao.StockDAO.stockList");
-		return stockList;
+	public List<StockVO> stockListc1(String id) {
+		List<StockVO> stockListc1 = sqlSession.selectList("stock.dao.StockDAO.stockListc1", id);
+		return stockListc1;
 	}
 	
-	
+	/**
+	 * 경기소비재 및 금융
+	 * */
+	@Override
+	public List<StockVO> stockListc2(String id) {
+		List<StockVO> stockListc2 = sqlSession.selectList("stock.dao.StockDAO.stockListc2" , id);
+		return stockListc2;
+	}
+
+	/**
+	 * 생활소비재 및 산업재
+	 * */
+	@Override
+	public List<StockVO> stockListc3(String id) {
+		List<StockVO> stockListc3 = sqlSession.selectList("stock.dao.StockDAO.stockListc3" , id);
+		return stockListc3;
+	}
+
+	/**
+	 * 정보기술 및 커뮤니케이션서비스
+	 * */
+	@Override
+	public List<StockVO> stockListc4(String id) {
+		List<StockVO> stockListc4 = sqlSession.selectList("stock.dao.StockDAO.stockListc4" , id);
+		return stockListc4;
+	}
+
+	/**
+	 * 헬스케어
+	 * */
+	@Override
+	public List<StockVO> stockListc5(String id) {
+		List<StockVO> stockListc5 = sqlSession.selectList("stock.dao.StockDAO.stockListc5" , id);
+		return stockListc5;
+	}
+
 	/**
 	 * 주식 최근 업데이트 날짜
 	 * */
@@ -31,15 +66,6 @@ public class StockDAOImpl implements StockDAO {
 	public String stockRegdate() {
 		String date = sqlSession.selectOne("stock.dao.StockDAO.stockregdate");
 		return date;
-	}
-
-	/**
-	 * 이미 관심종목에 등록한 것은 관심종목에 등록하지 못하게 하기
-	 * */
-	@Override
-	public List<StockVO> stockList(String id) {
-		List<StockVO> stockList = sqlSession.selectList("stock.dao.StockDAO.stockList2", id);
-		return stockList;
 	}
 
 	/**

@@ -8,5 +8,6 @@
 		<typeAlias type="hana.ti.account.vo.AccountVO" alias="accountVO" />
 		<typeAlias type="hana.ti.stock.vo.StockVO" alias="stockVO" />
 		<typeAlias type="hana.ti.autotransfer.vo.AutotransferVO" alias="autotransferVO" />
+		<typeAlias type="hana.ti.buy.vo.BuyVO" alias="buyVO" />
 	</typeAliases>	
 </configuration>

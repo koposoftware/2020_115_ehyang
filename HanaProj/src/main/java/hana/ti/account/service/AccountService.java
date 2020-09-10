@@ -25,7 +25,6 @@ public interface AccountService {
 	 * 증권계좌개설
 	 * */
 	public void create(AccountVO account);
-		
 	
 	/**
 	 * 증권계좌조회

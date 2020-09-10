@@ -4,10 +4,34 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="stock.dao.StockDAO">
 
-	<!-- 전체 주식 정보 -->
-	<select id="stockList" resultType="StockVO">
-		select code, name, category, reg_date, TO_CHAR(price, '9,999,999') as price
-			from h_stock where category like '%건설%' or category like '%중공업%' or category like '%에너지%' or category like '%철강%'
+	<!-- 건설 및 중공업, 에너지/화학, 철강/소재 -->
+	<select id="stockListc1" parameterType="string" resultType="StockVO">
+			select s.code, s.name, s.category, s.reg_date, s.price, (select count(*) from h_basket where s.code = code and id = #{id}) flag
+  		  		from h_stock s where category like '%건설%' or category like '%중공업%' or category like '%에너지%' or category like '%철강%'
+	</select>
+	
+	<!-- 경기소비재 및 금융 -->
+	<select id="stockListc2" parameterType="string" resultType="StockVO">
+		select s.code, s.name, s.category, s.reg_date, s.price, (select count(*) from h_basket where s.code = code and id = #{id}) flag
+			from h_stock s where category like '%경기소비재%' or category like '%금융%'
+	</select>
+	
+	<!-- 생활소비재 및 산업재 -->
+	<select id="stockListc3" parameterType="string" resultType="StockVO">
+		select s.code, s.name, s.category, s.reg_date, s.price, (select count(*) from h_basket where s.code = code and id = #{id}) flag
+			from h_stock s where category like '%생활소비재%' or category like '%산업재%'
+	</select>
+	
+	<!-- 정보기술 및 커뮤니케이션서비스 -->
+	<select id="stockListc4" parameterType="string" resultType="StockVO">
+		select s.code, s.name, s.category, s.reg_date, s.price, (select count(*) from h_basket where s.code = code and id = #{id}) flag
+			from h_stock s where category like '%정보기술%' or category like '%커뮤니케이션서비스%'
+	</select>
+	
+	<!-- 헬스케어 -->
+	<select id="stockListc5" parameterType="string" resultType="StockVO">
+		select s.code, s.name, s.category, s.reg_date, s.price, (select count(*) from h_basket where s.code = code and id = #{id}) flag
+			from h_stock s where category like '%헬스케어%'
 	</select>
 	
 	<!-- 주식 최신 업데이트 날짜 -->
@@ -16,10 +40,10 @@
 	</select>
 	
 	<!-- 이미 관심종목에 등록한 것은 관심종목에 등록하지 못하게 하기 -->
-	<select id="stockList2" parameterType="string" resultType="StockVO">
+	<!-- <select id="stockList" parameterType="string" resultType="StockVO">
 		select s.*, (select count(*) from h_basket where s.code = code and id = #{id}) flag
   		  from h_stock s
-	</select>
+	</select> -->
 
 	<!-- 관심종목에 등록 -->
 	<insert id="basket" parameterType="StockVO">

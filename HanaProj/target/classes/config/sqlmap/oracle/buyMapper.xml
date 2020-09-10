@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="buy.dao.BuyDAO">
+
+	<!-- 주식 매수 -->
+	<insert id="buy" parameterType="buyVO">
+		insert into h_buy(no, id, code, name, count, price, account_num) 
+			values(h_buy_no.nextval, #{id}, #{code}, #{name}, #{count}, #{price}, #{account_num})
+	</insert>
+
+</mapper>
