@@ -21,16 +21,6 @@ public interface AutotransferDAO {
 	public void resUpdate(AutotransferVO autotransferVO);
 	
 	/**
-	 * 주금통 예약테이블에 있는 매일 저녁 6시에 맞춰 받기
-	 * */
-//	public void resSend(AutotransferVO autotransferVO);
-	
-	/**
-	 * 주금통 첫 번째 이체 신청 받기
-	 * */
-//	public void resReceive(AutotransferVO autotransferVO);
-	
-	/**
 	 * 주금통 내역 조회
 	 * */
 	public List<AutotransferVO> autoList(String fromAccount);

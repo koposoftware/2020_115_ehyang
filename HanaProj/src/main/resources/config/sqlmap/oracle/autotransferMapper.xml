@@ -28,13 +28,6 @@
 	select rownum, from_account, content, money, reg_date
 		 from (select rownum, from_account, content, money, reg_date from h_autotransfer where from_account = #{fromAccount} order by reg_date)
 		 	 where from_account = #{fromAccount} order by reg_date
-	
-		<!-- select rownum, from_account, content, money, case
-        when to_char(sysdate, 'yyyy-mm-dd') = to_char(reg_date, 'yyyy-mm-dd') then to_char(reg_date, 'hh24:mi:ss')
-        else to_char(reg_date, 'yyyy-mm-dd')
-    end as reg_date
-		 	from ()
-		  	where from_account = #{from_account} order by reg_date -->
 	</select>
 	
 	<!-- 주금통 신청하면 예약테이블에 추가 -> 매일 저녁 6시에 1000원 미만의 동전이 빠지는 로직 -->
@@ -52,21 +45,7 @@
             when (mod(balance,1000) = 0) then 777
                 else mod(balance,1000) end as money from h_account where account_num = #{fromAccount})
   	</update>
-  	
-  	<!-- 주금통 예약테이블에 있는 매일 저녁 6시에 맞춰 보내기 -->
-<!--   	<update id="resSend" parameterType="autotransferVO">
-		update h_account
-			set balance = balance - #{spMoney}
-			where account_num = #{fromAccount}
-	</update> -->
-  	
-  	<!-- 주금통 예약테이블에 있는 매일 저녁 6시에 맞춰 받기  -->
-<!-- 	<update id="resReceive" parameterType="autotransferVO">
-		update h_stockaccount
-			set balance = balance + #{spMoney}
-			where account_num = #{toAccount}
-	</update> -->
-  	
+
   	<!-- 예약테이블 리스트 -->
 	<select id="resSPList" resultMap="autotransferMap">
 		select from_account, to_account, money

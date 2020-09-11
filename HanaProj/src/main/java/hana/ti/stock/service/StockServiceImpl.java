@@ -82,6 +82,8 @@ public class StockServiceImpl implements StockService {
 	 * */	
 	@Override
 	public List<StockVO> basketList(String id) {
+		// 관심종목에 있는 주식 현재가로 업데이트
+		stockDAO.basUpdate();	
 		List<StockVO> basketList = stockDAO.basketList(id);
 		return basketList;
 	}

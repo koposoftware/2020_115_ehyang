@@ -32,6 +32,11 @@ public interface AccountService {
 	List<AccountVO> selectSAllAccount(String id);
 
 	/**
+	 * 증권계좌 잔액조회
+	 * */
+	public int sbalance(String id);
+	
+	/**
 	 * 주금통 계좌 조회
 	 * */
 	List<AccountVO> regA(String id);

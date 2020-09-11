@@ -38,22 +38,6 @@ public class AutotransferDAOImpl implements AutotransferDAO {
 	public void resUpdate(AutotransferVO autotransferVO) {
 		sqlSession.update("autotransfer.dao.autotransferDAO.resUpdate", autotransferVO);	
 	}
-	
-	/**
-	 * 주금통 예약테이블에 있는 매일 저녁 6시에 맞춰 보내기
-	 * */
-//	@Override
-//	public void resSend(AutotransferVO autotransferVO) {
-//		sqlSession.update("autotransfer.dao.autotransferDAO.resSend", autotransferVO);		
-//	}
-
-	/**
-	 * 주금통 예약테이블에 있는 매일 저녁 6시에 맞춰 받기
-	 * */
-//	@Override
-//	public void resReceive(AutotransferVO autotransferVO) {
-//		sqlSession.update("autotransfer.dao.autotransferDAO.resReceive", autotransferVO);		
-//	}
 
 	/**
 	 * 주금통 내역 조회

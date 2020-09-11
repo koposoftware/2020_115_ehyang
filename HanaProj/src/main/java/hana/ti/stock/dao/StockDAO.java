@@ -47,6 +47,11 @@ public interface StockDAO {
 	public List<StockVO> basketList(String id);
 	
 	/**
+	 * 관심종목에 있는 주식 현재가로 업데이트
+	 * */
+	public void basUpdate();
+	
+	/**
 	 * 관심종목 삭제
 	 * */
 	public void delBasket(StockVO stockVO);

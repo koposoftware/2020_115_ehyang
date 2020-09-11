@@ -8,13 +8,13 @@
 <title>Insert title here</title>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script>
+	// 관심종목에서 삭제
 	$(document).ready(function(){
 			$('.delBasket').click(function(){
 				
 				let element = $(this).attr('id').split('-');
-				alert(element[0]+":"+element[1])
+				alert(element[1]+"님"+element[0]+"를 관심종목에서 삭제하셨습니다.")
 				
-				alert('클릭')
 				$.ajax({
 					url : '${pageContext.request.contextPath}/stock/delBasket',
 					type : 'post',
@@ -23,6 +23,7 @@
 						id : element[1]
 					}, success : function(data) {
 						alert('성공')
+						/* $('#element[0]').hide(); */
 					}, error : function(){
 						alert('재시도')
 					}
@@ -36,6 +37,26 @@
          let code = $(this).attr('id');
         /*  $('#'+code).toggle(); */
       })  
+   })
+   
+   // 수량*현재가
+   
+   $(document).ready(function(){
+	   $('.count').keyup(function(){
+		  /*  alert('k'); */
+		  
+		  // count클래스의 값 keyup형태로 가져오기 // class도 name과 동일하게 중복을 허용하여 javascript를 이용하여 사용시엔 배열 인덱스를 필수로 넣어줘야함
+		  let c = document.getElementsByClassName("count")[0].value
+		  /* console.log(c) */
+		  
+		  //count 클래스의 id를 ${ stock.price }로 설정해서 그 값 바로 가져오기
+		  let p = $(this).attr('id');
+		  
+		  //가격 넣어주기
+		  let sprice = p*c
+		   /* console.log(sprice) */
+		   document.getElementById("realprice").value = sprice;
+	   })
    })
 		
 </script>
@@ -64,28 +85,27 @@
 		   <h3> <img src="resources/images/money.png" width="70px"> ${ loginVO.name } 회원님의 주식 관심종목입니다.</h3>      
 		  </div>
 		 <hr>
-      
         <table class="table table-bordered table-hover">
        <thead>
          <tr align="center">
            <th align="center" style="width: 15%">종목명</th>
            <th align="center" style="width: 10%">주가</th>
-           <th align="center" style="width: 10%">찜한 날짜</th>
            <th align="center" style="width: 10%">관심종목 삭제</th>
            <th align="center" style="width: 10%">매수하기</th>
+           <th align="center" style="width: 10%">찜한 날짜</th>
          </tr>
        </thead>
        <tbody id="myTable">
        <c:forEach items="${ basketList }" var="stock" varStatus="loop">
          <tr id = "${ stock.code }">
            <td align="center">${ stock.name }</td>
-           <td align="center">${ stock.price }원</td>
-           <td align="center">${ stock.reg_date }</td>
+           <td align="center">${ stock.price }</td>
            <td align="center">
            <input type ="button" class="delBasket btn btn-success" id="${ stock.code }-${ stock.id }" value="관심종목에서 삭제">
            </td>
            <%-- <input type ="button" class="buyBtn btn btn-success" id="${ stock.code }-${ stock.id }-${stock.name}" value="매수"> --%>
            <td align="center"><input type="button" class="buy btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="매수"></td>
+           <td align="center">${ stock.reg_date }</td>
          </tr>
          
          
@@ -99,35 +119,69 @@
         </div>
         
         <div class="modal-body">
-        <form action="${ pageContext.request.contextPath }/buy" method="post">
+        <form action="${ pageContext.request.contextPath }/buy" method="post" name="sform">
         <div align="center">
         <img src="https://ssl.pstatic.net/imgfinance/chart/item/area/day/${ stock.code }.png">
         </div>
         <input type="hidden" name="code" value="${ stock.code }">
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">고객 증권계좌번호</label>
-            <input type="text" class="form-control" id="recipient-name" value="${ loginVO.account_num }" name="account_num" readonly="readonly">
+        <div align="center">
+        <br>
+        <hr>
+        	<p>고객정보</p>
+        </div>
+          <div class="row">
+          <div class="col">
+		    <label for="recipient-name" class="col-form-label">Id</label>
+            <input type="text" id="recipient-name" value="${ loginVO.id }" name="id" readonly class="form-control-plaintext">
+		    </div>
+          <div class="col">
+            <label for="recipient-name" class="col-form-label">증권계좌</label>
+            <input type="text" id="recipient-name" value="${ loginVO.account_num }" name="account_num" readonly class="form-control-plaintext">
           </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">고객 id</label>
-            <input type="text" class="form-control" id="recipient-name" value="${ loginVO.id }" name="id" readonly="readonly">
+          
+          <div class="col">
+		    <label for="message-text" class="col-form-label">잔액</label>
+		      <input type="text" value="${ saccbalance }" readonly class="form-control-plaintext">
+		    </div>
+		    </div>
+		
+          <hr>
+          
+          <div class="row">
+		    <div class="col">
+		     <label for="recipient-name" class="col-form-label">종목명</label>
+            <input type="text" id="recipient-name" value="${ stock.name }" name="name" readonly class="form-control-plaintext">
           </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">종목명</label>
-            <input type="text" class="form-control" id="recipient-name" value="${ stock.name }" name="name" readonly="readonly">
+		    <div class="col">
+		    <label for="recipient-name" class="col-form-label">현재가</label>
+		    <div class="input-group">
+		    <span class="input-group-addon">$</span>
+            <input type="text" id="recipient-name" value="${ stock.price }" readonly class="form-control-plaintext" aria-label="Text input with checkbox">
+            </div>
           </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">지정가 구매</label>
-            <input type="text" class="form-control" id="recipient-name" placeholder="구매할 수량을 입력하세요." name="count">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">가격</label>
-            <input type="text" class="form-control" id="recipient-name" name="price">
-          </div>
+		    </div>
+           
+          <hr>
+
+          <div class="row">
+		    <div class="col">
+		    <label for="recipient-name" class="col-form-label">지정가 구매</label>
+		    <div class="input-group">
+            <input type="text" class="count form-control" id="${ stock.price }" placeholder="구매할 수량을 입력하세요." name="count" required="required" aria-label="Amount (to the nearest dollar)">
+            <span class="input-group-addon">(주)</span>
+            </div>
+            <input type="button" value="최대">
+		    </div>
+		    <div class="col">
+		     <label for="message-text" class="col-form-label">가격</label>
+				<input type="text" class="form-control" id = "realprice" name="price" required="required" width="50%">
+		    </div>
+		  </div>
+		  <br>
           <input type="submit" value="매수">
         </form>
         </div>
-        
+
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>

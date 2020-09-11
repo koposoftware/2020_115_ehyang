@@ -7,6 +7,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+// 거래내역조회
+$(document).ready(function() {
+	$('.saListBtn').click(function(){
+		  /* alert('클릭') */
+		  /* alert($(this).attr('id')) */
+		  $.ajax({
+	            url : '${pageContext.request.contextPath}/account/saList',
+	            type: 'post',
+	            data : {
+	               account_num : $(this).attr('id')
+	            }, success : function(data) {
+	                /* alert('성공') */
+	               console.log(data)
+	               $('#salistTbl').html(data);
+	            }, error : function() {
+	               alert('다시 시도해주세요.')
+	            }
+			 })
+		})
+	})
+</script>
 <body>
 
 	<!-- header -->
@@ -50,13 +72,19 @@
            <td align="center">${ account.alias }</td>
            <td align="center">${ account.balance }</td>
          </tr>
+     	<div align="center">
+     	<input type ="button" class="saListBtn btn btn-success" id="${ account.account_num }" value="증권계좌내역조회">
+     	<a href="${ pageContext.request.contextPath }/autoTransfer"><button class="btn btn-success"> 주금통 서비스 신청하기 </button></a>
+     	</div>
        </c:forEach>
        </tbody>
      </table>
-     	<div align="center">
-     	<a href="${ pageContext.request.contextPath }/autoTransfer"><button class="btn btn-success"> 주금통 서비스 신청하기 </button></a>
-     	</div>
     </div>
+    
+    <div align="center" id="salistTbl">
+          		
+    </div>
+           
     </section>
 
   <!-- footer -->

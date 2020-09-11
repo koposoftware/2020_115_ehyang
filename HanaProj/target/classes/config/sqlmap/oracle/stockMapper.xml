@@ -57,6 +57,11 @@
 		from h_basket where id = #{id}
 	</select>
 	
+	<!-- 관심종목에 있는 값 업데이트 -->
+	<update id="basUpdate">
+		update h_basket b set price = (select price from h_stock s where b.code = s.code)
+	</update>
+	
 	<!-- 관심종목 삭제 -->
 	<delete id="delBasket" parameterType="StockVO">
 		delete h_basket

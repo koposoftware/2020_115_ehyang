@@ -15,7 +15,6 @@ public interface AutotransferService {
 	 * 주금통 내역
 	 * */
 	List<AutotransferVO> autoList(String fromAccount);
-
 	
 	/**
 	 * 예약테이블 리스트

@@ -10,4 +10,23 @@
 			values(h_buy_no.nextval, #{id}, #{code}, #{name}, #{count}, #{price}, #{account_num})
 	</insert>
 
+	<!-- 매수할 때 증권계좌 잔액 변화 -->
+	<update id="buystock" parameterType="autotransferVO">
+		update h_stockaccount
+			set balance = balance - #{price}
+				where account_num = #{account_num}
+	</update>
+	
+	<!-- 매수 내역에 추가 -->
+	<insert id="buydetail" parameterType="buyVO">
+		insert into h_sadetail (no, account_num, price, stockname, type)
+		 	values(sadetail_no.nextval, #{account_num}, #{price}, #{name}, 'S')
+	</insert>
+	
+	<!-- 매수 및 매도 증권계좌 내역 조회 -->
+	<select id="saccountList" resultType="buyVO" parameterType="String">
+	select rownum, account_num, stockname, price, reg_date, type
+		 from (select rownum, account_num, stockname, price, reg_date, type from h_sadetail where account_num = #{account_num} order by reg_date)
+		 	 where account_num = #{account_num} order by reg_date
+	</select>
 </mapper>

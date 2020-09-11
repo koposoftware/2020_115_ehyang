@@ -61,6 +61,15 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 	
 	/**
+	 * 증권계좌 잔액 조회
+	 * */
+	@Override
+	public int sbalance(String id) {
+		int saccbalance = sqlSession.selectOne("account.dao.AccountDAO.sbalance", id);
+		return saccbalance;
+	}
+	
+	/**
 	 * 주금통 서비스 이용 O 통합계좌조회
 	 * */
 	@Override
@@ -68,7 +77,7 @@ public class AccountDAOImpl implements AccountDAO {
 		List<AccountVO> regList = sqlSession.selectList("account.dao.AccountDAO.regA", id);
 		return regList;
 	}
-	
+
 	/**
 	 * 주금통 등록 타입 'N' -> 'Y'
 	 * */

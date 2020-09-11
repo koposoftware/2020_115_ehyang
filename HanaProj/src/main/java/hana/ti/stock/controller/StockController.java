@@ -3,19 +3,15 @@ package hana.ti.stock.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import hana.ti.account.service.AccountService;
 import hana.ti.member.vo.MemberVO;
 import hana.ti.stock.service.StockService;
 import hana.ti.stock.vo.StockVO;
@@ -25,6 +21,8 @@ public class StockController {
 
 	@Autowired
 	private StockService stockService;
+	@Autowired
+	private AccountService accountService;
 	
 	/**
 	 * 주식목록
@@ -73,9 +71,11 @@ public class StockController {
 	public ModelAndView myBasket(HttpSession session) {
 		MemberVO loginVO = (MemberVO)session.getAttribute("loginVO");
 		List<StockVO> basketList = stockService.basketList(loginVO.getId());
+		int saccbalance = accountService.sbalance(loginVO.getId());
 		
 		ModelAndView mav = new ModelAndView("stock/myBasket");
 		mav.addObject("basketList", basketList);
+		mav.addObject("saccbalance",saccbalance);
 		return mav;
 	}
 	

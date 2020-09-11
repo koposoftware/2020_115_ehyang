@@ -33,6 +33,11 @@ public interface AccountDAO {
 	public List<AccountVO> selectSAll(String id);
 	
 	/**
+	 * 증권계좌 잔액 조회
+	 * */
+	public int sbalance(String id);
+	
+	/**
 	 * 주금통 서비스 이용 O 통합계좌조회
 	 * */
 	public List<AccountVO> regA(String id);

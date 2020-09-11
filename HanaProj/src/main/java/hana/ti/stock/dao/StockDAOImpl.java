@@ -86,6 +86,14 @@ public class StockDAOImpl implements StockDAO {
 	}
 	
 	/**
+	 * 관심종목에 있는 주식 현재가로 업데이트
+	 * */	
+	@Override
+	public void basUpdate() {
+		sqlSession.update("stock.dao.StockDAO.basUpdate");
+	}
+
+	/**
 	 * 관심종목 삭제
 	 * */
 	@Override

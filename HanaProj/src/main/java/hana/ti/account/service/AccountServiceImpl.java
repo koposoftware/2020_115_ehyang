@@ -64,6 +64,15 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	/**
+	 * 증권계좌 잔액조회
+	 * */	
+	@Override
+	public int sbalance(String id) {
+		int saccbalance = accountDAO.sbalance(id);
+		return saccbalance;
+	}
+
+	/**
 	 * 주금통 서비스 이용 O 통합계좌조회
 	 * */
 	@Override
