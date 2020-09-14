@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,7 +77,7 @@
         <div class="row no-gutters slider-text js-fullheight align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
              <p class="breadcrumbs"><span class="mr-2"><a href="${ pageContext.request.contextPath }">Home <i class="fa fa-chevron-right"></i></a></span> <span>주식관리 <i class="fa fa-chevron-right"></i></span></p>
-            <h1 class="mb-3 bread">전체 주식 조회</h1>
+            <h1 class="mb-3 bread">KOSPI 50</h1>
           </div>
         </div>
       </div>
@@ -160,7 +161,7 @@
            <td align="center">${ stock.name }</td>
            <td align="center">${ stock.category }</td>
            <%-- <td align="center">${ stock.reg_date }</td> --%>
-           <td align="center">${ stock.price }</td>
+           <td align="center">₩ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></td>
            <td align="center"><input type="button" class="chart btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="차트"></td>
            <td align="center"><input type="button" class="addFavoriteBtn btn btn-success" id="${ stock.name }-${ loginVO.id }-${ stock.code }-${ stock.price}" <c:if test="${stock.flag == 1 }">disabled </c:if> value="관심종목으로 등록"></td>
          </tr>
@@ -251,7 +252,7 @@
            <td align="center">${ stock.name }</td>
            <td align="center">${ stock.category }</td>
            <%-- <td align="center">${ stock.reg_date }</td> --%>
-           <td align="center">${ stock.price }</td>
+           <td align="center">₩ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></td>
            <td align="center"><input type="button" class="chart btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="차트"></td>
            <td align="center"><input type="button" class="addFavoriteBtn btn btn-success" id="${ stock.name }-${ loginVO.id }-${ stock.code }-${ stock.price}" <c:if test="${stock.flag == 1 }">disabled </c:if> value="관심종목으로 등록"></td>
          </tr>
@@ -342,7 +343,7 @@
            <td align="center">${ stock.name }</td>
            <td align="center">${ stock.category }</td>
            <%-- <td align="center">${ stock.reg_date }</td> --%>
-           <td align="center">${ stock.price }</td>
+           <td align="center">₩ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></td>
            <td align="center"><input type="button" class="chart btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="차트"></td>
            <td align="center"><input type="button" class="addFavoriteBtn btn btn-success" id="${ stock.name }-${ loginVO.id }-${ stock.code }-${ stock.price}" <c:if test="${stock.flag == 1 }">disabled </c:if> value="관심종목으로 등록"></td>
          </tr>
@@ -430,7 +431,7 @@
            <td align="center">${ stock.name }</td>
            <td align="center">${ stock.category }</td>
            <%-- <td align="center">${ stock.reg_date }</td> --%>
-           <td align="center">${ stock.price }</td>
+           <td align="center">₩ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></td>
            <td align="center"><input type="button" class="chart btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="차트"></td>
            <td align="center"><input type="button" class="addFavoriteBtn btn btn-success" id="${ stock.name }-${ loginVO.id }-${ stock.code }-${ stock.price}" <c:if test="${stock.flag == 1 }">disabled </c:if> value="관심종목으로 등록"></td>
          </tr>
@@ -515,7 +516,7 @@
            <td align="center">${ stock.name }</td>
            <td align="center">${ stock.category }</td>
            <%-- <td align="center">${ stock.reg_date }</td> --%>
-           <td align="center">${ stock.price }</td>
+           <td align="center">₩ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></td>
            <td align="center"><input type="button" class="chart btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="차트"></td>
            <td align="center"><input type="button" class="addFavoriteBtn btn btn-success" id="${ stock.name }-${ loginVO.id }-${ stock.code }-${ stock.price}" <c:if test="${stock.flag == 1 }">disabled </c:if> value="관심종목으로 등록"></td>
          </tr>

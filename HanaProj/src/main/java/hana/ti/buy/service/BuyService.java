@@ -22,7 +22,32 @@ public interface BuyService {
 	public void saDetail(BuyVO buyVO);
 	
 	/**
-	 * 주금통 내역 조회
+	 * 매수 및 매도 증권계좌 내역 조회
 	 * */
-	List<BuyVO> saList(String account_num);
+	public List<BuyVO> saList(String account_num);
+	
+	/**
+	 * 체결목록
+	 * */
+	public List<BuyVO> buyList(String id);
+	
+	/**
+	 * 매도시 매수목록에서 삭제
+	 * */
+	public void delBuy(BuyVO buyVO);
+	
+	/**
+	 * 매도시 매도테이블에 추가
+	 * */
+	public void sell(BuyVO buyVO);
+	
+	/**
+	 * 매도시 증권계좌 내역에 추가
+	 * */
+	public void sellDetail(BuyVO buyVO);
+	
+	/**
+	 * 매도시 증권계좌 잔액 변화
+	 * */
+	public void sellBalance(BuyVO buyVO);
 }

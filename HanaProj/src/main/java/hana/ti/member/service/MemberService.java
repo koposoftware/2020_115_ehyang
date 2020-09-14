@@ -18,4 +18,5 @@ public interface MemberService {
 	 * 아이디 중복확인
 	 * */
 	public int idChk(MemberVO member);
+
 }

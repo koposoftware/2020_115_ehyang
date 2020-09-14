@@ -23,7 +23,7 @@
 			where account_num = #{toAccount}
 	</update>
 	
-	<!-- 주금통 내역 조회 -->
+	<!-- 주금통 내역 조회(통합계좌) -->
 	<select id="autoList" resultMap="autotransferMap" parameterType="String">
 	select rownum, from_account, content, money, reg_date
 		 from (select rownum, from_account, content, money, reg_date from h_autotransfer where from_account = #{fromAccount} order by reg_date)
@@ -52,10 +52,16 @@
 			 from h_ressp
 	</select>
 	
-	<!-- 송금 내역 -->
+	<!-- 송금 내역에 추가 -->
 	<insert id="transferList" parameterType="autotransferVO">
 		insert into h_autotransfer (no, from_account, to_account, money, content)
 		 values(autotransfer_no.nextval, #{fromAccount}, #{toAccount}, #{money}, '주금통 실천중 ~_~')
+	</insert>
+	
+	<!-- 주금통 서비스 증권계좌에 입금(내역에 추가) -->
+	<insert id="spDeposite" parameterType="autotransferVO">
+		insert into h_sadetail (no, account_num, price, stockname, type)
+		 	values(sadetail_no.nextval, #{toAccount}, #{money}, '주금통 입금', 'D')
 	</insert>
 	
 	<!-- 주금통 해지 예약테이블에서 삭제 -->

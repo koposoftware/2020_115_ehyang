@@ -87,7 +87,7 @@
            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
              <a class="dropdown-item" href="${ pageContext.request.contextPath }/spList">주금통서비스 조회 및 해지</a>
              <a class="dropdown-item" href="${ pageContext.request.contextPath }/autoTransfer">주금통서비스 신청</a>
-             <a class="dropdown-item" href="${ pageContext.request.contextPath }/mail">메일</a>
+             <%-- <a class="dropdown-item" href="${ pageContext.request.contextPath }/mail">메일</a> --%>
            </div>
          </div>
             </li>
@@ -97,13 +97,13 @@
 		            주식관리
 		         </a>
 		           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		             <a class="dropdown-item" href="${ pageContext.request.contextPath }/stock">코스피 50 조회</a>
+		             <a class="dropdown-item" href="${ pageContext.request.contextPath }/stock">KOSPI 50</a>
 		             <%-- <a class="dropdown-item" href="${ pageContext.request.contextPath }/stockChart">주가 변동 현황</a> --%>
                      <div class="dropdown-divider"></div>
-		             <a class="dropdown-item" href="${ pageContext.request.contextPath }/myBasket">나의 관심종목 조회</a>
+		             <a class="dropdown-item" href="${ pageContext.request.contextPath }/myBasket">나의 관심종목 조회 및 매수</a>
                      <div class="dropdown-divider"></div>
-		             <a class="dropdown-item" href="#">주식 매수하기</a>
-		             <a class="dropdown-item" href="#">주식 매도하기</a>
+		             <a class="dropdown-item" href="${ pageContext.request.contextPath }/buyList">주식 체결 목록</a>
+		             <%-- <a class="dropdown-item" href="${ pageContext.request.contextPath }/sell">주식 매도하기</a> --%>
 		           </div>
 		         </div>
 		

@@ -14,7 +14,7 @@ public class MessageSend {
 	    public static final String ACCOUNT_SID =
 	            "AC1c8d0c90c3d0d3a33c0fbf5518ff451a";
 	    public static final String AUTH_TOKEN =
-	            "8a3005ccf06d66c4ec7124fa2996c4bb";
+	            "a259e9b2ea1b94a7fca70fa56e738aa2";
 
 //	    public static void main(String[] args) {
 //	        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);

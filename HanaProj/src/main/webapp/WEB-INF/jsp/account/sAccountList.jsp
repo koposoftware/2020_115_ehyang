@@ -1,33 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="//code.jquery.com/jquery.min.js"></script>
 <script>
 // 거래내역조회
 $(document).ready(function() {
-	$('.saListBtn').click(function(){
-		  /* alert('클릭') */
-		  /* alert($(this).attr('id')) */
-		  $.ajax({
-	            url : '${pageContext.request.contextPath}/account/saList',
-	            type: 'post',
-	            data : {
-	               account_num : $(this).attr('id')
-	            }, success : function(data) {
-	                /* alert('성공') */
-	               console.log(data)
-	               $('#salistTbl').html(data);
-	            }, error : function() {
-	               alert('다시 시도해주세요.')
-	            }
-			 })
-		})
-	})
+      $('.saListBtn').click(function(){
+           /* alert('클릭') */
+           /* alert($(this).attr('id')) */
+           $.ajax({
+                  url : '${pageContext.request.contextPath}/account/saList',
+                  type: 'post',
+                  data : {
+                	  account_num : $(this).attr('id')
+                  }, success : function(data) {
+                      /* alert('성공') */
+                     console.log(data)
+                     $('#saListTbl').html(data);
+                  }, error : function() {
+                     alert('다시 시도해주세요.')
+                     alert($(this).attr('id'))
+                  }
+             })
+         })
+      })
 </script>
 <body>
 
@@ -54,34 +57,56 @@ $(document).ready(function() {
 		  </div>
 		  <hr>
       
-        <table class="table table-bordered table-hover">
-       <thead>
-         <tr>
-           <th align="center">계좌번호</th>
-           <th align="center">계좌주명</th>
-           <th align="center">계좌별칭</th>
-           <th align="center">잔액</th>
-         </tr>
-       </thead>
-       <tbody id="myTable">
-       <c:forEach items="${ SAccountList }" var="account" varStatus="loop">
-       <input type="hidden" name="account_num" value="${ account.account_num }">
-         <tr>
-           <td align="center">${ account.account_num }</td>
-           <td align="center">${ account.name }</td>
-           <td align="center">${ account.alias }</td>
-           <td align="center">${ account.balance }</td>
-         </tr>
-     	<div align="center">
+      
+      
+      
+      
+      
+      <c:forEach items="${ SAccountList }" var="account" varStatus="loop">
+      <input type="hidden" name="account_num" value="${ account.account_num }">
+      <div class="row no-gutters">
+	  			<div class="col-md-12 portfolio-wrap">
+	  				<div class="row no-gutters align-items-center">
+	  						<img src="resources/images/hana.png" style="height: 200px">
+	  					<div class="col-md-7">
+	  						<div class="text pt-5 pl-0 pl-lg-5 pl-md-4 ftco-animate">
+	  							<div class="px-4 px-lg-4">
+	  								<div class="desc">
+		  								<div class="top">
+			  								<span class="subheading">${ loginVO.name }</span>
+				  							<h3 class="mb-4">나의 < ${ account.alias } > 계좌</h3>
+			  							</div>
+			  							<div class="absolute">
+				  							<h4>계좌번호 : ${ account.account_num }</h4>
+				  							<h4>계좌주명 : ${ account.name }</h4>
+				  							<h4>잔액 : ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ account.balance }" /></h4>
+			  							</div>
+		  							</div>
+	  							</div>
+	  						</div>
+	  					</div>
+	  				</div>
+	  			</div>
+	  			</div>
+	  			
+	  			<div align="center">
      	<input type ="button" class="saListBtn btn btn-success" id="${ account.account_num }" value="증권계좌내역조회">
      	<a href="${ pageContext.request.contextPath }/autoTransfer"><button class="btn btn-success"> 주금통 서비스 신청하기 </button></a>
      	</div>
-       </c:forEach>
-       </tbody>
-     </table>
-    </div>
+      </c:forEach>
+      
+      
+      
+      
     
-    <div align="center" id="salistTbl">
+    
+    
+    
+    
+    
+    
+    
+    <div align="center" id="saListTbl">
           		
     </div>
            

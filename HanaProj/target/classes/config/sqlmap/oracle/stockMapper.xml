@@ -54,7 +54,7 @@
 		<!-- 나의 관심 종목 -->
 	<select id="basketList" resultType="StockVO" parameterType="String">
 		select name, price, reg_date, code, id
-		from h_basket where id = #{id}
+			from h_basket where id = #{id}
 	</select>
 	
 	<!-- 관심종목에 있는 값 업데이트 -->
@@ -67,4 +67,5 @@
 		delete h_basket
 			 where code = #{code} and id = #{id}
 	</delete>
+
 </mapper>

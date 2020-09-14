@@ -10,7 +10,17 @@ public class AccountVO {
     private int balance;
     private String register;
     private String bank;
+    
+    private String rownum;
 
+    
+    
+	public String getRownum() {
+		return rownum;
+	}
+	public void setRownum(String rownum) {
+		this.rownum = rownum;
+	}
 	public String getAccount_num() {
 		return account_num;
 	}

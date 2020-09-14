@@ -10,7 +10,38 @@ public class BuyVO {
 	private int price;
 	private String reg_date;
 	private String account_num;
-
+	
+	private int rownum;
+	private String stockname;
+	private String type;
+	private int nowPrice;
+	
+	
+	
+	public int getNowPrice() {
+		return nowPrice;
+	}
+	public void setNowPrice(int nowPrice) {
+		this.nowPrice = nowPrice;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getStockname() {
+		return stockname;
+	}
+	public void setStockname(String stockname) {
+		this.stockname = stockname;
+	}
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 	public int getNo() {
 		return no;
 	}

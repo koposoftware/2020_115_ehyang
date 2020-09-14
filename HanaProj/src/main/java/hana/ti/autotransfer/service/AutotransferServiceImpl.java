@@ -34,6 +34,9 @@ public class AutotransferServiceImpl implements AutotransferService {
 		autotransferDAO.insertRes(autotransferVO);
 		// 거래내역에 추가
 		autotransferDAO.transferList(autotransferVO);
+		// 주금통 서비스 증권계좌에 입금(내역에 추가)
+		autotransferDAO.deposite(autotransferVO);
+		 
 	}
 
 	/**
@@ -58,7 +61,6 @@ public class AutotransferServiceImpl implements AutotransferService {
 	/**
 	 * 예약테이블에 있는 것들 매일 18시에 송금
 	 * */
-
 	@Transactional
 	@Override
 	public void resSPsend() {
@@ -71,6 +73,8 @@ public class AutotransferServiceImpl implements AutotransferService {
 			autotransferDAO.receive(autotransferVO);
 			// 거래내역에 추가
 			autotransferDAO.transferList(autotransferVO);
+			// 주금통 서비스 증권계좌에 입금(내역에 추가)
+			autotransferDAO.deposite(autotransferVO);
 		}
 	}
 

@@ -50,4 +50,5 @@ public interface StockService {
 	 * 관심종목 삭제
 	 * */
 	public void delBasket(StockVO stockVO);
+
 }

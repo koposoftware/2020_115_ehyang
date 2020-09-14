@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="buy.dao.BuyDAO">
+
+	<!-- 매수 -->
+	
+	<!-- 주식 매수 -->
+	<insert id="buy" parameterType="buyVO">
+		insert into h_buy(no, id, code, name, count, price, account_num) 
+			values(h_buy_no.nextval, #{id}, #{code}, #{name}, #{count}, #{price}, #{account_num})
+	</insert>
+
+	<!-- 매수할 때 증권계좌 잔액 변화 -->
+	<update id="buystock" parameterType="autotransferVO">
+		update h_stockaccount
+			set balance = balance - #{price}
+				where account_num = #{account_num}
+	</update>
+	
+	<!-- 매수 내역에 추가 -->
+	<insert id="buyDetail" parameterType="buyVO">
+		insert into h_sadetail (no, account_num, price, stockname, type)
+		 	values(sadetail_no.nextval, #{account_num}, #{price}, #{name}, 'B')
+	</insert>
+	
+	<!-- 매수 및 매도 증권계좌 내역 조회 -->
+	<select id="saccountList" resultType="buyVO" parameterType="String">
+	select rownum, account_num, stockname, price, reg_date, type
+		 from (select rownum, account_num, stockname, price, reg_date, type from h_sadetail where account_num = #{account_num} order by reg_date)
+		 	 where account_num = #{account_num} order by reg_date
+	</select>
+	
+	<!-- 나의 체결 목록 -->
+	<select id="buyList" resultType="buyVO" parameterType="String">
+		select rownum, code, name, count, price, reg_date, nowPrice
+			 from (select b.code, b.name, b.count, b.price, b.reg_date, s.price nowPrice 
+                        from h_buy b, h_stock s 
+                        where id = #{id} and b.code = s.code
+                        order by b.reg_date)
+	</select>
+	
+	<!-- 주식 현재가 조회(수익률 계산해야해서) 
+	<select id="nowPrice" parameterType="String" resultType="int">
+		select price from h_stock where code = #{code}
+	</select> -->
+	
+	
+	
+	<!-- 매도 -->
+	
+	<!-- 매도시 매수목록에서 삭제 -->
+	<delete id="delBuy" parameterType="buyVO">
+		delete h_buy
+			 where code = #{code} and id = #{id}
+	</delete>
+	
+	<!-- 매도시 매도테이블에 추가 -->
+	<insert id="sell" parameterType="buyVO">
+		insert into h_sell(no, id, code, name, count, price, account_num)
+			 values(h_sell_no.nextval, #{id}, #{code}, #{name}, #{count}, #{price}, #{account_num})
+	</insert>
+	
+		<!-- 매도시 증권계좌 내역에 추가 -->
+	<insert id="sellDetail" parameterType="buyVO">
+		insert into h_sadetail (no, account_num, price, stockname, type)
+		 	values(sadetail_no.nextval, #{account_num}, #{price}, #{name}, 'S')
+	</insert>
+	
+		<!-- 매도시 증권계좌 잔액 변화 -->
+	<update id="sellStock" parameterType="buyVO">
+		update h_stockaccount
+			set balance = balance + #{price}
+				where account_num = #{account_num}
+	</update>
+</mapper>

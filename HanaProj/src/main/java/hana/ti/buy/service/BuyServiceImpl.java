@@ -20,6 +20,7 @@ public class BuyServiceImpl implements BuyService {
 	 * */
 	@Override
 	public void buy(BuyVO buyVO) {
+		// 매수내역에 추가
 		buyDAO.buy(buyVO);
 	}
 
@@ -40,11 +41,52 @@ public class BuyServiceImpl implements BuyService {
 	}
 
 	/**
-	 * 주금통 내역 조회
+	 * 매수 및 매도 증권계좌 내역 조회
 	 * */
 	@Override
 	public List<BuyVO> saList(String account_num) {
 		List<BuyVO> saList = buyDAO.saList(account_num);
 		return saList;
+	}
+
+	/**
+	 * 체결목록
+	 * */
+	@Override
+	public List<BuyVO> buyList(String id) {
+		List<BuyVO> buyList = buyDAO.buyList(id);
+		return buyList;
+	}
+	
+	/**
+	 * 매도시 매수목록에서 삭제
+	 * */
+	@Override
+	public void delBuy(BuyVO buyVO) {
+		buyDAO.delBuy(buyVO);
+	}
+
+	/**
+	 * 매도시 매도테이블에 추가
+	 * */
+	@Override
+	public void sell(BuyVO buyVO) {
+		buyDAO.sell(buyVO);
+	}
+	
+	/**
+	 * 매도시 증권계좌 내역에 추가
+	 * */
+	@Override
+	public void sellDetail(BuyVO buyVO) {
+		buyDAO.sellDetail(buyVO);
+	}
+
+	/**
+	 * 매도시 증권계좌 잔액 증가
+	 * */
+	@Override
+	public void sellBalance(BuyVO buyVO) {
+		buyDAO.sellBalance(buyVO);
 	}
 }

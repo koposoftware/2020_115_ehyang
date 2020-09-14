@@ -3,6 +3,7 @@ package hana.ti.autotransfer.dao;
 import java.util.List;
 
 import hana.ti.autotransfer.vo.AutotransferVO;
+import hana.ti.buy.vo.BuyVO;
 
 public interface AutotransferDAO {
 	/**
@@ -36,9 +37,14 @@ public interface AutotransferDAO {
 	public List<AutotransferVO> resTblList();
 	
 	/**
-	 * 송금 내역
+	 * 송금 내역에 추가
 	 * */
 	public void transferList(AutotransferVO autotransferVO);
+
+	/**
+	 * 주금통 서비스 증권계좌에 입금(내역에 추가)
+	 * */
+	public void deposite(AutotransferVO autotransferVO);
 	
 	/**
 	 * 주금통 서비스 취소 -> 예약테이블에서 삭제

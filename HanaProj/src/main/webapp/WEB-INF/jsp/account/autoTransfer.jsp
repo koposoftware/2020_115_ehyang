@@ -10,14 +10,14 @@
 <body>
 
 <!-- header -->
-	<jsp:include page="/header.jsp" />
+   <jsp:include page="/header.jsp" />
     
     <section class="hero-wrap hero-wrap-2" style="background-image: url('resources/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="${ pageContext.request.contextPath }">Home <i class="fa fa-chevron-right"></i></a></span> <span>주금통 관리 <i class="fa fa-chevron-right"></i></span></p>
+             <p class="breadcrumbs"><span class="mr-2"><a href="${ pageContext.request.contextPath }">Home <i class="fa fa-chevron-right"></i></a></span> <span>주금통 관리 <i class="fa fa-chevron-right"></i></span></p>
             <h1 class="mb-3 bread">주금통 서비스 신청</h1>
           </div>
         </div>
@@ -29,15 +29,18 @@
       <div class="jumbotron">
   <!-- <h1 class="display-4"></h1> -->
   <p class="lead">${ loginVO.name } 님. 주금통 서비스를 신청 해주셔서 감사합니다.</p>
-  <p>매일 오후 6시 777원이 증권계좌로 자동이체됩니다. <br>
-  	 내가 원하는 주식을 더 빠르게 매수할 수 있는 방법! <br>
-  	 <a href="#">주금통 시스템</a>에 대해 더 알아보고싶다면 클릭하세요!
+  <p>매일 오후 6시 1000원 미만의 금액이 증권계좌로 자동이체됩니다. <br>
+      내가 원하는 주식을 더 빠르게 매수할 수 있는 방법! <br>
+      <a href="#">주금통 시스템</a>에 대해 더 알아보고싶다면 클릭하세요!
   </p>
   <hr class="my-4">
   <p align="center">서비스를 신청하기 전 이용약관을 읽어주세요.</p>
     
     <div align="center">
    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">이용약관</button>
+	   <div class="checkbox">
+	  	<label><input type="checkbox" value="">동의</label>
+		</div>
    </div>
   
   <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -49,7 +52,7 @@
        </div>
              <div class="modal-footer">
              <div align="center">
-           <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 100px; height: 50px">동의</button>
+           <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 100px; height: 50px">확인</button>
              </div>
          </div>
      </div>
@@ -64,8 +67,8 @@
    <hr>
  
   <c:forEach items="${ accountNotRegList }" var="account" varStatus="loop">
-	  <input type="radio" name="fromAccount" value="${ account.account_num }">
-	  <label>${ account.alias } - ${ account.account_num }</label><br>
+     <input type="radio" name="fromAccount" value="${ account.account_num }">
+     <label>${ account.alias } - ${ account.account_num }</label><br>
     </c:forEach>
     <hr>
     </div>
@@ -92,7 +95,7 @@
    </section>
 
  <!-- footer -->
-	<jsp:include page="/footer.jsp"></jsp:include>
+   <jsp:include page="/footer.jsp"></jsp:include>
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>

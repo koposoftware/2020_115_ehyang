@@ -55,4 +55,5 @@ public interface StockDAO {
 	 * 관심종목 삭제
 	 * */
 	public void delBasket(StockVO stockVO);
+	
 }

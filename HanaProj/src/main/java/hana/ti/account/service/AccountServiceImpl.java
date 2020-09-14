@@ -89,4 +89,12 @@ public class AccountServiceImpl implements AccountService {
 		accountDAO.unRegSP(account_num);
 		autotransferDAO.resSPDel(account_num);
 	}
+	
+	/**
+	 * 매수 전 비밀번호 체크
+	 * */
+	@Override
+    public boolean checkPw(AccountVO account) {
+        return accountDAO.checkPw(account);
+    }
 }

@@ -66,11 +66,19 @@ public class AutotransferDAOImpl implements AutotransferDAO {
 	}
 	
 	/**
-	 * 송금 내역
+	 * 송금 내역에 추가
 	 * */
 	@Override
 	public void transferList(AutotransferVO autotransferVO) {
 		sqlSession.insert("autotransfer.dao.autotransferDAO.transferList", autotransferVO);
+	}
+	
+	/**
+	 * 주금통 서비스 증권계좌에 입금(내역에 추가)
+	 * */
+	@Override
+	public void deposite(AutotransferVO autotransferVO) {
+		sqlSession.insert("autotransfer.dao.autotransferDAO.spDeposite", autotransferVO);		
 	}
 
 	/**

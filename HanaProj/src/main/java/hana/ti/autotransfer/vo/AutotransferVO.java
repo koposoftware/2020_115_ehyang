@@ -11,7 +11,15 @@ public class AutotransferVO {
 	private int rownum;
 	private int spMoney;
 	
+	private String type;
 	
+	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public int getSpMoney() {
 		return spMoney;
 	}

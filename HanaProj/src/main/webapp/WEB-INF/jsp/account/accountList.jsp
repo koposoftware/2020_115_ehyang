@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE html>
 <html>
@@ -28,16 +29,19 @@
         </div>
       </div>
     </section>
-    
-	  <section class="ftco-section">
-      <div class="container">
       
-		   <div class="page-header">
-		   <h3> <img src="resources/images/money.png" width="70px"> ${ loginVO.name } 회원님이 보유하신 하나은행 통합계좌 목록입니다.</h3>      
-		  </div>
-		  <hr>
-		  
-		  <div class="col-md-8 col-lg-3 justify-content-center counter-wrap ftco-animate">
+    <section class="ftco-section">
+    
+    <div class="container" style="background-color: #fbfbfb">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+          	<span class="subheading">통합계좌목록</span>
+            <h5 class="mb-3"><img src="resources/images/money.png" width="70px"> ${ loginVO.name } 회원님이 보유하신 하나은행 통합계좌 목록입니다.</h5>
+          </div>
+        </div>
+        
+        
+        <div class="col-md-8 col-lg-3 justify-content-center counter-wrap ftco-animate">
             <div class="block-18 py-md-5 mb-md-4">
               <div class="text text-border d-flex align-items-center">
                 <h4>총 자산액 : </h4>
@@ -46,43 +50,38 @@
               </div>
             </div>
           </div>
-          
-      <%-- <h4 class="color">총 자산 : ${ sumTotal }원</h4> --%>
-        <table class="table table-bordered table-hover">
-       <thead>
-         <tr>
-           <th align="center">은행</th>
-           <th align="center">계좌번호</th>
-           <th align="center">계좌별칭</th>
-           <th align="center">잔액</th>
-           <!-- <th align="center">등록</th> -->
-         </tr>
-       </thead>
-       <tbody id="myTable">
-       <c:forEach items="${ accountList }" var="account" varStatus="loop">
-       <input type="hidden" name="account_num" value="${ account.account_num }">
-         <tr>
-           <td align="center">
-           <c:if test="${ 'Y' eq account.register }">
-           <span class="badge badge-info">주금통 등록</span>
-           </c:if>
-                ${ account.bank }</td>
-           <td align="center">${ account.account_num }</td>
-           <td align="center">${ account.alias }</td>
-           <td align="center">${ account.balance }</td>
-           <%-- <td align="center">${ account.register }</td> --%>
-         </tr>
-         
-       </c:forEach>
-       </tbody>
-     </table>
-
-     	<div align="center">
-     	<a href="${ pageContext.request.contextPath }/autoTransfer"><button class="btn btn-success"> 주금통 서비스 신청하기 </button></a>
-     	</div>
-    </div>
+        
+        <div class="row ftco-animate">
+          <div class="col-md-12">
+            <!-- <div class="carousel-testimony owl-carousel"> -->
+            
+            <c:forEach items="${ accountList }" var="account" varStatus="loop">
+            <input type="hidden" name="account_num" value="${ account.account_num }">
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                  <div class="text">
+                  	<span class="fa fa-quote-left"></span>
+                				<h3 style="color: #008c8c">${ account.rownum }</h3>
+                    <h4 class="mb-4"><c:if test="${ 'Y' eq account.register }">
+           						<span class="badge badge-info">주금통 등록</span>
+           					</c:if>
+                				${ account.bank }</h4>
+                				<h5> 계좌번호 : ${ account.account_num }</h5>
+                				<h5> 계좌별칭 : ${ account.alias }</h5>
+           						<h5> 잔액 : ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ account.balance }" /></h5>
+                  </div>
+                </div>
+              </div>
+              </c:forEach>
+            </div>
+          </div>
+        </div>
+	        <div align="center">
+	     		<a href="${ pageContext.request.contextPath }/autoTransfer"><button class="btn btn-success"> 주금통 서비스 신청하기 </button></a>
+	     	</div>
+      <!-- </div> -->
     </section>
-
+      
   <!-- footer -->
 	<jsp:include page="/footer.jsp"></jsp:include>
 

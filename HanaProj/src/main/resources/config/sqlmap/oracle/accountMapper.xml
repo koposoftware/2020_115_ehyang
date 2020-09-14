@@ -6,8 +6,8 @@
 
 	<!-- 통합계좌조회 -->
 	<select id="selectAll" resultType="AccountVO" parameterType="String">
-		select bank, account_num, alias, balance, register
-			from h_account where id = #{id}
+		select rownum, bank, account_num, alias, balance, register
+        	from(select rownum, bank, account_num, alias, balance, register from h_account where id = #{id})
 	</select>
 	
 	<!-- 총자산 조회 -->
@@ -58,4 +58,11 @@
 		update h_account set register = 'N'
 	 		where account_num = #{account_num} 
 	</update>
+	
+	<!-- 매수할때 비밀번호 체크 -->
+    <select id="checkPw" resultType="int" parameterType="AccountVO">
+        select count(*)
+        	from h_stockaccount
+        		where id = #{id} and password = #{password}
+    </select>
 </mapper>

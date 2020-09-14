@@ -37,4 +37,5 @@ public class MemberServiceImpl implements MemberService {
 		int result = memberDAO.idChk(member);
 		return result;
 	}
+	
 }

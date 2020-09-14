@@ -50,12 +50,15 @@ function getRandomNum(iLength) {
       <div class="container">
       <div class="jumbotron">
   <!-- <h1 class="display-4"></h1> -->
-  <p class="lead">${ loginVO.id } 님. 등록하실 증권계좌의 정보를 입력하세요.</p>
+  <p class="lead">${ loginVO.id } 님. 개설하실 증권계좌의 정보를 입력하세요.</p>
   <hr class="my-4">
   <p align="center">서비스를 신청하기 전 이용약관을 읽어주세요.</p>
   
   <div align="center">
    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">이용약관</button>
+   <div class="checkbox">
+	  	<label><input type="checkbox" value="">동의</label>
+		</div>
    </div>
    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-lg">
@@ -82,10 +85,9 @@ function getRandomNum(iLength) {
             <input type="text" class="form-control" name="id" value="${ loginVO.id }" readonly="readonly">
           </div>
           <div class="form-group">
-            <label for="inputEmail4">계좌번호</label>
-         <input type="button" value="계좌번호 랜덤생성" onclick="getRandomNum(document.getElementById('length').value)" readonly="readonly">
-            계좌번호는<input type="text" id="length" value=14 readonly="readonly" style="width: 30px">자리 입니다.
-            <input type="text" class="form-control" name="account_num" id="divRandom" readonly="readonly">
+         <input type="button" style="color: #008c8c" class="btn btn-primary" value="계좌번호 랜덤생성" onclick="getRandomNum(document.getElementById('length').value)" readonly="readonly">
+            <input type="text" id="length" readonly class="form-control-plaintext" style="width: 30px; display: none" value="14">
+            <input type="text" class="form-control" name="account_num" id="divRandom" readonly="readonly" required="required">
           </div>
         <div class="form-group">
           <label for="inputAddress">계좌주명</label>
@@ -93,12 +95,12 @@ function getRandomNum(iLength) {
         </div>
         <div class="form-group">
           <label for="inputAddress2">비밀번호</label>
-          <input type="password" class="form-control" id="inputAddress2" name="password">
+          <input type="password" class="form-control" id="inputAddress2" name="password" required="required">
         </div>
         <div class="form-row">
           <div class="form-group">
             <label for="inputCity">alias</label>
-            <input type="text" class="form-control" name = "alias">
+            <input type="text" class="form-control" name = "alias" required="required">
           </div>
         </div>
         <button type="submit" class="btn btn-primary">계좌생성</button>

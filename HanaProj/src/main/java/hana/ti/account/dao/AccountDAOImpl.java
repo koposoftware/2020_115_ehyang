@@ -1,6 +1,8 @@
 package hana.ti.account.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,4 +95,19 @@ public class AccountDAOImpl implements AccountDAO {
 	public void unRegSP(String account_num) {
 		sqlSession.update("account.dao.AccountDAO.unRegSP", account_num);		
 	}
+	
+	/**
+	 * 매수 전 비밀번호 체크
+	 * */
+	@Override
+    public boolean checkPw(AccountVO account) {
+        boolean result = false;
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("id", account.getId());
+        map.put("password", account.getPassword());
+        int count = sqlSession.selectOne("account.dao.AccountDAO.checkPw", map);
+        if(count == 1)
+        	result= true;
+        return result;
+    }
 }

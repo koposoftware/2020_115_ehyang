@@ -51,4 +51,8 @@ public interface AccountDAO {
 	 * 주금통 해지 account 테이블 type 변경
 	 * */
 	public void unRegSP(String account_num);
+	
+
+	// 매수 전 비밀번호 체크
+	public boolean checkPw(AccountVO account);
 }
