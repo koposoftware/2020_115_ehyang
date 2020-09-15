@@ -17,24 +17,24 @@
 <script>
 
 // 수익률 조회
-$(document).ready(function() {
+/* $(document).ready(function() {
       $('.rateBtn').click(function(){
            
     	  // 종목코드 - 매수금 - 매수량
            let elements = $(this).attr('id').split('-');
-           /* alert(elements); */
+           alert(elements);
            $.ajax({
                   url : '${pageContext.request.contextPath}/stock/rate',
                   type: 'post',
                   data : {
                      code : elements[0]
                   }, success : function(data) {
-                      /* alert('성공')  */
-                     /* console.log(data) */
+                      alert('성공')
+                     console.log(data)
                      $('#rateCount').empty();
                      $('#rateTbl').empty();
                      let str = elements[1]/elements[2];
-                     /* alert(str) */
+                     alert(str)
                      
                      $('#rateTbl').html(data);
                       $('#rateCount').append(str);
@@ -43,7 +43,7 @@ $(document).ready(function() {
                   }
              })
          })
-      })
+      }) */
       
 // id속성 지정 
    $(document).ready(function(){
@@ -53,9 +53,10 @@ $(document).ready(function() {
       })  
    })
       
+/*    
       $(document).ready(function() {
     	  $('.sell').click(function(){
-    		  /* alert('클릭'); */
+    		  alert('클릭');
     		  $.ajax({
     			  url : '${pageContext.request.contextPath}/stock/rate',
                   type: 'post',
@@ -63,14 +64,14 @@ $(document).ready(function() {
                 	  code : elements[0]
                   }, success : function(data) {
                 	  let str = elements[0]
-                	 /* alert(elements[0]); */
+                	 alert(elements[0]);
                 	  $('#nowPriceHere').append(str)
                   }, error : function() {
                 	  alert('다시시도해주세요');
                   }
     		  })
     	  })
-      })
+      }) */
       
       // 수량*현재가
    $(document).ready(function(){
@@ -96,12 +97,37 @@ $(document).ready(function() {
         //count 클래스의 id를 ${ stock.price }로 설정해서 그 값 바로 가져오기
         /* console.log(typeof c); */
         //가격 넣어주기
-        var sprice = p[0]*c
+        let sprice = (p[0]*c)-(p[0]*c*0.005)
+        let fprice = (p[0]*c)
+        /* alert(p[0]*c*0.5); */
          /* console.log(sprice) */
-         document.getElementById("realprice").value = sprice;
+         document.getElementById("realprice").value = fprice;
+         document.getElementById("realrealprice").value = sprice;
         }
       })
    })
+   
+    // 매도 전 비밀번호 확인
+   $(document).ready(function(){
+      $(".pwChk").click(function(){
+    	  $('#check').empty();
+    	  $('#inputPwd').empty();
+        /* alert(${loginVO.password}); */
+        let input = document.getElementById('inputPwd').value;
+        /* alert(input); */
+        if(input != ${loginVO.password}){
+        	/* alert('다름'); */
+        	let msg = '비밀번호가 일치하지 않습니다.';
+        	$('#check').empty();
+        	document.getElementById("check").append(msg);
+        	return false;
+        	
+        } else {
+        	return true;
+        }
+      })  
+   })
+   
 </script>
 <body>
 
@@ -153,20 +179,44 @@ $(document).ready(function() {
                 				<h3 style="color: #008c8c">${ buy.rownum }</h3>
                 				종목 코드 : ${ buy.code }
                 				<h5> 종목명 : ${ buy.name }</h5>
-                				<h5> 보유수량 : ${ buy.count }</h5>
-           						<h5> 매수금 : ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ buy.price }" /></h5>
-           						<h5> 평가금액 : ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ buy.nowPrice * buy.count }" /></h5>
-                				<h5> 매수 날짜 : ${ buy.reg_date }</h5>
-                				
+                				<h5> 매입가 : ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ buy.price / buy.count }" /></h5>
+           						<%-- <c:choose>
+           						<c:when test="${ buy.nowPrice * buy.count > buy.price}">
+           						<h5 style="color: red"> 평가손익 : ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ buy.nowPrice * buy.count }" /></h5>
+                				</c:when>
+           						<c:when test="${ buy.nowPrice * buy.count < buy.price}">
+           						<h5 style="color: blue"> 평가손익 : ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ buy.nowPrice * buy.count }" /></h5>
+                				</c:when>
+                				<c:otherwise>
+           						<h5> 평가손익 : ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ buy.nowPrice * buy.count }" /></h5>
+                				</c:otherwise>
+                				</c:choose>
                 				<c:choose>
-                				<c:when test="${ buy.nowPrice * buy.count / buy.price >= 1 }">
+                				<c:when test="${ buy.nowPrice * buy.count / buy.price > 1 }">
                 				<h5 style="color: red"> 수익률 : <fmt:formatNumber value="${ buy.nowPrice * buy.count / buy.price }" pattern=".000"/>%</h5>
                 				</c:when>
-								<c:otherwise>
+                				<c:when test="${ buy.nowPrice * buy.count / buy.price > 1 }">
 								<h5 style="color: blue"> 수익률 : <fmt:formatNumber value="${ buy.nowPrice * buy.count / buy.price }" pattern=".000"/>%</h5>
+                				</c:when>
+								<c:otherwise>
+                				<h5> 수익률 : <fmt:formatNumber value="${ buy.nowPrice * buy.count / buy.price }" pattern=".000"/>%</h5>
 								</c:otherwise>
 								</c:choose>
-                				<input type="button" class="rateBtn btn btn-success" id ="${ buy.code }-${ buy.price }-${ buy.count }"value="수익률 보기">
+                				<h5> 보유수량 : ${ buy.count }</h5>
+                				<h5> 현재가 : ${ buy.nowPrice }</h5>
+                				<h5> 매입금액 : ${ buy.price }</h5>
+                				<h5> 평가금액 : ${ buy.nowPrice * buy.count }</h5>
+                				<c:choose>
+                				<c:when test="${ nowPrice * buy.count < 500000 }">
+                				<h5> 수수료 : 0.5 %</h5>
+                				</c:when>
+                				<c:otherwise>
+                				<h5> 수수료 : 0.15 %</h5>
+                				</c:otherwise>
+                				</c:choose>
+                				<h5> 매수 날짜 : ${ buy.reg_date }</h5> --%>
+                				
+                				<input type="button" class="sell btn btn-success" id="${ buy.name }"  data-toggle="modal" data-target="#myModal2${ buy.name }" value="수익률 보기">
                 				<input type="button" class="sell btn btn-success" id="${ buy.code }"  data-toggle="modal" data-target="#myModal${ buy.name }" value="매도">
                 				
                   </div>
@@ -183,6 +233,128 @@ $(document).ready(function() {
           </div>
         </div>
         
+        
+        
+        
+        
+        
+        
+        
+        
+        <c:forEach items="${ buyList }" var="buy" varStatus="loop">
+        <!-- 비밀번호 확인 모달 -->
+         <!-- Modal -->
+<%--   <div class="modal fade" id="myModal2${ buy.name }" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">비밀번호 확인</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body" align="center">
+          <p>증권계좌 비밀번호를 입력해주세요.</p>
+          <input type="password">
+        </div>
+        <div class="modal-footer" align="center">
+         <input type="button" class="sell btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal2${ buy.code }" value="확인">
+        </div>
+      </div>
+      
+    </div>
+  </div> --%>
+         
+         
+         
+         <!-- 수익률모달 -->
+                     <!-- Modal -->
+  <div class="modal fade" id="myModal2${ buy.name }" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">${ buy.name } 매도</h3><h4 align="right"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+
+							<c:choose>
+								<c:when test="${ buy.nowPrice * buy.count > buy.price}">
+									<h5 style="color: red">
+										평가손익 : ₩
+										<fmt:formatNumber type="number" maxFractionDigits="3"
+											value="${ buy.nowPrice * buy.count - buy.price }" />
+									</h5>
+								</c:when>
+								<c:when test="${ buy.nowPrice * buy.count < buy.price}">
+									<h5 style="color: blue">
+										평가손익 : ₩
+										<fmt:formatNumber type="number" maxFractionDigits="3"
+											value="${ buy.nowPrice * buy.count - buy.price }" />
+									</h5>
+								</c:when>
+								<c:otherwise>
+									<h5>
+										평가손익 : ₩
+										<fmt:formatNumber type="number" maxFractionDigits="3"
+											value="${ buy.nowPrice * buy.count - buy.price }" />
+									</h5>
+								</c:otherwise>
+							</c:choose>
+							<c:choose>
+								<c:when test="${ buy.nowPrice * buy.count / buy.price >= 1 }">
+									<h5 style="color: red">
+										수익률 :
+										<fmt:formatNumber
+											value="${ buy.nowPrice * buy.count / buy.price }"
+											pattern=".000" />
+										%
+									</h5>
+								</c:when>
+								<c:when test="${ buy.nowPrice * buy.count / buy.price < 1 }">
+									<h5 style="color: blue">
+										수익률 :
+										<fmt:formatNumber
+											value="${ buy.nowPrice * buy.count / buy.price }"
+											pattern="0.000" />
+										%
+									</h5>
+								</c:when>
+								<c:otherwise>
+									<h5>
+										수익률 :
+										<fmt:formatNumber
+											value="${ buy.nowPrice * buy.count / buy.price }"
+											pattern=".000" />
+										%
+									</h5>
+								</c:otherwise>
+							</c:choose>
+							<h5>보유수량 : ${ buy.count }</h5>
+							<h5>현재가 : ${ buy.nowPrice }</h5>
+							<h5>매입금액 : ${ buy.price }</h5>
+							<h5>평가금액 : ${ buy.nowPrice * buy.count }</h5>
+							<c:choose>
+								<c:when test="${ nowPrice * buy.count < 500000 }">
+									<h5>수수료 : 0.5 %</h5>
+								</c:when>
+								<c:otherwise>
+									<h5>수수료 : 0.15 %</h5>
+								</c:otherwise>
+							</c:choose>
+							<h5>매수 날짜 : ${ buy.reg_date }</h5>
+
+						</div>
+<!-- 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div> -->
+      </div>
+    </div>
+    </div>
+        </c:forEach>
+        
         <c:forEach items="${ buyList }" var="buy" varStatus="loop">
         <!-- 비밀번호 확인 모달 -->
          <!-- Modal -->
@@ -197,10 +369,13 @@ $(document).ready(function() {
         </div>
         <div class="modal-body" align="center">
           <p>증권계좌 비밀번호를 입력해주세요.</p>
-          <input type="password">
+          <input type="password" id = "inputPwd">
+          <div id="check" style="color: red">
+          
+          </div>
         </div>
         <div class="modal-footer" align="center">
-         <input type="button" class="sell btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ buy.code }" value="확인">
+         <input type="button" class="pwChk btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ buy.code }" value="확인">
         </div>
       </div>
       
@@ -281,7 +456,11 @@ $(document).ready(function() {
           </div>
           <div class="col">
            <label for="message-text" class="col-form-label">평가금액</label>
-            <input type="text" class="form-control" id = "realprice" name="price" required="required" width="50%" >
+            <input type="text" class="form-control" id = "realprice"required="required" width="50%" >
+          </div>
+          <div class="col">
+           <label for="message-text" class="col-form-label">실제 산정액(수수료 제외)</label>
+            <input type="text" class="form-control" id = "realrealprice" name="price" required="required" width="50%" >
           </div>
         </div>
         <br>

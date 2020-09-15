@@ -34,12 +34,12 @@
       })
       
       // id속성 지정 
-   $(document).ready(function(){
+   /* $(document).ready(function(){
       $(".buy").click(function(){
          let code = $(this).attr('id');
-        /*  $('#'+code).toggle(); */
+        $('#'+code).toggle();
       })  
-   })
+   }) */
    
    // 가능 100%
    $(document).ready(function(){
@@ -129,7 +129,25 @@
    
    
    // 매수 전 비밀번호 확인
-   
+   $(document).ready(function(){
+      $(".pwChk").click(function(){
+    	  $('#check').empty();
+    	  $('#inputPwd').empty();
+        /* alert(${loginVO.password}); */
+        let input = document.getElementById('inputPwd').value;
+        /* alert(input); */
+        if(input != ${loginVO.password}){
+        	/* alert('다름'); */
+        	let msg = '비밀번호가 일치하지 않습니다.';
+        	$('#check').empty();
+        	document.getElementById("check").append(msg);
+        	return false;
+        	
+        } else {
+        	return true;
+        }
+      })  
+   })
       
 </script>
 </head>
@@ -195,10 +213,13 @@
         </div>
         <div class="modal-body" align="center">
           <p>증권계좌 비밀번호를 입력해주세요.</p>
-          <input type="password">
+          <input type="password" id ="inputPwd">
+          <div id="check" style="color: red">
+          
+          </div>
         </div>
         <div class="modal-footer" align="center">
-         <input type="button" class="buy btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="확인">
+         <input type="button" class="pwChk btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="확인">
         </div>
       </div>
       
