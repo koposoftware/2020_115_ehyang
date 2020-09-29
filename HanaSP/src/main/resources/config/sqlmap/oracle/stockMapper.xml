@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="stock.dao.StockDAO">
+
+	<!-- 건설 및 중공업, 에너지/화학, 철강/소재 -->
+	<select id="stockListc1" parameterType="string" resultType="StockVO">
+		select compare.*, (select count(*) from h_basket b where compare.code = b.code and id = #{id}) flag
+			from (select s.*, y.price as yesterdayPrice from h_stock s, h_yesterdaystock y where s.code = y.code) compare
+				where compare.category like '%건설%' or compare.category like '%중공업%' or compare.category like '%에너지%' or compare.category like '%철강%'
+	</select>
+	
+	<!-- 경기소비재 및 금융 -->
+	<select id="stockListc2" parameterType="string" resultType="StockVO">
+		select compare.*, (select count(*) from h_basket b where compare.code = b.code and id = #{id}) flag
+			from (select s.*, y.price as yesterdayPrice from h_stock s, h_yesterdaystock y where s.code = y.code) compare
+				where compare.category like '%경기소비재%' or compare.category like '%금융%'
+	</select>
+	
+	<!-- 생활소비재 및 산업재 -->
+	<select id="stockListc3" parameterType="string" resultType="StockVO">
+		select compare.*, (select count(*) from h_basket b where compare.code = b.code and id = #{id}) flag
+			from (select s.*, y.price as yesterdayPrice from h_stock s, h_yesterdaystock y where s.code = y.code) compare
+				where compare.category like '%생활소비재%' or compare.category like '%산업재%'
+	</select>
+	
+	<!-- 정보기술 및 커뮤니케이션서비스 -->
+	<select id="stockListc4" parameterType="string" resultType="StockVO">
+		select compare.*, (select count(*) from h_basket b where compare.code = b.code and id = #{id}) flag
+			from (select s.*, y.price as yesterdayPrice from h_stock s, h_yesterdaystock y where s.code = y.code) compare
+				where compare.category like '%정보기술%' or compare.category like '%커뮤니케이션서비스%'
+	</select>
+	
+	<!-- 헬스케어 -->
+	<select id="stockListc5" parameterType="string" resultType="StockVO">
+		select compare.*, (select count(*) from h_basket b where compare.code = b.code and id = #{id}) flag
+			from (select s.*, y.price as yesterdayPrice from h_stock s, h_yesterdaystock y where s.code = y.code) compare
+				where compare.category like '%헬스케어%'
+	</select>
+	
+	<!-- 주식 최신 업데이트 날짜 -->
+	<select id="stockregdate" resultType="String">
+		select reg_date from h_stock where code = '105560'
+	</select>
+	
+	<!-- 이미 관심종목에 등록한 것은 관심종목에 등록하지 못하게 하기 -->
+	<!-- <select id="stockList" parameterType="string" resultType="StockVO">
+		select s.*, (select count(*) from h_basket where s.code = code and id = #{id}) flag
+  		  from h_stock s
+	</select> -->
+
+	<!-- 관심종목에 등록 -->
+	<insert id="basket" parameterType="StockVO">
+		insert into h_basket(no, id, code, name, price)
+		 	values(h_basket_no.nextval, #{id}, #{code}, #{name}, #{price})
+	</insert>
+	
+		<!-- 나의 관심 종목 -->
+	<select id="basketList" resultType="StockVO" parameterType="String">
+		select name, price, reg_date, code, id
+			from h_basket where id = #{id}
+	</select>
+	
+	<!-- 관심종목에 있는 값 업데이트 -->
+	<update id="basUpdate">
+		update h_basket b set price = (select price from h_stock s where b.code = s.code)
+	</update>
+	
+	<!-- 관심종목 삭제 -->
+	<delete id="delBasket" parameterType="StockVO">
+		delete h_basket
+			 where code = #{code} and id = #{id}
+	</delete>
+	
+	<!-- 메인화면 코스피 지수 보여주기 -->
+	<select id="kospi" resultType="StockVO">
+		select k_index, arrow, updown, plusminus, percent, reg_date
+			 from h_kospi
+	</select>
+	
+	<!-- 전날주식과 비교 -->
+	<select id="compare" resultType="StockVO">
+		select s.price as now, y.price as yesterday
+			 from h_stock s, h_yesterdaystock y where s.code = y.code
+	</select>
+</mapper>

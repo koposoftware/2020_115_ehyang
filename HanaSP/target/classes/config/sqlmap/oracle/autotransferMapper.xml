@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="autotransfer.dao.autotransferDAO">
+	<resultMap type="autotransferVO" id="autotransferMap">
+		<result column="from_account" property="fromAccount" />
+		<result column="to_account" property="toAccount" />
+		<result column="reg_date" property="regDate" />
+	</resultMap>
+	
+	<!-- 주금통 첫 번째 이체 신청 일반계좌 -> 증권계좌  -->
+	<update id="send" parameterType="autotransferVO">
+		update h_account
+			set balance = balance - #{money}
+			where account_num = #{fromAccount}
+	</update>
+	
+	<!-- 주금통 첫 번째 이체 신청 받기  -->
+	<update id="receive" parameterType="autotransferVO">
+		update h_stockaccount
+			set balance = balance + #{money}
+			where account_num = #{toAccount}
+	</update>
+	
+	<!-- 주금통 내역 조회(통합계좌) -->
+	<select id="autoList" resultMap="autotransferMap" parameterType="String">
+	select rownum, from_account, content, money, reg_date
+		 from (select rownum, from_account, content, money, reg_date from h_autotransfer where from_account = #{fromAccount} order by reg_date)
+		 	 where from_account = #{fromAccount} order by reg_date
+	</select>
+	
+	<!-- 주금통 신청하면 예약테이블에 추가 -> 매일 저녁 6시에 1000원 미만의 동전이 빠지는 로직 -->
+	<insert id="resSP" parameterType="autotransferVO">
+	insert into h_ressp(no, from_account, to_account, money)
+  	 		select ressp_no.nextval, #{fromAccount}, #{toAccount}, 
+  	 			case when (mod(balance, 1000) = 0) then #{spMoney} else mod(balance,1000) end as money 
+  	 				from h_account where account_num = #{fromAccount}
+  	</insert>
+  	
+  	<!-- 주금통 그날 남은 금액 업데이트 -->
+  	<update id="resUpdate" parameterType="autotransferVO">
+  	update h_ressp set money =
+        (select case
+            when (mod(balance,1000) = 0) then 777
+                else mod(balance,1000) end as money from h_account where account_num = #{fromAccount})
+  	</update>
+
+  	<!-- 예약테이블 리스트 -->
+	<select id="resSPList" resultMap="autotransferMap">
+		select from_account, to_account, money
+			 from h_ressp
+	</select>
+	
+	<!-- 송금 내역에 추가 -->
+	<insert id="transferList" parameterType="autotransferVO">
+		insert into h_autotransfer (no, from_account, to_account, money, content)
+		 values(autotransfer_no.nextval, #{fromAccount}, #{toAccount}, #{money}, '주금통 실천중 ~_~')
+	</insert>
+	
+	<!-- 주금통 서비스 증권계좌에 입금(내역에 추가) -->
+	<insert id="spDeposite" parameterType="autotransferVO">
+		insert into h_sadetail (no, account_num, price, stockname, type)
+		 	values(sadetail_no.nextval, #{toAccount}, #{money}, '주금통 입금', 'D')
+	</insert>
+	
+	<!-- 주금통 해지 예약테이블에서 삭제 -->
+	<delete id="resSPDel" parameterType="String">
+		delete from h_ressp
+			 where from_account = #{fromAccount}
+	</delete>
+</mapper>

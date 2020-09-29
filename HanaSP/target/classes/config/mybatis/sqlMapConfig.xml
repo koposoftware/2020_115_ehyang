@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="hana.ti.member.vo.MemberVO" alias="memberVO" />
+		<typeAlias type="hana.ti.account.vo.AccountVO" alias="accountVO" />
+		<typeAlias type="hana.ti.stock.vo.StockVO" alias="stockVO" />
+		<typeAlias type="hana.ti.autotransfer.vo.AutotransferVO" alias="autotransferVO" />
+		<typeAlias type="hana.ti.buy.vo.BuyVO" alias="buyVO" />
+	</typeAliases>	
+</configuration>
