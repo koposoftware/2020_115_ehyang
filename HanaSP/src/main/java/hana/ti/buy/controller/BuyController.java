@@ -77,9 +77,11 @@ public class BuyController {
 		
 		// 매도 목록
 		List<BuyVO> sellList = buyService.sellList(id);
-		
 		mav.addObject("sellList", sellList);
 		
+		// 총 매수금
+		int totalBuy = buyService.totalBuy(id);
+		mav.addObject("totalBuy", totalBuy);
 		return mav;
    }
    

@@ -38,7 +38,16 @@ public class BuyDAOImpl implements BuyDAO{
 	public void saDetail(BuyVO buyVO) {
 		sqlSession.insert("buy.dao.BuyDAO.buyDetail", buyVO);
 	}
-
+	
+	/**
+	 * 총 매수금
+	 * */
+	@Override
+	public int totalBuy(String id) {
+		int totalBuy = sqlSession.selectOne("buy.dao.BuyDAO.totalBuy", id);
+		return totalBuy;
+	}
+	
 	/**
 	 * 매수 및 매도 증권계좌 내역 조회
 	 * */

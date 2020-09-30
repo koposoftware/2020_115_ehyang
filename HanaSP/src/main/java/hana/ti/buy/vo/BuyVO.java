@@ -10,6 +10,7 @@ public class BuyVO {
 	private int price;
 	private String reg_date;
 	private String account_num;
+	private int atprice;
 	
 	private int rownum;
 	private String stockname;
@@ -21,6 +22,12 @@ public class BuyVO {
 	private int buy_count;
 	
 	
+	public int getAtprice() {
+		return atprice;
+	}
+	public void setAtprice(int atprice) {
+		this.atprice = atprice;
+	}
 	public int getBuy_count() {
 		return buy_count;
 	}

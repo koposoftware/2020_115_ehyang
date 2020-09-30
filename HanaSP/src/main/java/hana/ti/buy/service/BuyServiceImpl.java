@@ -39,6 +39,16 @@ public class BuyServiceImpl implements BuyService {
 	public void saDetail(BuyVO buyVO) {
 		buyDAO.saDetail(buyVO);			
 	}
+	
+	/**
+	 * 총 매수금
+	 * */
+	@Override
+	public int totalBuy(String id) {
+		int totalBuy = buyDAO.totalBuy(id);
+		return totalBuy;
+	}
+	
 
 	/**
 	 * 매수 및 매도 증권계좌 내역 조회
@@ -48,6 +58,7 @@ public class BuyServiceImpl implements BuyService {
 		List<BuyVO> saList = buyDAO.saList(account_num);
 		return saList;
 	}
+
 
 	/**
 	 * 체결목록

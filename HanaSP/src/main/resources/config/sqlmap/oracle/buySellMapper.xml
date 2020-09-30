@@ -8,8 +8,8 @@
 	
 	<!-- 주식 매수 -->
 	<insert id="buy" parameterType="buyVO">
-		insert into h_buy(no, id, code, name, count, price, account_num) 
-			values(h_buy_no.nextval, #{id}, #{code}, #{name}, #{count}, #{price}, #{account_num})
+		insert into h_buy(no, id, code, name, count, price, account_num, atprice) 
+			values(h_buy_no.nextval, #{id}, #{code}, #{name}, #{count}, #{price}, #{account_num}, #{atprice})
 	</insert>
 
 	<!-- 매수할 때 증권계좌 잔액 변화 -->
@@ -34,18 +34,17 @@
 	
 	<!-- 나의 체결 목록 -->
 	<select id="buyList" resultType="buyVO" parameterType="String">
-		select rownum, code, name, count, price, to_char(reg_date, 'YYYY-MM-DD') as reg_date, nowPrice
-			 from (select b.code, b.name, b.count, b.price, b.reg_date, s.price nowPrice 
+        select rownum, code, name, count, price, to_char(reg_date, 'YYYY-MM-DD') as reg_date, nowPrice, atprice
+			 from (select b.code, b.name, b.count, b.price, b.reg_date, s.price nowPrice , b.atprice
                         from h_buy b, h_stock s 
                         where id = #{id} and b.code = s.code
                         order by b.reg_date)
 	</select>
 	
-	<!-- 주식 현재가 조회(수익률 계산해야해서) 
-	<select id="nowPrice" parameterType="String" resultType="int">
-		select price from h_stock where code = #{code}
-	</select> -->
-	
+	<!-- 총 매수금액 -->
+	<select id="totalBuy" resultType="int" parameterType="String">
+		select sum(price) from h_buy where id = #{id}
+	</select>
 	
 	
 	<!-- 매도 -->

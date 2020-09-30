@@ -23,6 +23,11 @@ public interface BuyDAO {
 	public void saDetail(BuyVO buyVO);
 	
 	/**
+	 * 총 매수금
+	 * */
+	public int totalBuy(String id);
+	
+	/**
 	 * 매수 및 매도 증권계좌 내역 조회
 	 * */
 	public List<BuyVO> saList(String account_num);

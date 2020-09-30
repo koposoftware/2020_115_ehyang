@@ -1,8 +1,11 @@
 package hana.ti.account.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -132,7 +135,6 @@ public class AccountController {
 	/**
 	 * 주금통 해지
 	 * */
-	
 	  @ResponseBody
 	  @PostMapping("/account/unRegSP")
 	  public void unRegSP(String account_num) {
@@ -143,25 +145,71 @@ public class AccountController {
 	 
 	/**
 	 * 주금통 해지 문자인증
+	 * @throws Exception 
 	 * */
 	@ResponseBody
 	@PostMapping("/account/unRegSPMsg")
-	public int unRegSPMsg() {
+	public int unRegSPMsg() throws Exception {
 		
-		int ran = new Random().nextInt(900000) + 100000;
+//		int ran = new Random().nextInt(900000) + 100000;
 		
-		messageSend.send("01051400204", "인증번호 " + ran + " 를 입력해주세요.");
+		String code = create();
+		int num = Integer.parseInt(code);
 		
-		return ran;
+		messageSend.send("01051400204", "인증번호 " + code + " 를 입력해주세요.");
+		
+		return num;
 	}
 
+	/**
+	 * OTP 생성 메소드
+	 * */
+	private static final long DISTANCE = 30000; // 30 sec
+	   private static final String ALGORITHM = "HmacSHA1";
+	   private static final byte[] SECRET_KEY = "define your secret key here".getBytes();
+
+
+	   private static long create(long time) throws Exception {
+	      byte[] data = new byte[8];
+	      
+	      long value = time;
+	      for (int i = 8; i-- > 0; value >>>= 8) {
+	         data[i] = (byte) value;
+	      }
+	    
+	      Mac mac = Mac.getInstance(ALGORITHM);
+	      mac.init(new SecretKeySpec(SECRET_KEY, ALGORITHM));
+	    
+	      byte[] hash = mac.doFinal(data);
+	      int offset = hash[20 - 1] & 0xF;
+	    
+	      long truncatedHash = 0;
+	      for (int i = 0; i < 4; ++i) {
+	         truncatedHash <<= 8;
+	         truncatedHash |= hash[offset + i] & 0xFF;
+	      }
+	    
+	      truncatedHash &= 0x7FFFFFFF;
+	      truncatedHash %= 1000000;
+	    
+	      return truncatedHash;
+	   }
+	   
+	   public static String create() throws Exception {
+	      return String.format("%06d", create(new Date().getTime() / DISTANCE));
+	   }
+
+	   public static boolean vertify(String code) throws Exception {
+	      return create().equals(code);
+	   }
+	
 	/**
 	 * 이메일 전송
 	 * */
 	@ResponseBody
 	@GetMapping("/unRegSPEmail")
 	public String sendCertificateNumber(@RequestParam("toMail") String toMail, HttpSession session) {
-	      
+		
 	      //인증번호
 	      Random random = new Random();
 	      String cert = Integer.toString(random.nextInt(10)); 

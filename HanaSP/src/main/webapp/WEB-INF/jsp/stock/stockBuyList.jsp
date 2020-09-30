@@ -140,13 +140,14 @@
 							role="tabpanel" aria-labelledby="nav-home-tab">
 
 
-
+							<h4>총 매수금 : <fmt:formatNumber type="number"
+														maxFractionDigits="3" value="${ totalBuy }" /></td></h4>
 							<table class="table table-striped">
 								<thead align="center">
 									<tr>
 										<th>종목명</th>
 										<th>주문수량</th>
-										<th>매입가</th>
+										<th>매수단가</th>
 										<th>평가손익</th>
 										<th>수익률</th>
 										<th>현재가</th>
@@ -163,44 +164,44 @@
 												<td>${ buy.name }</td>
 												<td>${ buy.count }</td>
 												<td><fmt:formatNumber type="number"
-														maxFractionDigits="3" value="${ buy.price / buy.count }" /></td>
+														maxFractionDigits="3" value="${ buy.atprice }" /></td>
 												<td><c:choose>
-														<c:when test="${ buy.nowPrice * buy.count > buy.price}">
+														<c:when test="${ (buy.nowPrice - buy.atprice) * buy.count > buy.price}">
 															<p style="color: red">
 																<fmt:formatNumber type="number" maxFractionDigits="3"
-																	value="${ buy.nowPrice * buy.count - buy.price }" />
+																	value="${ (buy.nowPrice - buy.atprice) * buy.count }" />
 															</p>
 														</c:when>
-														<c:when test="${ buy.nowPrice * buy.count < buy.price}">
+														<c:when test="${ (buy.nowPrice - buy.atprice) * buy.count < buy.price}">
 															<p style="color: blue">
 																<fmt:formatNumber type="number" maxFractionDigits="3"
-																	value="${ buy.nowPrice * buy.count - buy.price }" />
+																	value="${ (buy.nowPrice - buy.atprice) * buy.count }" />
 															</p>
 														</c:when>
 														<c:otherwise>
 															<p>
 																<fmt:formatNumber type="number" maxFractionDigits="3"
-																	value="${ buy.nowPrice * buy.count - buy.price }" />
+																	value="${ (buy.nowPrice - buy.atprice) * buy.count }" />
 															</p>
 														</c:otherwise>
 													</c:choose></td>
 												<td><c:choose>
 														<c:when
-															test="${ ((buy.nowPrice / (buy.price / buy.count))-1 ) * 100 > 0 }">
+															test="${ (buy.nowPrice - buy.atprice) * buy.count / 1000 > 0 }">
 															<p style="color: red">
 																▲
 																<fmt:formatNumber
-																	value="${ ((buy.nowPrice / (buy.price / buy.count))-1 ) * 100 }"
+																	value="${ (buy.nowPrice - buy.atprice) * buy.count / 1000 }"
 																	pattern=".00" />
 																%
 															</p>
 														</c:when>
 														<c:when
-															test="${ ((buy.nowPrice / (buy.price / buy.count))-1 ) * 100 < 0 }">
+															test="${ (buy.nowPrice - buy.atprice) * buy.count / 1000 < 0 }">
 															<p style="color: blue">
 																▼
 																<fmt:formatNumber
-																	value="${ ((buy.nowPrice / (buy.price / buy.count))-1 ) * 100 }"
+																	value="${ (buy.nowPrice - buy.atprice) * buy.count / 1000 }"
 																	pattern=".00" />
 																%
 															</p>

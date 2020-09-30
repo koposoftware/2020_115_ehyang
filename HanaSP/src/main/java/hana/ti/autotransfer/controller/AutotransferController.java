@@ -71,6 +71,15 @@ public class AutotransferController {
 	}
 	
 	/**
+	 * 주금통 현황
+	 * */
+	@GetMapping("/mySP")
+	public String mySP() {
+		
+		return "account/mySP";
+	}
+	
+	/**
 	 * 주금통서비스 매일 차감
 	 * */
 //	초 분 시 일 월 요일

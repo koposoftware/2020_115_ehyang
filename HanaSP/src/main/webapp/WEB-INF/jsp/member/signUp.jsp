@@ -108,6 +108,9 @@
                   <div class="form-group">
                      <input type="text" class="form-control" placeholder="나머지 주소" name="addr" required="required" id="addr">
                   </div>
+                  <div class="form-group">
+                     <input type="text" class="form-control" placeholder="이메일 주소" name="email" required="required" id="email">
+                  </div>
                   <div class="form-group" align="center">
                      <button type="submit" class="btn btn-success py-2 px-1 px-md-3">회원가입</button>
                   </div>

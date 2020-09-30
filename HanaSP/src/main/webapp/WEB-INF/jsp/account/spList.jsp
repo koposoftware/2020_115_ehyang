@@ -25,7 +25,7 @@ $(document).ready(function() {
                      from_account : $(this).attr('id')
                   }, success : function(data) {
                       /* alert('성공') */
-                     console.log(data)
+                     /* console.log(data) */
                      $('#listTbl').html(data);
                   }, error : function() {
                      alert('다시 시도해주세요.')
@@ -46,7 +46,7 @@ $(document).ready(function() {
     			   success : function(data) {
     				  alert('인증번호가 발송되었습니다.');
     				  num = data;
-    				  console.log('num : ' + num);
+    				  /* console.log('num : ' + num); */
     				  /* let code = $.session("authCode", authCode);
     				  alert(code); */
     				  /* alert(authCode); */
@@ -64,7 +64,7 @@ $(document).ready(function(){
 		/* var session = '@Session["authCode"]'; */
 		/* var code = $.session("authCode", authCode); */
 		let input = $('.inputNum').val();
-		console.log('input : ' + input)
+		/* console.log('input : ' + input) */
 		/* alert(code); */
 		if(num == input) {
 	        	let h = $(this).attr('id');
@@ -74,7 +74,7 @@ $(document).ready(function(){
 	               data : {
 	            	   account_num : $(this).attr('id')
 	               }, success : function(data) {
-	                  alert('서비스 해지 완료');
+	                  alert('서비스 해지가 완료되었습니다.');
 	                  /* alert(authCode); */
 	                  location.href = "${pageContext.request.contextPath}/spList";
 	                $('#'+h+'div').hide();
@@ -91,19 +91,23 @@ $(document).ready(function(){
 })
 	
 // 이메일 인증번호 전송
-var certificationNumber = '';
+var number = '';
 
 $(document).ready(function(){
-   $('#emailSend').click(function(){
+   $('.receiveMail').click(function(){
       
+        	 var mailAddr = $('#mail').val();
       $.ajax({
          url:'${ pageContext.request.contextPath }/unRegSPEmail',
          type:'get',
+         data : {
+        	 toMail : $(this).attr('id')
+         },
          success : function(data){
-            toMail : 
-            $("#sendEmailModal").modal('show');
-            certificationNumber = data;
-            
+        	 number = data;
+            /* console.log(data);
+            console.log(number); */
+            alert('인증번호가 전송되었습니다.');
          },
          error : function(){
             alert("이거")
@@ -113,21 +117,38 @@ $(document).ready(function(){
    })
 })
 
-// 이메일 인증 확인하기
+// 이메일 인증 완료시 서비스 해지
 $(document).ready(function(){
-   
-   $('#certConfirm').click(function(){
-      let certification = $('#certification').val();
-      certificationNumber = certificationNumber.substring(1,7);
-      
-      console.log(certification);
-      console.log(certificationNumber);
-      if(certificationNumber == certification){
-         $("#completeEmailModal").modal('show');
-      } else{
-         alert("fail")
-      }
-   })
+	$('.unRegBtn').on('click', function(){
+		/* alert('클릭'); */
+		/* var session = '@Session["authCode"]'; */
+		/* var code = $.session("authCode", authCode); */
+		let inputNum = $('.inputEmailNum').val();
+		/* console.log('inputNum : ' + inputNum) */
+		/* alert(code); */
+		if(number == inputNum) {
+	        	let h = $(this).attr('id');
+	        	number = number.substring(1,7);
+	            $.ajax({
+	               url : '${pageContext.request.contextPath}/account/unRegSP',
+	               type : 'post',
+	               data : {
+	            	   account_num : $(this).attr('id')
+	               }, success : function(data) {
+	                  alert('서비스 해지가 완료되었습니다.');
+	                  /* alert(authCode); */
+	                  location.href = "${pageContext.request.contextPath}/spList";
+	                $('#'+h+'div').hide();
+	               }, error : function() {
+	                  alert('재시도')
+	                  alert(authCode);
+	               }
+	            })
+		} else {
+			/* alert('인증번호가 일치하지 않습니다.'); */
+			return false;
+		}
+	})
 })
 
 </script>
@@ -252,7 +273,7 @@ $(document).ready(function(){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-        <button type="button" class="unRegBtn btn btn-primary" id="${ account.account_num }">확인</button>
+        <button type="button" class="btn btn-primary" id="${ account.account_num }">확인</button>
       </div>
     </div>
   </div>
@@ -268,14 +289,23 @@ $(document).ready(function(){
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">주금통 서비스 해지</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">주금통 서비스 해지 - 문자 인증 방식</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <input type="text" placeholder="인증번호 입력" class="inputNum">
+      <div align="center">
+      <img src="resources/images/hana.png">
+      </div>
+      <div class="jumbotron" align="center">
+      <h4>${ loginVO.name }회원님!
+      <br>휴대전화번호 010-****-0204로<br>인증번호가 발송됩니다.</h4>
       <input type="button" class="receive btn btn-primary" value="인증번호 발송"><br>
+      </div>
+      <div align="center">
+        <input type="text" placeholder="인증번호 입력" class="inputNum">
+      </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
@@ -292,14 +322,23 @@ $(document).ready(function(){
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">주금통 서비스 해지</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">주금통 서비스 해지 - 이메일 인증 방식</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <input type="text" placeholder="이메일 입력" class="inputEmail" name="toMail">
-      <input type="button" class="receive btn btn-primary" value="인증번호 받기" id ="emailSend"><br>
+      <div align="center">
+      <img src="resources/images/hana.png">
+      </div>
+      <div class="jumbotron" align="center">
+      <h4>${ loginVO.name }회원님!
+      <br>회원가입시 입력하신<br> ${ loginVO.email }로<br>인증번호가 발송됩니다.</h4>
+      <input type="button" class="receiveMail btn btn-primary" value="인증번호 받기" id="${ loginVO.email }"><br>
+      </div>
+      <div align="center">
+        <input type="text" placeholder="인증번호 입력" class="inputEmailNum">
+      </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
@@ -309,10 +348,7 @@ $(document).ready(function(){
   </div>
 </div>
 </c:forEach>
-
-
-           
-           </section>
+</section>
            
            
 <!-- footer -->

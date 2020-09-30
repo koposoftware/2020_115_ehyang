@@ -46,7 +46,9 @@
       $(".maxBtn").click(function(){
     	  console.log($(this).attr('name'));
          let max = $(this).attr('name').split('-');
-         console.log(max);
+         console.log(max[0]);
+         console.log(max[1]);
+         console.log(max[2]);
         /* alert(max[0]);
         alert(max[1]);
         alert(max[2]); */
@@ -60,7 +62,8 @@
         /* alert(st) */
         document.getElementsByClassName("count")[0].value = realMaxNum;
         
-         document.getElementsByClassName("realprice").value = st;
+        document.getElementsByClassName("realprice").value = st;
+        alert(st);
       })  
    })
    
@@ -68,7 +71,7 @@
    // 가능 50%
    $(document).ready(function(){
       $(".midBtn").click(function(){
-         let max = $(this).attr('id').split('-');
+         let max = $(this).attr('name').split('-');
         /* alert(max[0]);
         alert(max[1]);
         alert(max[2]); */
@@ -82,7 +85,7 @@
         /* alert(st) */
         document.getElementsByClassName("count")[0].value = realMaxNum;
         
-         document.getElementsByClassName("realprice").value = st;
+        document.getElementsByClassName("realprice").value = st;
       })  
    })
    
@@ -90,7 +93,7 @@
    // 가능 25%
    $(document).ready(function(){
       $(".minBtn").click(function(){
-         let max = $(this).attr('id').split('-');
+         let max = $(this).attr('name').split('-');
         /* alert(max[0]);
         alert(max[1]);
         alert(max[2]); */
@@ -101,10 +104,9 @@
          let realMaxNum = Math.floor(maxNum)
         /* alert(maxNum); */
         let st = max[1]*realMaxNum
-        /* alert(st) */
         document.getElementsByClassName("count")[0].value = realMaxNum;
-        
-         document.getElementsByClassName("realprice").value = st;
+        /* alert(st); */
+        document.getElementsByClassName("realprice").value = st;
       })  
    })
    
@@ -122,13 +124,10 @@
         
         //가격 넣어주기
         let sprice = p*c
-         /* console.log(sprice) */
+         console.log(sprice)
          document.getElementsByClassName("realprice").value = sprice;
       })
    })
-   
-  
-   
    
    // 매수 전 비밀번호 확인
    $(document).ready(function(){
@@ -284,7 +283,8 @@
           </div>
           <div class="col">
           <label for="recipient-name" class="col-form-label">현재가</label><br>
-            ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value="${ stock.price }" />
+            ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value="${ stock.price }"/>
+             <input type="hidden" name = "atprice" value="${ stock.price }">
           </div>
           </div>
            

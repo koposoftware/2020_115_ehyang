@@ -6,15 +6,15 @@
 
 	<!-- 로그인 -->
    <select id="login" parameterType="memberVO" resultType="memberVO">
-      select id, password, type, name, account_num
+      select id, password, type, name, account_num, email
       	from h_user 
       		where id = #{id} and password = #{password}
    </select>
    
    <!-- 회원가입 -->
    <insert id="signUp" parameterType="memberVO">
-  	 insert into h_user(id, password, name, tel, post, addr)
-	 	values(#{id}, #{password}, #{name}, #{tel}, #{post}, #{addr})
+  	 insert into h_user(id, password, name, tel, post, addr, email)
+	 	values(#{id}, #{password}, #{name}, #{tel}, #{post}, #{addr}, #{email})
    </insert>
    
 	<!-- 아이디 중복확인
