@@ -96,4 +96,22 @@ public class AccountDAOImpl implements AccountDAO {
 		sqlSession.update("account.dao.AccountDAO.unRegSP", account_num);		
 	}
 	
+
+	/**
+	 * 주금통 총 모은 금액
+	 * */
+	@Override
+	public int howmuchSP(String account_num) {
+		int howmuchSP = sqlSession.selectOne("account.dao.AccountDAO.howmuchSP", account_num);
+		return howmuchSP;
+	}
+
+	/**
+	 * 주금통 현황
+	 * */
+	@Override
+	public List<Integer> mySP(String account_num) {
+		List<Integer> mySPList = sqlSession.selectList("account.dao.AccountDAO.mySP", account_num);
+		return mySPList;
+	}
 }

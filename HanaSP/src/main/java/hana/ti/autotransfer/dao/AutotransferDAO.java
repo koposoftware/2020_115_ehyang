@@ -50,4 +50,5 @@ public interface AutotransferDAO {
 	 * 주금통 서비스 취소 -> 예약테이블에서 삭제
 	 * */
 	public void resSPDel(String fromAccount);
+	
 }

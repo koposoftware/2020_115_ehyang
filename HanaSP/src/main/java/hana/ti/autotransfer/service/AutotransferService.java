@@ -12,6 +12,11 @@ public interface AutotransferService {
 	public void transfer(AutotransferVO autotransferVO);
 	
 	/**
+	 * 주금통 추가 이체
+	 * */
+	public void plus(AutotransferVO autotransferVO);
+	
+	/**
 	 * 주금통 내역
 	 * */
 	List<AutotransferVO> autoList(String fromAccount);
@@ -30,5 +35,6 @@ public interface AutotransferService {
 	 * 업데이트(2번 이체 되어서 따로 빼줌)
 	 * */
 	public void resUpdate();
+
 	
 }

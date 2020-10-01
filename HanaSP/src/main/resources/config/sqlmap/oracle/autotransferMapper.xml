@@ -69,4 +69,5 @@
 		delete from h_ressp
 			 where from_account = #{fromAccount}
 	</delete>
+	
 </mapper>

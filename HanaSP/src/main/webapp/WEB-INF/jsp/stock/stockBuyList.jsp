@@ -28,13 +28,15 @@
    $(document).ready(function(){
       $('.count').keyup(function(){
         /*  alert('k'); */
-        
+        let data = $(this).attr('data-target');
+        let index = data[data.length-1]
         // elements[0] : 현재가, elements[1] : 최대 가능 매도 수량
         let elements = $(this).attr('id').split('-');
         /* alert(elements[0] +" : " + elements [1]); */
-        
+        console.log("data : " + data);
+        console.log("index : " + index);
         // count클래스의 값 keyup형태로 가져오기 // class도 name과 동일하게 중복을 허용하여 javascript를 이용하여 사용시엔 배열 인덱스를 필수로 넣어줘야함
-        let c = document.getElementsByClassName("count")[0].value
+        let c = document.getElementsByClassName("count")[index].value
         /* console.log(c)  */
         // ${ buy.price }-${ buy.count } (현재가, 수량)
         let p = $(this).attr('id').split('-');
@@ -48,13 +50,14 @@
         //count 클래스의 id를 ${ stock.price }로 설정해서 그 값 바로 가져오기
         /* console.log(typeof c); */
         //가격 넣어주기
-        let sprice = Math.round((p[0]*c)-(p[0]*c*0.005))
-        let fprice = (p[0]*c)
-
+        let sprice = Math.round((p[0]*c)-(p[0]*c*0.005));
+        let fprice = (p[0]*c);
         /* alert(p[0]*c*0.5); */
          /* console.log(sprice) */
-         document.getElementsByClassName("realprice").value = fprice;
-         document.getElementsByClassName("realrealprice").value = sprice;
+         document.getElementsByClassName("realprice")[index].value = fprice;
+         document.getElementsByClassName("realrealprice")[index].value = sprice;
+         console.log("sprice : " + sprice);
+         console.log("fprice : " + fprice);
         }
       })
    })
@@ -511,7 +514,7 @@
           <div class="col">
           <label for="recipient-name" class="col-form-label">지정가 매도</label>
           <div class="input-group">
-            <input type="text" class="count form-control" id="${ buy.nowPrice }-${ buy.count }" placeholder="매도할 수량을 입력하세요." name="sell_count" required="required" aria-label="Amount (to the nearest dollar)">
+            <input type="text" class="count form-control" id="${ buy.nowPrice }-${ buy.count }" placeholder="매도할 수량을 입력하세요." name="sell_count" required="required" aria-label="Amount (to the nearest dollar)" data-target="#myModal${ stock.code }${ loop.index }">
             <span class="input-group-addon">(주)</span>
             </div>
             <%-- <input type="button" value="가능 100%" class="maxBtn btn btn-success" id="${ saccbalance }-${ stock.price }-max">
@@ -520,11 +523,11 @@
           </div>
           <div class="col">
            <label for="message-text" class="col-form-label">평가금액</label>
-            <input type="text" class="form-control" class = "realprice"required="required" width="50%" >
+            <input type="text" class="form-control realprice"required="required" width="50%" >
           </div>
           <div class="col">
            <label for="message-text" class="col-form-label">실제 산정액(수수료 제외)</label>
-            <input type="text" class="form-control" class = "realrealprice" name="price" required="required" width="50%" >
+            <input type="text" class="form-control realrealprice" name="price" required="required" width="50%" >
           </div>
         </div>
         <br>

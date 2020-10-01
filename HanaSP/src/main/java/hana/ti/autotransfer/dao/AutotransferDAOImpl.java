@@ -88,4 +88,6 @@ public class AutotransferDAOImpl implements AutotransferDAO {
 	public void resSPDel(String fromAccount) {
 		sqlSession.delete("autotransfer.dao.autotransferDAO.resSPDel", fromAccount);		
 	}
+
+	
 }

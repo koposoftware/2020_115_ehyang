@@ -38,7 +38,22 @@ public class AutotransferServiceImpl implements AutotransferService {
 		autotransferDAO.deposite(autotransferVO);
 		 
 	}
-
+	
+	/**
+	 * 주금통 추가 이체
+	 * */
+	@Override
+	public void plus(AutotransferVO autotransferVO) {
+		//보내기
+		autotransferDAO.send(autotransferVO);
+		// 받기
+		autotransferDAO.receive(autotransferVO);
+		// 거래내역에 추가
+		autotransferDAO.transferList(autotransferVO);
+		// 주금통 서비스 증권계좌에 입금(내역에 추가)
+		autotransferDAO.deposite(autotransferVO);
+	}
+	
 	/**
 	 * 주금통 내역
 	 * */
@@ -87,4 +102,5 @@ public class AutotransferServiceImpl implements AutotransferService {
 						autotransferDAO.resUpdate(autotransferVO);
 		}
 	}
+
 }

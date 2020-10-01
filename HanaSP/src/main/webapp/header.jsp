@@ -92,6 +92,7 @@
              <a class="dropdown-item" href="${ pageContext.request.contextPath }/mySP">주금통 현황</a>
              <a class="dropdown-item" href="${ pageContext.request.contextPath }/autoTransfer">주금통서비스 신청</a>
              <a class="dropdown-item" href="${ pageContext.request.contextPath }/spList">주금통서비스 조회 및 해지</a>
+             <a class="dropdown-item" href="${ pageContext.request.contextPath }/plus">추가이체</a>
              <%-- <a class="dropdown-item" href="${ pageContext.request.contextPath }/mail">메일</a> --%>
            </div>
          </div>

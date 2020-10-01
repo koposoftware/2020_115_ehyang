@@ -52,4 +52,13 @@ public interface AccountDAO {
 	 * */
 	public void unRegSP(String account_num);
 	
+	/**
+	 * 주금통 총 모은 금액
+	 * */
+	public int howmuchSP(String account_num);
+	
+	/**
+	 * 주금통 현황
+	 * */
+	public List<Integer> mySP(String account_num);
 }

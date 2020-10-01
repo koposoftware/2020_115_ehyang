@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,93 +9,53 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 <!-- header -->
    <jsp:include page="/header.jsp" />
-    
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('resources/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+   <section class="hero-wrap hero-wrap-2" style="background-image: url('resources/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
-             <p class="breadcrumbs"><span class="mr-2"><a href="${ pageContext.request.contextPath }">Home <i class="fa fa-chevron-right"></i></a></span> <span>주금통 관리 <i class="fa fa-chevron-right"></i></span></p>
-            <h1 class="mb-3 bread">주금통 서비스 신청</h1>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="${ pageContext.request.contextPath }">Home <i class="fa fa-chevron-right"></i></a></span> <span>My 주금통 <i class="fa fa-chevron-right"></i></span></p>
+            <h1 class="mb-3 bread">추가이체</h1>
           </div>
         </div>
       </div>
     </section>
-
-<section class="ftco-section">
-      <div class="container">
-      <div class="jumbotron">
-  <!-- <h1 class="display-4"></h1> -->
-  <p class="lead">${ loginVO.name } 님. 주금통 서비스를 신청 해주셔서 감사합니다.</p>
-  <p>매일 오후 6시 1000원 미만의 금액이 증권계좌로 자동이체됩니다. <br>
-      내가 원하는 주식을 더 빠르게 매수할 수 있는 방법! <br>
-      <a href="#">주금통 시스템</a>에 대해 더 알아보고싶다면 클릭하세요!
-  </p>
+    
+    <section class="ftco-section">
+    
+    <div class="container">
+   <div class="jumbotron">
+  <p class="lead" style="color: black">${ loginVO.name } 님. 차곡차곡 모아 벌써 원하는 주식을 매수하였군요!</p>
   <hr class="my-4">
-  <p align="center">서비스를 신청하기 전 이용약관을 읽어주세요.</p>
-    
-    <div align="center">
-    
-    
-    
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-  		이용약관
-	</button>
-	   <div class="checkbox">
-	  	<label><input type="checkbox" value="">동의</label>
-		</div>
+  <p align="center" style="color: black">더욱 빨리 손님의 꿈을 이룰 수 있게 추가이체 서비스를 이용해보세요!</p>
+  
+  <div align="center">
+  </div>
    </div>
-  
-  <div class="modal" id="myModal">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">주금통 서비스 이용약관</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body" align="center">
-        <img src="resources/images/n1.jpg" width="800px">
-         <img src="resources/images/n2.jpg" width="800px">
-         <img src="resources/images/n3.jpg" width="800px">
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-dismiss="modal">동의</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-  </div>
-  
- <div class="container">
-  <form action="${ pageContext.request.contextPath }/autoTransfer" method="post">
+   <div class="row">
+    
+    <div class="col-md-6">
+    <form action="${ pageContext.request.contextPath }/plus" method="post">
     <div class="form-group">
-      <div><p style="color: black"><img src="resources/images/hana.png" width="30px" height="30px">&nbsp;주금통 시스템에 등록할 통합 계좌를 선택해주세요.</p></div>
+      <div style="color: black"><img src="resources/images/hana.png" width="30px" height="30px">&nbsp;증권계좌에 추가이체 할 계좌를 선택해주세요.</div>
    <hr>
  
-  <c:forEach items="${ accountNotRegList }" var="account" varStatus="loop">
+  <c:forEach items="${ regAList }" var="account" varStatus="loop">
      <input type="radio" name="fromAccount" value="${ account.account_num }">
      <label>${ account.alias } - ${ account.account_num }</label><br>
     </c:forEach>
     <hr>
     </div>
     <div class="form-group">
-      <label for="pwd" style="color: black"><img src="resources/images/hana.png" width="30px" height="30px">&nbsp;처음 이체할 금액을 입력하세요.</label>
+      <label for="pwd" style="color: black"><img src="resources/images/hana.png" width="30px" height="30px">&nbsp;추가 이체할 금액을 입력하세요.</label>
       <input type="text" class="form-control" placeholder="금액입력" name="money">
     </div>
-    <div class="form-group">
-      <label for="pwd" style="color: black"><img src="resources/images/hana.png" width="30px" height="30px">&nbsp;매일 1000원 미만의 동전이 남지 않을 경우, 자동으로 이체할 금액을 입력해주세요.</label>
+<!--     <div class="form-group">
+      <label for="pwd">매일 1000원 미만의 동전이 남지 않을 경우, 자동으로 이체할 금액을 입력해주세요.</label>
       <input type="text" class="form-control" placeholder="금액입력" name="spMoney">
-    </div>
+    </div> -->
     <hr>
         <div class="form-group">
       <label for="pwd" style="color: black"><img src="resources/images/hana.png" width="30px" height="30px">&nbsp;주금통 시스템을 신청할 증권계좌번호입니다.</label>
@@ -102,14 +63,35 @@
     </div>
     
      <div align="center">
-    <button type="submit" class="btn btn-primary">주금통 서비스 신청</button>
+    <button type="submit" class="btn btn-primary">추가 이체</button>
      </div>
   </form>
-  </div>
-</div>
-   </section>
-
- <!-- footer -->
+    </div>
+    <div class="col-md-6">
+    <div>
+    <h4 align="center">${ loginVO.name }님의<br>
+   	 현재까지 주금통 서비스로 모은 금액 </h4>
+   	 
+   	 
+   	 <div align="center">
+   	 <div class="col-md-8 col-lg-3 justify-content-center counter-wrap ftco-animate" align="center">
+            <div class="block-18 py-md-5 mb-md-4" align="center">
+              <div class="text text-border d-flex align-items-center" align="center">
+            <h3 align="center">₩</h3><h3 class="number color" style="color: red" data-number="${ howmuchSP }" align="center">0</h3>
+              </div>
+            </div>
+          </div>
+   	 </div>
+   	 <%-- <h4 style="color: red" align="center"> <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ howmuchSP }" /></h4><h4 align="center">원 입니다.</h4> --%>
+    </div>
+    <div align="right">
+    <img src="resources/images/shy.png">
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+<!-- footer -->
    <jsp:include page="/footer.jsp"></jsp:include>
 
   <!-- loader -->
@@ -128,6 +110,5 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="${ pageContext.request.contextPath }/resources/js/google-map.js"></script>
   <script src="${ pageContext.request.contextPath }/resources/js/main.js"></script>
-
 </body>
 </html>

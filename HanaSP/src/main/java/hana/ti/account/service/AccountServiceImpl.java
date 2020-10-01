@@ -89,4 +89,23 @@ public class AccountServiceImpl implements AccountService {
 		accountDAO.unRegSP(account_num);
 		autotransferDAO.resSPDel(account_num);
 	}
+	
+	/**
+	 * 주금통 총 번 금액
+	 * */
+	@Override
+	public int howmuchSP(String account_num) {
+		int howmuchSP = accountDAO.howmuchSP(account_num);
+		return howmuchSP;
+	}
+
+	/**
+	 * 주금통 현황
+	 * */
+	@Override
+	public List<Integer> mySP(String account_num) {
+		List<Integer> mySPList = accountDAO.mySP(account_num);
+		return mySPList;
+	}
+	
 }

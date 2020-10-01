@@ -53,6 +53,9 @@
         alert(max[1]);
         alert(max[2]); */
         
+        let data = $(this).attr('data-target');
+        let index = data[data.length-1]
+        
         // max[0] : 잔액, max[1] : 1주가격
          let maxNum = max[0]/max[1];
         // realMaxNum : 최대 구매할 수 있는 가격
@@ -60,10 +63,10 @@
         /* alert(maxNum); */
         let st = max[1]*realMaxNum
         /* alert(st) */
-        document.getElementsByClassName("count")[0].value = realMaxNum;
+        document.getElementsByClassName("count")[index].value = realMaxNum;
         
-        document.getElementsByClassName("realprice").value = st;
-        alert(st);
+        document.getElementsByClassName("realprice")[index].value = st;
+        /* alert(st); */
       })  
    })
    
@@ -75,6 +78,8 @@
         /* alert(max[0]);
         alert(max[1]);
         alert(max[2]); */
+        let data = $(this).attr('data-target');
+        let index = data[data.length-1]
         
         // max[0] : 잔액, max[1] : 1주가격
          let maxNum = max[0]/max[1]/2;
@@ -83,9 +88,9 @@
         /* alert(maxNum); */
         let st = max[1]*realMaxNum
         /* alert(st) */
-        document.getElementsByClassName("count")[0].value = realMaxNum;
+        document.getElementsByClassName("count")[index].value = realMaxNum;
         
-        document.getElementsByClassName("realprice").value = st;
+        document.getElementsByClassName("realprice")[index].value = st;
       })  
    })
    
@@ -98,15 +103,18 @@
         alert(max[1]);
         alert(max[2]); */
         
+        let data = $(this).attr('data-target');
+        let index = data[data.length-1]
         // max[0] : 잔액, max[1] : 1주가격
          let maxNum = max[0]/max[1]/4;
         // realMaxNum : 최대 구매할 수 있는 가격
          let realMaxNum = Math.floor(maxNum)
         /* alert(maxNum); */
         let st = max[1]*realMaxNum
-        document.getElementsByClassName("count")[0].value = realMaxNum;
+        document.getElementsByClassName("count")[index].value = realMaxNum;
         /* alert(st); */
-        document.getElementsByClassName("realprice").value = st;
+        document.getElementsByClassName("realprice")[index].value = st;
+        
       })  
    })
    
@@ -115,8 +123,10 @@
       $('.count').keyup(function(){
         /*  alert('k'); */
         
+        let data = $(this).attr('data-target');
+        let index = data[data.length-1]
         // count클래스의 값 keyup형태로 가져오기 // class도 name과 동일하게 중복을 허용하여 javascript를 이용하여 사용시엔 배열 인덱스를 필수로 넣어줘야함
-        let c = document.getElementsByClassName("count")[0].value
+        let c = document.getElementsByClassName("count")[index].value
         console.log(c) 
         
         //count 클래스의 id를 ${ stock.price }로 설정해서 그 값 바로 가져오기
@@ -125,7 +135,7 @@
         //가격 넣어주기
         let sprice = p*c
          console.log(sprice)
-         document.getElementsByClassName("realprice").value = sprice;
+         document.getElementsByClassName("realprice")[index].value = sprice;
       })
    })
    
@@ -137,6 +147,7 @@
          $('.inputPwd').empty();
        
          let data = $(this).attr('data-target');
+         
          let index = data[data.length-1]
          console.log(index)
         /* alert(${loginVO.password}); */
@@ -297,13 +308,13 @@
             <input type="text" class="count form-control" id="${ stock.price }" placeholder="구매할 수량을 입력하세요." name="count" required="required" aria-label="Amount (to the nearest dollar)">
             <span class="input-group-addon">(주)</span>
             </div>
-            <input type="button" value="가능 100%" class="maxBtn btn btn-success" name="${ saccbalance }-${ stock.price }-max">
-            <input type="button" value="가능 50%" class="midBtn btn btn-success" name="${ saccbalance }-${ stock.price }-mid">
-            <input type="button" value="가능 25%" class="minBtn btn btn-success" name="${ saccbalance }-${ stock.price }-min">
+            <input type="button" value="가능 100%" class="maxBtn btn btn-success" name="${ saccbalance }-${ stock.price }-max" data-target="#myModal${ stock.code }${ loop.index }">
+            <input type="button" value="가능 50%" class="midBtn btn btn-success" name="${ saccbalance }-${ stock.price }-mid" data-target="#myModal${ stock.code }${ loop.index }">
+            <input type="button" value="가능 25%" class="minBtn btn btn-success" name="${ saccbalance }-${ stock.price }-min" data-target="#myModal${ stock.code }${ loop.index }">
           </div>
           <div class="col">
            <label for="message-text" class="col-form-label">가격</label>
-            <input type="text" class="form-control" class = "realprice" name="price" required="required" width="50%">
+            <input type="text" class="form-control realprice" name="price" required="required" width="50%">
           </div>
         </div>
         <br>
@@ -320,9 +331,6 @@
       </div>
     </div>
     </div>
-         
-         
-         
          
        </c:forEach>
        </tbody>

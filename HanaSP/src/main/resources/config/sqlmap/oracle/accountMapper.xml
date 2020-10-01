@@ -59,4 +59,14 @@
 	 		where account_num = #{account_num} 
 	</update>
 	
+	<!-- 주금통 총 모은 금액 -->
+	<select id="howmuchSP" parameterType="String" resultType="int">
+		select sum(price) from h_sadetail where account_num = #{account_num} and type = 'D' order by reg_date
+	</select>
+	
+	<!-- 주금통 현황 -->
+	<select id="mySP" parameterType="String" resultType="int">
+		select price from h_sadetail where account_num = #{account_num} and type = 'D' order by reg_date
+	</select>
+	
 </mapper>

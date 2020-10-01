@@ -56,6 +56,34 @@ public class AutotransferController {
 	}
 	
 	/**
+	 * 주금통 추가 이체
+	 * */
+	@GetMapping("/plus")
+	public ModelAndView plusForm(HttpSession session) {
+		MemberVO loginVO = (MemberVO)session.getAttribute("loginVO");
+		String id = loginVO.getId();
+		String account_num = loginVO.getAccount_num();
+		
+		List<AccountVO> regAList = accountService.regA(id);
+		ModelAndView mav = new ModelAndView("account/plus");
+		mav.addObject("regAList", regAList);
+		
+		// 주금통으로 번거
+		int howmuchSP = accountService.howmuchSP(account_num);
+		mav.addObject("howmuchSP", howmuchSP);
+		 
+
+		return mav;
+	}
+	
+	@PostMapping("/plus")
+	public String plus(HttpSession session, AutotransferVO autotransferVO) {
+		
+		autotransferService.plus(autotransferVO);
+		
+		return "redirect:/spList";
+	}
+	/**
 	 * 주금통 내역 조회
 	 * */
 	@ResponseBody
@@ -71,15 +99,6 @@ public class AutotransferController {
 	}
 	
 	/**
-	 * 주금통 현황
-	 * */
-	@GetMapping("/mySP")
-	public String mySP() {
-		
-		return "account/mySP";
-	}
-	
-	/**
 	 * 주금통서비스 매일 차감
 	 * */
 //	초 분 시 일 월 요일
@@ -92,4 +111,5 @@ public class AutotransferController {
 		
 		messageSend.send("01051400204", "오늘도 주금통 완료~!");
 	}
+
 }

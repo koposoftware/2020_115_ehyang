@@ -205,29 +205,30 @@ public class AccountController {
 	
 	/**
 	 * 이메일 전송
+	 * @throws Exception 
 	 * */
 	@ResponseBody
 	@GetMapping("/unRegSPEmail")
-	public String sendCertificateNumber(@RequestParam("toMail") String toMail, HttpSession session) {
+	public int sendCertificateNumber(@RequestParam("toMail") String toMail, HttpSession session) throws Exception {
 		
-	      //인증번호
-	      Random random = new Random();
-	      String cert = Integer.toString(random.nextInt(10)); 
-	      cert += Integer.toString(random.nextInt(10));
-	      cert += Integer.toString(random.nextInt(10));
-	      cert += Integer.toString(random.nextInt(10));
-	      cert += Integer.toString(random.nextInt(10));
-	      cert += Integer.toString(random.nextInt(10));
+		// 인증번호 생성
+		String code = create();
+		int num = Integer.parseInt(code);
+	      
+	      MemberVO loginVO = (MemberVO)session.getAttribute("loginVO");
+	      String name = loginVO.getName();
 	      
 	      //제목
-	      String title = "인증번호입니다.";
+	      String title = "하나 주금통 서비스 해지 인증번호입니다.";
 	      
 	      //내용, 인증번호 포함
 	      String content = "";
-	      content += "하나은행 이체서비스 인증번호입니다. \n";
-	      content += "인증번호 : " + cert + "\n";
+	      content += name + "님 안녕하십니까. \n";
+	      content += "하나 주금통서비스 해지 인증번호입니다. \n";
+	      content += "보고 계신 화면에 아래의 인증번호를 입력해주세요. \n";
+	      content += "인증번호 : " + num + "\n";
 	           
-	      String setFrom = "hee";
+	      String setFrom = "HanaSP";
 	      
 	      try {
 	         MimeMessage message = mailSender.createMimeMessage();
@@ -244,6 +245,25 @@ public class AccountController {
 	         System.out.println(e);
 	      }
 	      
-	      return cert;
+	      return num;
 	   }
+	
+
+	/**
+	 * 주금통 현황
+	 * */
+	@GetMapping("/mySP")
+	public ModelAndView mySP(HttpSession session) {
+		
+		MemberVO loginVO = (MemberVO)session.getAttribute("loginVO");
+		String account_num = loginVO.getAccount_num();
+		
+		List<Integer> mySPList = accountService.mySP(account_num);
+		ModelAndView mav = new ModelAndView("account/mySP");
+		mav.addObject("mySPList", mySPList);
+		
+		System.out.println(mySPList);
+		
+		return mav;
+	}
 }
