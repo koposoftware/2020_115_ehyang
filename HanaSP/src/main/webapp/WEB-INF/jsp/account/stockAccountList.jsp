@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 
@@ -15,7 +14,7 @@
        <thead>
          <tr align="center">
            <th align="center">회차</th>
-           <th align="center">종목명</th>
+           <th align="center">거래명</th>
            <th align="center">거래금액</th>
            <th align="center">구분</th>
            <th align="center">거래일자</th>

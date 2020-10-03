@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>주식체결목록</title>
 <style type="text/css">
    .color {
     color: #008c8c;
@@ -169,7 +169,7 @@
 												<td><fmt:formatNumber type="number"
 														maxFractionDigits="3" value="${ buy.atprice }" /></td>
 												<td><c:choose>
-														<c:when test="${ (buy.nowPrice - buy.atprice) * buy.count > buy.price}">
+														<c:when test="${ (buy.nowPrice - buy.atprice) * buy.count > 0}">
 															<p style="color: red">
 																<fmt:formatNumber type="number" maxFractionDigits="3"
 																	value="${ (buy.nowPrice - buy.atprice) * buy.count }" />
@@ -181,12 +181,12 @@
 																	value="${ (buy.nowPrice - buy.atprice) * buy.count }" />
 															</p>
 														</c:when>
-														<c:otherwise>
-															<p>
+														<c:when test="${ (buy.nowPrice - buy.atprice) * buy.count eq 0}">
+															<p style="color: black">
 																<fmt:formatNumber type="number" maxFractionDigits="3"
 																	value="${ (buy.nowPrice - buy.atprice) * buy.count }" />
 															</p>
-														</c:otherwise>
+														</c:when>
 													</c:choose></td>
 												<td><c:choose>
 														<c:when
@@ -240,7 +240,8 @@
 						<div class="tab-pane fade" id="nav-profile" role="tabpanel"
 							aria-labelledby="nav-profile-tab">
 
-							<h4>실현손익</h4>
+							<h4>실현손익 : <fmt:formatNumber type="number"
+														maxFractionDigits="3" value="${ howmuch }" /></h4>
 							<table class="table table-striped">
 								<thead align="center">
 									<tr>
@@ -462,7 +463,7 @@
         
         <div class="modal-body">
         <form action="${ pageContext.request.contextPath }/sell" method="post" name="sform">
-        <input type="hidden" name="howmuch" value="${ buy.nowPrice * buy.count - buy.price }">
+        <input type="hidden" name="howmuch" value="${ (buy.nowPrice - buy.atprice) * buy.count }">
         <div align="center">
         <img src="https://ssl.pstatic.net/imgfinance/chart/item/area/day/${ buy.code }.png">
         </div>

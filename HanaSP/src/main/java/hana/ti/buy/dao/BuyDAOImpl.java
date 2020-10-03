@@ -116,5 +116,14 @@ public class BuyDAOImpl implements BuyDAO{
 		List<BuyVO> sellList = sqlSession.selectList("buy.dao.BuyDAO.sellList", id);
 		return sellList;
 	}
+
+	/**
+	 * 실현손익
+	 * */
+	@Override
+	public int howmuch(String id) {
+		int howmuch = sqlSession.selectOne("buy.dao.BuyDAO.howmuch", id);
+		return howmuch;
+	}
 	
 }

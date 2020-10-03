@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>KOSPI 50</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -120,9 +120,9 @@
 </div>
       
       
-      	<div class="page-header">
-		   <h3> <img src="resources/images/stock.png" width="70px"> 주식 정보를 살펴보고 원하는 종목을 관심종목에 추가해보세요!</h3>      
-		  </div>     
+         <div class="page-header">
+         <h3> <img src="resources/images/stock.png" width="70px"> 주식 정보를 살펴보고 원하는 종목을 관심종목에 추가해보세요!</h3>      
+        </div>     
       
         <!-- <input class="form-control" id="myInput" type="text" placeholder="원하는 종목을 검색하세요"> -->
         <br>
@@ -168,11 +168,17 @@
            <c:if test="${ stock.price < stock.yesterdayPrice }">
            <td align="center"><p><fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></p></td>
            </c:if>
+           <c:if test="${ stock.price eq stock.yesterdayPrice }">
+           <td align="center"><p><fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></p></td>
+           </c:if>
            <c:if test="${ stock.price > stock.yesterdayPrice }">
            <td align="center"><p style="color: red">▲ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price - stock.yesterdayPrice }" /></p></td>
            </c:if>
            <c:if test="${ stock.price < stock.yesterdayPrice }">
            <td align="center"><p style="color: blue">▼ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price - stock.yesterdayPrice }" /></p></td>
+           </c:if>
+           <c:if test="${ stock.price eq stock.yesterdayPrice }">
+           <td align="center"><p style="color: black">-</p></td>
            </c:if>
            <td align="center"><input type="button" class="chart btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="차트"></td>
            <td align="center"><input type="button" class="addFavoriteBtn btn btn-success" id="${ stock.name }-${ loginVO.id }-${ stock.code }-${ stock.price}" <c:if test="${stock.flag == 1 }">disabled </c:if> value="관심종목으로 등록"></td>
@@ -265,10 +271,13 @@
            <td align="center">${ stock.name }</td>
            <td align="center">${ stock.category }</td>
            <%-- <td align="center">${ stock.reg_date }</td> --%>
-		   <c:if test="${ stock.price > stock.yesterdayPrice }">
+         <c:if test="${ stock.price > stock.yesterdayPrice }">
            <td align="center"><p><fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></p></td>
            </c:if>
            <c:if test="${ stock.price < stock.yesterdayPrice }">
+           <td align="center"><p><fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></p></td>
+           </c:if>
+           <c:if test="${ stock.price eq stock.yesterdayPrice }">
            <td align="center"><p><fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></p></td>
            </c:if>
            <c:if test="${ stock.price > stock.yesterdayPrice }">
@@ -276,6 +285,9 @@
            </c:if>
            <c:if test="${ stock.price < stock.yesterdayPrice }">
            <td align="center"><p style="color: blue">▼ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price - stock.yesterdayPrice }" /></p></td>
+           </c:if>
+           <c:if test="${ stock.price eq stock.yesterdayPrice }">
+           <td align="center"><p style="color: black">-</p></td>
            </c:if>
            <td align="center"><input type="button" class="chart btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="차트"></td>
            <td align="center"><input type="button" class="addFavoriteBtn btn btn-success" id="${ stock.name }-${ loginVO.id }-${ stock.code }-${ stock.price}" <c:if test="${stock.flag == 1 }">disabled </c:if> value="관심종목으로 등록"></td>
@@ -368,10 +380,13 @@
            <td align="center">${ stock.name }</td>
            <td align="center">${ stock.category }</td>
            <%-- <td align="center">${ stock.reg_date }</td> --%>
-		   <c:if test="${ stock.price > stock.yesterdayPrice }">
+         <c:if test="${ stock.price > stock.yesterdayPrice }">
            <td align="center"><p><fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></p></td>
            </c:if>
            <c:if test="${ stock.price < stock.yesterdayPrice }">
+           <td align="center"><p><fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></p></td>
+           </c:if>
+           <c:if test="${ stock.price eq stock.yesterdayPrice }">
            <td align="center"><p><fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></p></td>
            </c:if>
            <c:if test="${ stock.price > stock.yesterdayPrice }">
@@ -379,6 +394,9 @@
            </c:if>
            <c:if test="${ stock.price < stock.yesterdayPrice }">
            <td align="center"><p style="color: blue">▼ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price - stock.yesterdayPrice }" /></p></td>
+           </c:if>
+           <c:if test="${ stock.price eq stock.yesterdayPrice }">
+           <td align="center"><p style="color: black">-</p></td>
            </c:if>
            <td align="center"><input type="button" class="chart btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="차트"></td>
            <td align="center"><input type="button" class="addFavoriteBtn btn btn-success" id="${ stock.name }-${ loginVO.id }-${ stock.code }-${ stock.price}" <c:if test="${stock.flag == 1 }">disabled </c:if> value="관심종목으로 등록"></td>
@@ -468,10 +486,13 @@
            <td align="center">${ stock.name }</td>
            <td align="center">${ stock.category }</td>
            <%-- <td align="center">${ stock.reg_date }</td> --%>
-		   <c:if test="${ stock.price > stock.yesterdayPrice }">
+         <c:if test="${ stock.price > stock.yesterdayPrice }">
            <td align="center"><p><fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></p></td>
            </c:if>
            <c:if test="${ stock.price < stock.yesterdayPrice }">
+           <td align="center"><p><fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></p></td>
+           </c:if>
+           <c:if test="${ stock.price eq stock.yesterdayPrice }">
            <td align="center"><p><fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></p></td>
            </c:if>
            <c:if test="${ stock.price > stock.yesterdayPrice }">
@@ -479,6 +500,9 @@
            </c:if>
            <c:if test="${ stock.price < stock.yesterdayPrice }">
            <td align="center"><p style="color: blue">▼ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price - stock.yesterdayPrice }" /></p></td>
+           </c:if>
+           <c:if test="${ stock.price eq stock.yesterdayPrice }">
+           <td align="center"><p style="color: black">-</p></td>
            </c:if>
            <td align="center"><input type="button" class="chart btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="차트"></td>
            <td align="center"><input type="button" class="addFavoriteBtn btn btn-success" id="${ stock.name }-${ loginVO.id }-${ stock.code }-${ stock.price}" <c:if test="${stock.flag == 1 }">disabled </c:if> value="관심종목으로 등록"></td>
@@ -561,14 +585,17 @@
        </thead>
        <tbody id="myTable">
        <c:forEach items="${ stockListc5 }" var="stock" varStatus="loop">
-         <tr>
+        <tr>
            <td align="center">${ stock.name }</td>
            <td align="center">${ stock.category }</td>
            <%-- <td align="center">${ stock.reg_date }</td> --%>
-		   <c:if test="${ stock.price > stock.yesterdayPrice }">
+         <c:if test="${ stock.price > stock.yesterdayPrice }">
            <td align="center"><p><fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></p></td>
            </c:if>
            <c:if test="${ stock.price < stock.yesterdayPrice }">
+           <td align="center"><p><fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></p></td>
+           </c:if>
+           <c:if test="${ stock.price eq stock.yesterdayPrice }">
            <td align="center"><p><fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price }" /></p></td>
            </c:if>
            <c:if test="${ stock.price > stock.yesterdayPrice }">
@@ -576,6 +603,9 @@
            </c:if>
            <c:if test="${ stock.price < stock.yesterdayPrice }">
            <td align="center"><p style="color: blue">▼ <fmt:formatNumber type="number" maxFractionDigits="3" value ="${ stock.price - stock.yesterdayPrice }" /></p></td>
+           </c:if>
+           <c:if test="${ stock.price eq stock.yesterdayPrice }">
+           <td align="center"><p style="color: black">-</p></td>
            </c:if>
            <td align="center"><input type="button" class="chart btn btn-success" id="${ stock.code }"  data-toggle="modal" data-target="#myModal${ stock.code }" value="차트"></td>
            <td align="center"><input type="button" class="addFavoriteBtn btn btn-success" id="${ stock.name }-${ loginVO.id }-${ stock.code }-${ stock.price}" <c:if test="${stock.flag == 1 }">disabled </c:if> value="관심종목으로 등록"></td>

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>주금통조회</title>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script>
 
@@ -74,7 +74,7 @@ $(document).ready(function(){
 	               data : {
 	            	   account_num : $(this).attr('id')
 	               }, success : function(data) {
-	                  alert('서비스 해지가 완료되었습니다.');
+	                  /* alert('서비스 해지가 완료되었습니다.'); */
 	                  /* alert(authCode); */
 	                  location.href = "${pageContext.request.contextPath}/spList";
 	                $('#'+h+'div').hide();

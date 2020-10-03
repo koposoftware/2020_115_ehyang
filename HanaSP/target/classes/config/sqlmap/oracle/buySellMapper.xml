@@ -85,4 +85,9 @@
       select rownum, account_num, name, sell_count, price, to_char(reg_date, 'YYYY-MM-DD') as reg_date, howmuch, buy_count
 	    	 from (select s.account_num, s.name, s.count as sell_count, s.price, s.reg_date, s.howmuch, b.count as buy_count from h_sell s, h_buy b where s.id = #{id} and s.code = b.code order by s.reg_date)
 	</select>
+	
+	<!-- 실현손익 -->
+	<select id="howmuch" resultType="int" parameterType="String">
+	select sum(howmuch) from h_sell where id = #{id}
+	</select>
 </mapper>

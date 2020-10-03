@@ -93,13 +93,13 @@
    box-shadow: 0 0.5rem 1.75rem 0 rgba(58, 59, 69, 0.5) !important;">
    <strong style="color: #000000; font-size: 18pt">오늘의 증시</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="float-right" style="font-size: 5pt; color: #000000"><%
 
- Date now = new Date();
+  Date now = new Date();
  SimpleDateFormat sf = new SimpleDateFormat("yyyy년MM월dd일 E a hh:mm:ss");
  
  String today = sf.format(now);
 %>
-<%-- <%= now %><br> --%>
-<%= today %></span>&nbsp;<span class="badge badge-info float-right">실시간</span>
+ <%-- <%= now %><br> --%>
+ <%= today %> </span>&nbsp;<span class="badge badge-info float-right">실시간</span>
    <hr>
    <div id="kospiDiv">
    
@@ -141,7 +141,7 @@
                   <div class="text">
                   	<span class="fa fa-quote-left"></span>
                   	<div>
-                  	<a href="${ pageContext.request.contextPath}/createInMsg">
+                  	<a href="https://www.hanaw.com/main/customer/openAccount/CS_180100_P.cmd">
                   	<img src="resources/images/createaccount.png">
                   	</a>
                   	</div>
@@ -161,44 +161,20 @@
                 <div class="testimony-wrap py-4">
                   <div class="text">
                   	<span class="fa fa-quote-left"></span>
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                  <div class="text">
-                  	<span class="fa fa-quote-left"></span>
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                  <div class="text">
-                  	<span class="fa fa-quote-left"></span>
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
+                  	<div>
+                  	<a href="https://www.hanaw.com/corebbs5/eventIng/view/view.cmd?bbsSeq=344">
+                  	<img src="resources/images/dd.png">
+                  	</a>
+                  	</div>
+                  	<br>
+                    <p class="mb-4"style="font-family: 'paybooc-Bold'; color: black" align="center">하나 고배당 금융테크랩 V2 출시</p>
+                    <!-- <div class="d-flex align-items-center">
                     	<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
                     	<div class="pl-3">
 		                    <p class="name">Roger Scott</p>
 		                    <span class="position">Marketing Manager</span>
 		                  </div>
-	                  </div>
+	                  </div> -->
                   </div>
                 </div>
               </div>
@@ -206,21 +182,27 @@
                 <div class="testimony-wrap py-4">
                   <div class="text">
                   	<span class="fa fa-quote-left"></span>
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
+                  	<div>
+                  	<a href="https://www.hanaw.com/corebbs5/eventIng/view/view.cmd?bbsSeq=345">
+                  	<img src="resources/images/sgx.png">
+                  	</a>
+                  	</div>
+                  	<br>
+                    <p class="mb-4"style="font-family: 'paybooc-Bold'; color: black" align="center">싱가포르거래소(SGX)에서 수수료$2.9로<br>거래하고 경품도 받자!</p>
+                    <!-- <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
                     	<div class="pl-3">
 		                    <p class="name">Roger Scott</p>
 		                    <span class="position">Marketing Manager</span>
 		                  </div>
-	                  </div>
+	                  </div> -->
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
     </section>
 
 
@@ -261,146 +243,10 @@
 
 
 
-    <section class="ftco-section ftco-no-pb ftco-no-pt bg-primary">
-      <div class="container">
-        <div class="row d-flex no-gutters">
-          <div class="col-md-3 d-flex align-items-stretch ftco-animate">
-            <div class="media block-6 services services-bg d-block text-center px-4 py-5">
-            	<div class="icon d-flex justify-content-center align-items-center"><span class="flaticon-system"></span></div>
-              <div class="media-body py-md-4">
-                <h3>비대면계좌 개설</h3>
-                <p>App 설치 없이 쉽고 빠르게,<br>하나금융투자 비대면 계좌개설</p>
-              </div>
-            </div>      
-          </div>
-          <div class="col-md-3 d-flex align-items-stretch ftco-animate">
-            <div class="media block-6 services services-bg services-darken d-block text-center px-4 py-5">
-            	<div class="icon d-flex justify-content-center align-items-center"><span class="flaticon-supervised"></span></div>
-              <div class="media-body py-md-4">
-                <h3>영업점계좌 개설</h3>
-                <p>영업점을 방문하여 직접 계좌를 개설해보세요!</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex align-items-stretch ftco-animate">
-            <div class="media block-6 services services-bg services-lighten d-block text-center px-4 py-5">
-            	<div class="icon d-flex justify-content-center align-items-center"><span class="flaticon-accounting"></span></div>
-              <div class="media-body py-md-4">
-                <h3>은행제휴계좌 개설</h3>
-                <p>하나금융투자와 제휴한 해당은행 전국 영업점을 방문하시면 어느 곳에서나 편리하게 계좌를 개설하실 수 있습니다</p>
-              </div>
-            </div>      
-          </div>
-          <div class="col-md-3 d-flex align-items-stretch ftco-animate">
-            <div class="media block-6 services services-bg d-block text-center px-4 py-5">
-            	<div class="icon d-flex justify-content-center align-items-center"><span class="flaticon-blueprint"></span></div>
-              <div class="media-body py-md-4">
-                <h3>온라인 상품계좌 개설</h3>
-                <p>하나금융투자의 영업점, 온라인채널을 통해 개설된 계좌 또는 은행을 통해 개설한 계좌에서 거래 가능한 상품(예: 펀드매매만 가능한 계좌(수익증권)만 개설한 경우)외 주식, 파생, 해외주식, FX, 연금 등의 상품을 매매하고자 하는 경우 해당 계좌 (실명확인된 수익증권 계좌)를 근거로 추가로 상품계좌를 온라인에서 개설하는 서비스입니다.</p>
-              </div>
-            </div>      
-          </div>
-        </div>
-      </div>
-    </section>
+   
 
     
-    <section class="ftco-section ftco-no-pb ftco-no-pt">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-7 order-md-last d-md-flex align-items-stretch">
-						<div class="img w-100 img-2 mr-md-2" style="background-image: url(resources/images/about.jpg);"></div>
-						<div class="img w-100 img-2 img-overlay ml-md-2 p-4" style="background-image: url(resources/images/about-2.jpg);">
-							<div class="request-quote py-5">
-	    					<div class="py-2">
-	    						<span class="subheading">Be Part of our Business</span>
-	    						<h3>Request A Quote</h3>
-	    					</div>
-	    					<form action="#" class="request-form ftco-animate">
-			    				<div class="form-group">
-			    					<input type="text" class="form-control" placeholder="First Name">
-			    				</div>
-			    				<div class="form-group">
-			    					<input type="text" class="form-control" placeholder="Last Name">
-			    				</div>
-		    					<div class="form-group">
-			    					<div class="form-field">
-	          					<div class="select-wrap">
-	                      <div class="icon-arr"><span class="ion-ios-arrow-down"></span></div>
-	                      <select name="" id="" class="form-control">
-	                      	<option value="">Select Your Services</option>
-	                        <option value="">Construction</option>
-	                        <option value="">Renovation</option>
-	                        <option value="">Interior Design</option>
-	                        <option value="">Exterior Design</option>
-	                        <option value="">Painting</option>
-	                      </select>
-	                    </div>
-			              </div>
-			    				</div>
-		    					<div class="form-group">
-			    					<input type="text" class="form-control" placeholder="Phone">
-			    				</div>
-		    					<div class="form-group">
-			              <textarea name="" id="" cols="30" rows="2" class="form-control" placeholder="Message"></textarea>
-			            </div>
-			            <div class="form-group">
-			              <input type="submit" value="Request A Quote" class="btn btn-primary py-3 px-4">
-			            </div>
-			    			</form>
-	    				</div>
-						</div>
-					</div>
-					<div class="col-lg-5 wrap-about py-md-5 ftco-animate">
-	          <div class="heading-section pr-md-5">
-	            <h2 class="mb-4">ArchLab</h2>
 
-	            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-	            <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
-	          </div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section class="ftco-counter img" id="section-counter">
-    	<div class="container">
-    		<div class="row pt-md-5">
-          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 py-md-5 mb-md-4">
-              <div class="text text-border d-flex align-items-center">
-                <strong class="number" data-number="1000">0</strong>
-                <span>Years of <br>Experienced</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 py-md-5 mb-md-4">
-              <div class="text text-border d-flex align-items-center">
-                <strong class="number" data-number="2500">0</strong>
-                <span>Project <br>Done</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 py-md-5 mb-md-4">
-              <div class="text text-border d-flex align-items-center">
-                <strong class="number" data-number="500">0</strong>
-                <span>Licensed <br>Architect</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 py-md-5 mb-md-4">
-              <div class="text d-flex align-items-center">
-                <strong class="number" data-number="67">0</strong>
-                <span>Happy <br>Customers</span>
-              </div>
-            </div>
-          </div>
-        </div>
-    	</div>
-    </section>
 
    
 

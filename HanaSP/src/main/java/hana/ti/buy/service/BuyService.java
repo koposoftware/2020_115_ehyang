@@ -65,4 +65,9 @@ public interface BuyService {
 	 * 구매가능한것 알람
 	 * */
 	public List<BuyVO> canBuy(String id);
+	
+	/**
+	 * 실현손익
+	 * */
+	public int howmuch(String id);
 }

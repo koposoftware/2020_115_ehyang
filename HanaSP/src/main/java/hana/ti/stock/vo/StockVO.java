@@ -15,14 +15,14 @@ public class StockVO {
 	private String updown;
 	private String plusminus;
 	private String percent;
-	private String yesterdayPrice;
+	private int yesterdayPrice;
 	
 	
 	
-	public String getYesterdayPrice() {
+	public int getYesterdayPrice() {
 		return yesterdayPrice;
 	}
-	public void setYesterdayPrice(String yesterdayPrice) {
+	public void setYesterdayPrice(int yesterdayPrice) {
 		this.yesterdayPrice = yesterdayPrice;
 	}
 	public String getK_index() {

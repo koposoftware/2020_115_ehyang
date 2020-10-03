@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>추가이체</title>
 </head>
 <body>
 <!-- header -->

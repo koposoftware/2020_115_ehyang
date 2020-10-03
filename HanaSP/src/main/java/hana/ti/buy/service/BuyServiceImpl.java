@@ -119,4 +119,13 @@ public class BuyServiceImpl implements BuyService {
 		List<BuyVO> canBuyList = buyDAO.canBuy(id);
 		return canBuyList;
 	}
+
+	/**
+	 * 실현손익
+	 * */
+	@Override
+	public int howmuch(String id) {
+		int howmuch = buyDAO.howmuch(id);
+		return howmuch;
+	}
 }

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>나의 관심종목 조회 및 매수</title>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script>
    // 관심종목에서 삭제

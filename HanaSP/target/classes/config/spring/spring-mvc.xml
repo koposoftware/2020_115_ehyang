@@ -76,8 +76,19 @@
    </mvc:view-resolvers>
 
 	<!-- 인터셉터와 관련 -->
-	<!-- <bean class="hana.ti.interceptor.LoginInterceptor" id="loginInterceptor"/> -->
-	
+	<bean class="hana.ti.interceptor.LoginInterceptor" id="loginInterceptor"/>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- <mvc:mapping path="/board/write"/> --><!-- 어떤 uri가 들어올 때 loginInterceptor가 작동하도록 만들겠다. 만약 path="/board/write"하면 board에 글 작성할 때! -->
+			<mvc:mapping path="/**/" />	<!-- /가 나오고 그 뒤에 depth가 몇이던간에 (/board, /board/write, /member, /member/update) 전부 막기 -> 근데 이렇게하면 무조건 에러생김 -->
+			<!-- 위에서 한거처럼 모든 depth는 거쳐가는데 login은 안거칠거야(머 호출되는거 없이 그냥 실행될거야)(uri직접입력시) -->
+			<mvc:exclude-mapping path="/login"/>
+			<!-- /resources아래에 있는 모든 폴더도 그냥 보여줄거야 -->
+			<mvc:exclude-mapping path="/resources/**"/>
+			<mvc:exclude-mapping path="/logout"/>
+			<ref bean="loginInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 	
 	<!-- 트랜잭션 처리 -->
 	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">

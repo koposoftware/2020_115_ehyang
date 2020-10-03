@@ -52,7 +52,7 @@ public class BuyController {
    @PostMapping("/account/saList")
    public ModelAndView saList(@RequestParam("account_num") String account_num){
       
-      System.out.println(account_num);
+		/* System.out.println(account_num); */
       
       List<BuyVO> saList = buyService.saList(account_num);
       ModelAndView mav = new ModelAndView("account/stockAccountList");
@@ -82,6 +82,11 @@ public class BuyController {
 		// 총 매수금
 		int totalBuy = buyService.totalBuy(id);
 		mav.addObject("totalBuy", totalBuy);
+		
+		// 실현손익
+		int howmuch = buyService.howmuch(id);
+		mav.addObject("howmuch", howmuch);
+		
 		return mav;
    }
    

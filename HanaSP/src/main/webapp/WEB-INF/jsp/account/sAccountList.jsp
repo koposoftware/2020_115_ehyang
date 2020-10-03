@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>증권계좌조회</title>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script>
 // 거래내역조회

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ArcLab - Free Bootstrap 4 Template by Colorlib</title>
+<title>하나금융투자 주금통서비스</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
        <div class="container-fluid">
-       <a href="${ pageContext.request.contextPath }">
+       <a href="${ pageContext.request.contextPath }/">
        <img src="resources/images/hanatujalogo.png" style="width: 300px; height: 80px">
        </a>
          <%-- <a class="navbar-brand" href="${ pageContext.request.contextPath }">Hana SP.</a> --%>
@@ -54,11 +54,11 @@
                   </div>
                </li>
 
-               <li class="nav-item">
+               <%-- <li class="nav-item">
                <div class="dropdown">
                     <a class="nav-link" aria-expanded="false" href="${ pageContext.request.contextPath }"> Service </a>
                   </div>
-               </li>
+               </li> --%>
 
                <li class="nav-item">
                   <div class="dropdown">
@@ -71,7 +71,7 @@
                         <c:choose>
              <c:when test="${ empty loginVO.account_num }">
                        <a class="dropdown-item" href="${ pageContext.request.contextPath}/create">증권계좌개설</a>
-                       <a class="dropdown-item" href="${ pageContext.request.contextPath}/createInMsg">비대면계좌개설</a>
+                       <%-- <a class="dropdown-item" href="${ pageContext.request.contextPath}/createInMsg">비대면계좌개설</a> --%>
                        </c:when>
                        <c:otherwise>
                         <a class="dropdown-item" href="${ pageContext.request.contextPath}/ncreate">증권계좌개설</a>
@@ -89,7 +89,7 @@
             	My 주금통
          </a>
            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-             <a class="dropdown-item" href="${ pageContext.request.contextPath }/mySP">주금통 현황</a>
+             <%-- <a class="dropdown-item" href="${ pageContext.request.contextPath }/mySP">주금통 현황</a> --%>
              <a class="dropdown-item" href="${ pageContext.request.contextPath }/autoTransfer">주금통서비스 신청</a>
              <a class="dropdown-item" href="${ pageContext.request.contextPath }/spList">주금통서비스 조회 및 해지</a>
              <a class="dropdown-item" href="${ pageContext.request.contextPath }/plus">추가이체</a>

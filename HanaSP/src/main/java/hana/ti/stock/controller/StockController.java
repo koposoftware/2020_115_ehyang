@@ -42,7 +42,7 @@ public class StockController {
 //		for(StockVO vo : stockList) {
 //			System.out.println(vo);
 //		}
-		
+		System.out.println(stockListc4);
 		ModelAndView mav = new ModelAndView("stock/stockList");
 		
 		mav.addObject("stockListc1", stockListc1);
