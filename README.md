@@ -101,20 +101,3 @@
 대상 - 로컬 소셜 이노베이터 PT 경진대회<br>
 대상 - 전북대학교 캡스톤 경진대회<br>
 동상 - 전북대학교 LINC+사업단 캡스톤 디자인 UCC공모전|<br>
-
-# 5. 기타
-
-
-
-# 홈페이지 설정
-
- 본인 repository에서 "Setting"를 들어가서 GitHub Pages에서 설정 변경.
- <Source>
- Source에서 원하는 branch와 directory 설정한다. 
- 기본값은 master 에 root를 설정 
- Save 버튼 꼭 누른다.
-
- <Theme Chooser>
- theme을 변경하여 좀더 이쁜 홈페이지를 만든다.
-
-   <img src="homepage.JPG"/><br>
