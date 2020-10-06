@@ -1,6 +1,6 @@
 # 프로젝트 제목
 
-[프로젝트 홈페이지 - https://koposoftware.github.io/template/](https://koposoftware.github.io/template/)
+[프로젝트 홈페이지 - https://koposoftware.github.io/2020_15_ehyang/](https://koposoftware.github.io/2020_15_ehyang/)
 
 # 1. 프로젝트 개요
 
