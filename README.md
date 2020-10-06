@@ -30,7 +30,7 @@
 프로젝트 결과를 추가하세요. 발표자료. 시연동영상을 추가하세요.
 
 ## 발표 ppt 
-<a href = "https://github.com/koposoftware/2020_15_ehyang/blob/master/PPT/Z%EC%84%B8%EB%8C%80%EB%A5%BC%20%EC%9C%84%ED%95%9C%20%EC%A7%A0%ED%85%8C%ED%81%AC%20%EC%A3%BC%EC%8B%9D%ED%88%AC%EC%9E%90.pdf"></a>
+<a href = "https://github.com/koposoftware/2020_15_ehyang/blob/master/PPT/Z%EC%84%B8%EB%8C%80%EB%A5%BC%20%EC%9C%84%ED%95%9C%20%EC%A7%A0%ED%85%8C%ED%81%AC%20%EC%A3%BC%EC%8B%9D%ED%88%AC%EC%9E%90.pdf"> PPT 보러가기</a>
 ![PPT최종전4](https://user-images.githubusercontent.com/63223374/95171365-c1ce4b80-07f0-11eb-880d-3d81784a86ef.png)
 
 ## 시연 동영상 
