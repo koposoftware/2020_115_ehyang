@@ -35,9 +35,7 @@
 
 ## 시연 동영상 
 
-[](https://youtu.be/lN5YcNwOwX0)
-
-
+[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/lN5YcNwOwX0)
 
 # 4. 본인 소개
 
