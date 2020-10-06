@@ -83,14 +83,14 @@
 
 본인 소개를 추가하세요
 
-|이름 |양은희|![image](https://user-images.githubusercontent.com/63223374/95203583-eab90580-081d-11eb-9838-23742fef61be.png)|
-|연락처 | yang23413(@)gmail.com|
-|skill set| Frontend - HTML, CSS, Javascript, Jquery|
-| | Backend - Java, Spring, Oracle|
+|이름 |양은희|![image](https://user-images.githubusercontent.com/63223374/95203583-eab90580-081d-11eb-9838-23742fef61be.png)|<br>
+|연락처 | yang23413(@)gmail.com|<br>
+|skill set| Frontend - HTML, CSS, Javascript, Jquery|<br>
+| | Backend - Java, Spring, Oracle|<br>
 |수상| 표창장 - 전북대학교 창의인재분야 우수상<br>
 대상 - 로컬 소셜 이노베이터 PT 경진대회<br>
 대상 - 전북대학교 캡스톤 경진대회<br>
-동상 - 전북대학교 LINC+사업단 캡스톤 디자인 UCC공모전|
+동상 - 전북대학교 LINC+사업단 캡스톤 디자인 UCC공모전|<br>
 
 # 5. 기타
 
