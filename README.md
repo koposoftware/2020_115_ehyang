@@ -29,6 +29,16 @@
 **기능**
 ![image](https://user-images.githubusercontent.com/63223374/95174470-12e03e80-07f5-11eb-9a4f-b6756391165a.png)
 
+**사용 기술**
+ Spring MVC - 웹 애플리케이션 제작<br>
+ 웹 크롤링 - 실시간 주가 반영<br>
+ Spring Scheduler - 매일 저녁 6시 이체 실행<br>
+ OTP - 인증번호 생성방식<br>
+ 문자 API - 알림 및 본인인증<br>
+ Spring MailSender - 이메일 본인인증<br>
+ AJAX - 거래 내역 조회 및 관심종목반영<br>
+ Docker - 리눅스 컨테이너<br>
+
 **간트차트**
 
 ![image](https://user-images.githubusercontent.com/63223374/95173333-7cf7e400-07f3-11eb-9189-c9848556499d.png)
