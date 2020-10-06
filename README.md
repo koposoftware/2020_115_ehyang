@@ -30,7 +30,7 @@
 프로젝트 결과를 추가하세요. 발표자료. 시연동영상을 추가하세요.
 
 ## 발표 ppt 
-
+PPT/Z세대를 위한 짠테크 주식투자.pdf
 [](PPT/Z세대를 위한 짠테크 주식투자.pdf)
 
 ![PPT최종전4](https://user-images.githubusercontent.com/63223374/95171365-c1ce4b80-07f0-11eb-880d-3d81784a86ef.png)
