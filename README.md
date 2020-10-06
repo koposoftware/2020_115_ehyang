@@ -14,29 +14,32 @@
 
 주식에 관심은 있지만 시작하기 어려워하는 90년대 중반의 Z세대들을 위해 맞춤형 서비스를 제작하고자한다.
 
+<hr>
+
+**서비스 설명**
+![image](https://user-images.githubusercontent.com/63223374/95173884-44a4d580-07f4-11eb-8605-c971f85179c2.png)
+- 매일 저녁 6시 1000원 미만의 동전이 증권계좌에 자동이체가 된다.
+- KOSPI50의 상세정보가 제공되고 원하는 종목을 관심종목으로 선택할 수 있다.
+- 매일 저녁 이체되는 금액에 대해선 문자알림 서비스가 제공된다.
+- 서비스 해지 시 본인인증 방식은 문자와 이메일을 제공한다.
 
 
 # 2. 프로젝트 제안서
+
+**기능**
+![image](https://user-images.githubusercontent.com/63223374/95174470-12e03e80-07f5-11eb-9a4f-b6756391165a.png)
 
 **간트차트**
 
 ![image](https://user-images.githubusercontent.com/63223374/95173333-7cf7e400-07f3-11eb-9189-c9848556499d.png)
 
-
-
 **아키텍처**
 
 ![image](https://user-images.githubusercontent.com/63223374/95173540-c5170680-07f3-11eb-9ee4-b9362116084d.png)
 
-
-
 **ERD**
 
 ![image](https://user-images.githubusercontent.com/63223374/95173503-b7618100-07f3-11eb-8e08-eb67408519ce.png)
-  
-
-
-
 
 # 3. 프로젝트 결과
 
