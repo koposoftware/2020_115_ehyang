@@ -18,8 +18,21 @@
 
 # 2. 프로젝트 제안서
 
-프로젝트 제안서를 설명하세요. 발표자료와 동영상을 추가하세요. 시스템의 아키텍쳐 설명도 추가하세요.
+**간트차트**
 
+![image](https://user-images.githubusercontent.com/63223374/95173333-7cf7e400-07f3-11eb-9189-c9848556499d.png)
+
+
+
+**아키텍처**
+
+![image](https://user-images.githubusercontent.com/63223374/95173540-c5170680-07f3-11eb-9ee4-b9362116084d.png)
+
+
+
+**ERD**
+
+![image](https://user-images.githubusercontent.com/63223374/95173503-b7618100-07f3-11eb-8e08-eb67408519ce.png)
   
 
 
