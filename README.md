@@ -83,7 +83,7 @@
 
 본인 소개를 추가하세요
 
-|이름 |양은희|![포켓](https://user-images.githubusercontent.com/63223374/95202290-13d89680-081c-11eb-992e-be8834d96450.jpg)|
+|이름 |양은희|![포켓](https://user-images.githubusercontent.com/63223374/95202290-13d89680-081c-11eb-992e-be8834d96450.jpg){: width="100" height="100"}|
 |연락처 | yang23413(@)gmail.com|
 |skill set| Frontend - HTML, CSS, Javascript, Jquery|
 | | Backend - Java, Spring, Oracle|
